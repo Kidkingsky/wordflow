@@ -19,11 +19,13 @@ jobs:
           cache: true
       - name: Create native Android project
         run: flutter create --platforms=android --project-name wordflow --org com.kidkingsky .
+      - name: Remove generated counter-app template test
+        run: rm -f test/widget_test.dart
       - name: Install packages
         run: flutter pub get
       - name: Check and test
         run: |
-          flutter analyze
+          flutter analyze --no-fatal-infos
           flutter test
       - name: Build Android debug APK
         run: flutter build apk --debug

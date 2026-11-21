@@ -1,6 +1,14 @@
 # WordFlow — 每日英文（Flutter iOS / Android）
 
-> **專案狀態：v0.1 原始碼起點**。本專案在沒有 Flutter SDK 與 Xcode 的環境下產生；尚未經過實際 `flutter analyze`、`flutter test`、iOS / Android 編譯。附有雲端 CI 供第一次驗證。**目前不是已簽署、可直接安裝的 iPhone App。**
+ > **專案狀態：v0.2 原始碼起點**。本專案在沒有 Flutter SDK 與 Xcode 的環境下產生；尚未經過實際 `flutter analyze`、`flutter test`、iOS / Android 編譯。附有雲端 CI 供第一次驗證。**目前不是已簽署、可直接安裝的 iPhone App。**
+
+## ✅ iPhone 現在先試用（不需要 Windows）
+
+**GitHub 專案：** https://github.com/Kidkingsky/wordflow
+
+首次需在 GitHub → **Settings → Pages**，設定 **Deploy from a branch → main → /(root) → Save**。
+GitHub Pages 完成部署後，在 iPhone Safari 開啟 https://kidkingsky.github.io/wordflow/ ，按分享 → 加入主畫面。
+此版本是可操作的手機瀏覽器預覽，**不是已簽署的原生 IPA**。
 
 ## 第一版包含什麼？
 
@@ -126,4 +134,4 @@ Apple / Codemagic 的簽署設定、權限、帳號、Provisioning Profile 都�
 ### Current status
 
 - The source and workflow files have been prepared but have **not** been run on a macOS runner yet; do not assume compilation and installation succeeds before green GitHub Actions logs are available.
-- Creating a GitHub repository for this project is still required before Actions or GitHub Pages can run.
+- Repository `Kidkingsky/wordflow` has been created; Android/iOS Actions are configured. Enable GitHub Pages in Settings to publish the preview.

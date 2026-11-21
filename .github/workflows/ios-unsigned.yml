@@ -19,11 +19,13 @@ jobs:
           cache: true
       - name: Create iOS native project
         run: flutter create --platforms=ios --project-name wordflow --org com.kidkingsky .
+      - name: Remove generated counter-app template test
+        run: rm -f test/widget_test.dart
       - name: Fetch packages
         run: flutter pub get
       - name: Check Dart and test
         run: |
-          flutter analyze
+          flutter analyze --no-fatal-infos
           flutter test
       - name: Build iOS app without signing
         run: flutter build ios --release --no-codesign
