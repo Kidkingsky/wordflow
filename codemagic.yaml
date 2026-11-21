@@ -1,0 +1,63 @@
+# Codemagic cloud Mac pipeline. The repository intentionally contains Flutter
+# source files only; native platform folders are generated during the build.
+workflows:
+  ios_unsigned:
+    name: iOS 編譯檢查（未簽署，不能安裝到 iPhone）
+    instance_type: mac_mini_m2
+    max_build_duration: 60
+    environment:
+      flutter: stable
+      xcode: latest
+      cocoapods: default
+    scripts:
+      - name: Create native iOS project
+        script: flutter create --platforms=ios --project-name wordflow --org com.kidkingsky .
+      - name: Install packages
+        script: flutter pub get
+      - name: Run tests and static analysis
+        script: |
+          flutter analyze
+          flutter test
+      - name: Build unsigned iOS app
+        script: flutter build ios --debug --no-codesign
+    artifacts:
+      - build/ios/iphoneos/**/*.app
+      - /tmp/xcodebuild_logs/*.log
+
+  ios_testflight:
+    name: iOS TestFlight（需要 Apple 會員與 Codemagic 簽署設定）
+    instance_type: mac_mini_m2
+    max_build_duration: 90
+    environment:
+      flutter: stable
+      xcode: latest
+      cocoapods: default
+      # Create this environment group in Codemagic after joining Apple Developer.
+      groups:
+        - appstore_credentials
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: com.kidkingsky.wordflow
+    scripts:
+      - name: Create native iOS project
+        script: flutter create --platforms=ios --project-name wordflow --org com.kidkingsky .
+      - name: Install packages
+        script: flutter pub get
+      - name: Check project
+        script: |
+          flutter analyze
+          flutter test
+      - name: Apply Apple distribution signing profiles
+        script: xcode-project use-profiles
+      - name: Build signed IPA
+        script: flutter build ipa --release --export-options-plist=/Users/builder/export_options.plist
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
+    publishing:
+      app_store_connect:
+        api_key: $APP_STORE_CONNECT_PRIVATE_KEY
+        key_id: $APP_STORE_CONNECT_KEY_IDENTIFIER
+        issuer_id: $APP_STORE_CONNECT_ISSUER_ID
+        submit_to_testflight: false
+        submit_to_app_store: false
