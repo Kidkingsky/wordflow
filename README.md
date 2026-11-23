@@ -10,6 +10,10 @@
 GitHub Pages 完成部署後，在 iPhone Safari 開啟 https://kidkingsky.github.io/wordflow/ ，按分享 → 加入主畫面。
 此版本是可操作的手機瀏覽器預覽，**不是已簽署的原生 IPA**。
 
+## iOS 主畫面與鎖定畫面 Widget
+
+已新增原生 WidgetKit 的每日單字、每日詞句小工具，支援 iPhone 主畫面和鎖定畫面，可自選 A2／B1 與主題，離線按日輪替。詳見 [Widget 安裝、簽署與驗證說明](docs/widget-installation.md)。
+
 ## 第一版包含什麼？
 
 - **每日推薦**：單字卡＋實用詞句卡，同一天固定推薦，隔日輪換。
@@ -19,7 +23,7 @@ GitHub Pages 完成部署後，在 iPhone Safari 開啟 https://kidkingsky.githu
 - **間隔複習**：記住後分別隔 1、3、7、14、30、60 天複習；忘記則當日到期。
 - **離線進度**：本機記錄收藏、程度與複習紀錄；不用帳號、Firebase 或 AI API。
 
-> 尚未包含：鎖定畫面 Widget、推播通知、雲端同步、AI 生成句子、口說辨識與自動發音評分。這些功能列在後續版本，不能誤認為已完成。
+> iOS WidgetKit Extension 的原始碼與 CI 打包檢查已加入；**尚待 CI 成功及 iPhone 實機簽署／安裝驗收**。推播、雲端同步、AI 生成句子、口說辨識與發音評分仍未完成。
 
 ## 目錄
 
@@ -82,7 +86,7 @@ flutter run
 
 Apple / Codemagic 的簽署設定、權限、帳號、Provisioning Profile 都是必要條件；使用 Codemagic 並不代表免 Apple 會員或免簽署。
 
-> **Widget 注意**：iPhone 鎖屏 Widget 需要額外建立 WidgetKit App Extension（SwiftUI）並設定 App Groups、Extension Target 與相對應的簽署設定。Flutter 主程式可以共用，但 Widget 的 UI 不是純 Dart 就能完全代替。這個步驟預計到 v0.2 做。
+> **Widget 注意**：已新增原生 SwiftUI WidgetKit Extension；不使用 App Groups 即可獨立輪換單字，但不會同步主 App 的個人進度。IPA 需簽署 App 及 Extension 才能在 iPhone 安裝。
 
 ## 資料與隱私
 
@@ -106,7 +110,7 @@ Apple / Codemagic 的簽署設定、權限、帳號、Provisioning Profile 都�
 
 ## 規劃中的 v0.2 / v0.3
 
-- **v0.2**：iPhone Home Screen Widget、Lock Screen Widget（以 WidgetKit 原生擴充完成）、每日通知、本機資料匯出。
+- **v0.2**：iPhone Home Screen／Lock Screen Widget 程式碼已加入（仍待簽署實機驗收），每日通知、本機匯出尚未完成。
 - **v0.3**：依錯題調整推薦、可更新教材內容、Android Widget、語音跟讀與 AI 對話（可選、需要 API 與後端成本）。
 
 ## 開發提醒
@@ -124,7 +128,7 @@ Apple / Codemagic 的簽署設定、權限、帳號、Provisioning Profile 都�
 
 ### IPA build (no Mac required locally)
 
-- `.github/workflows/ios-unsigned.yml` uses a GitHub macOS runner to build an **unsigned release .app** and package it into `WordFlow-unsigned.ipa` (a standard `Payload/Runner.app` IPA container).
+- `.github/workflows/ios-unsigned.yml` builds an **unsigned release .app** with bundled **WordFlowWidgets.appex**, then packages it into `WordFlow-unsigned.ipa`.
 - This is an **unsigned IPA**, not a directly installable IPA. A compatible signing/installation tool must sign it for your Apple account and device. No Apple signing keys go to GitHub.
 - To retrieve it after a successful build: Repository → **Actions** → **WordFlow iOS unsigned IPA for SideStore** → select successful run → **Artifacts** → download `WordFlow-iOS-unsigned-IPA-REQUIRES-SIGNING` ZIP → unpack and import the `.ipa` into your trusted signing tool.
 - Device-only third-party installer **SideInstaller** currently *claims* to work on iOS 27 without a computer: https://github.com/FrizzleM/SideInstaller. It is independent of Apple and SideStore; its setup depends on third-party signing / Apple credentials and may fail. Verify the download source and consider account-security risk before entering any Apple login.
@@ -133,5 +137,5 @@ Apple / Codemagic 的簽署設定、權限、帳號、Provisioning Profile 都�
 
 ### Current status
 
-- The source and workflow files have been prepared but have **not** been run on a macOS runner yet; do not assume compilation and installation succeeds before green GitHub Actions logs are available.
+- The original non-Widget build previously succeeded; the updated WidgetKit build requires its own successful GitHub Actions run and a separate signed iPhone installation test.
 - Repository `Kidkingsky/wordflow` has been created; Android/iOS Actions are configured. Enable GitHub Pages in Settings to publish the preview.
