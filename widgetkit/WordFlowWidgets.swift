@@ -95,6 +95,23 @@ struct WordFlowWidgetSettings: WidgetConfigurationIntent {
     }
 }
 
+/// The next-word action runs inside the WidgetKit extension and deliberately
+/// avoids App Groups, which may be unavailable to SideStore free signing.
+private struct WordFlowNextWordIntent: AppIntent {
+    static var title: LocalizedStringResource = "換下一個英文單字"
+    static var description = IntentDescription("鎖定畫面看熟的字，可直接換成下一個單字。")
+    static var openAppWhenRun = false
+
+    func perform() async throws -> some IntentResult {
+        let defaults = UserDefaults.standard
+        let key = "wordflow.widget.word_rotation"
+        let current = defaults.integer(forKey: key)
+        defaults.set((current + 1) % 1500, forKey: key)
+        WidgetCenter.shared.reloadTimelines(ofKind: "WordFlowDailyWord")
+        return .result()
+    }
+}
+
 private enum Vocabulary {
     static let all: [LearningItem] = {
         guard let url = Bundle.main.url(forResource: "content", withExtension: "json"),
@@ -119,7 +136,13 @@ private enum Vocabulary {
         let chosen = utc.date(from: DateComponents(year: local.year, month: local.month, day: local.day)) ?? epoch
         let day = utc.dateComponents([.day], from: epoch, to: chosen).day ?? 0
         let offset = kind == .phrase ? 7 : 0
-        let index = ((day + offset) % choices.count + choices.count) % choices.count
+        // A tap on the Lock Screen widget stores rotation in its own container.
+        // The extension and its AppIntent share these UserDefaults; the Flutter
+        // host app does not, so no App Group entitlement is required.
+        let manual = kind == .word
+            ? UserDefaults.standard.integer(forKey: "wordflow.widget.word_rotation")
+            : 0
+        let index = ((day + offset + manual) % choices.count + choices.count) % choices.count
         return choices[index]
     }
 }
@@ -220,14 +243,30 @@ private struct WordFlowWidgetView: View {
                     }
                 }
             case .accessoryRectangular:
-                VStack(alignment: .leading, spacing: 3) {
-                    Text(entry.item.english)
-                        .font(.system(size: 16, weight: .bold, design: .rounded))
-                        .lineLimit(1).minimumScaleFactor(0.7)
-                    Text(entry.item.labeledMeaning)
-                        .font(.system(size: 12, weight: .medium))
-                        .lineLimit(1)
-                }.frame(maxWidth: .infinity, alignment: .leading)
+                HStack(alignment: .center, spacing: 5) {
+                    VStack(alignment: .leading, spacing: 3) {
+                        Text(entry.item.english)
+                            .font(.system(size: 16, weight: .bold, design: .rounded))
+                            .lineLimit(1).minimumScaleFactor(0.7)
+                        Text(entry.item.labeledMeaning)
+                            .font(.system(size: 12, weight: .medium))
+                            .lineLimit(1)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+
+                    // Phrase widgets keep their existing behavior.
+                    if entry.kind == .word {
+                        Button(intent: WordFlowNextWordIntent()) {
+                            Image(systemName: "arrow.clockwise")
+                                .font(.system(size: 13, weight: .semibold))
+                                .frame(width: 30, height: 35)
+                                .contentShape(Rectangle())
+                        }
+                        .buttonStyle(.plain)
+                        .accessibilityLabel("換下一個英文單字")
+                    }
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
             default:
                 fullColorCard
             }

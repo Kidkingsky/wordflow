@@ -53,3 +53,14 @@ SideStore/側載工具對包含 extension 的 IPA 支援程度可能不同，需
 - iOS App 與 WidgetKit Extension 使用相同的版本號與 Build 編號，並在 GitHub Actions 中驗證一致。
 - 新版 IPA 檔名將帶版本號，例如 `WordFlow-v0.3.0-b3-unsigned.ipa`；仍須透過 SideStore 簽署。
 - 更新時請勿先移除舊 App，以免本機學習紀錄遺失。
+
+
+## v0.4.1（Build 6）：鎖定畫面換下一字與詞句點字查詢
+
+- 「每日單字」**鎖定畫面矩形 Widget** 右側新增 `↻` 按鈕：已學會時點選即可換下一字，不必等到隔天。iOS 仍可能延遲 Widget 畫面刷新。
+- 目前由 WidgetKit extension 的 AppIntent 寫入自己的本機資料，不要求 App Groups entitlement；因此 **App 內的「我記住了」不會自動改變鎖定畫面 Widget**。圓形／單行 Widget 也沒有這個操作鈕。
+- iOS 鎖定畫面「每日詞句」仍然每日輪換；不會因為按每日單字的箭頭而更換。
+- WordFlow App 的「今日實用詞句」與「詞句詳情」內可直接點選英文單字；底部彈出繁體中文、原句及英語朗讀。
+- 24 個原有詞句的中英例句常見詞形均有離線解釋（主字庫與 94 個補充詞形）；未知詞不會猜測。
+- 詞句的複習卡在翻開答案後才開放點字查詢，以免提前洩漏答案。
+- 不新增網路翻譯、帳號、學習資料 key 或額外 iOS 簽署權限。SideStore 更新請勿先刪除舊 App。
