@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../models/learning_item.dart';
 import '../../models/word_family.dart';
 import '../../services/app_controller.dart';
+import '../theme/wordflow_design.dart';
 
 class LearningCard extends StatelessWidget {
   const LearningCard({
@@ -21,25 +22,17 @@ class LearningCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dark = isHighlighted;
-    final foreground = dark ? Colors.white : const Color(0xFF152839);
-    final subtle = dark ? const Color(0xFFB3CBD0) : const Color(0xFF6E7E8A);
-    final panel = dark ? const Color(0xFF172F42) : Colors.white;
-    final divider = dark ? const Color(0xFF355064) : const Color(0xFFEAF0F2);
+    final foreground = dark ? Colors.white : WordFlowDesign.ink;
+    final subtle = dark ? const Color(0xFFECE3F2) : WordFlowDesign.muted;
+    final panel = dark ? WordFlowDesign.plumDeep : WordFlowDesign.card;
+    final divider = dark ? const Color(0xFF83718F) : WordFlowDesign.rule;
 
     return Container(
       padding: const EdgeInsets.all(22),
       decoration: BoxDecoration(
         color: panel,
-        borderRadius: BorderRadius.circular(26),
-        boxShadow: dark
-            ? null
-            : const [
-                BoxShadow(
-                  color: Color(0x080A283F),
-                  blurRadius: 20,
-                  offset: Offset(0, 8),
-                ),
-              ],
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: dark ? WordFlowDesign.plumDeep : WordFlowDesign.rule),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,21 +41,21 @@ class LearningCard extends StatelessWidget {
             children: [
               _InfoBadge(
                 text: item.level,
-                background: dark ? const Color(0xFF2B5061) : const Color(0xFFE1F3F0),
-                foreground: dark ? const Color(0xFFD2F9ED) : const Color(0xFF137B7C),
+                background: dark ? const Color(0xFF6D587F) : WordFlowDesign.plumWash,
+                foreground: dark ? const Color(0xFFF2E9F8) : WordFlowDesign.plum,
               ),
               const SizedBox(width: 7),
               _InfoBadge(
                 text: categoryName(item.category),
-                background: dark ? const Color(0xFF2B5061) : const Color(0xFFEFF2F4),
-                foreground: dark ? const Color(0xFFD2F9ED) : const Color(0xFF516370),
+                background: dark ? const Color(0xFF6D587F) : WordFlowDesign.paper,
+                foreground: dark ? const Color(0xFFF2E9F8) : WordFlowDesign.muted,
               ),
               if (item.partOfSpeech.isNotEmpty) ...[
                 const SizedBox(width: 7),
                 _InfoBadge(
                   text: item.partOfSpeech,
-                  background: dark ? const Color(0xFF3C5276) : const Color(0xFFECE4F8),
-                  foreground: dark ? Colors.white : const Color(0xFF684C9F),
+                  background: dark ? const Color(0xFF75618B) : WordFlowDesign.plumWash,
+                  foreground: dark ? Colors.white : WordFlowDesign.plum,
                 ),
               ],
               const Spacer(),
@@ -73,7 +66,7 @@ class LearningCard extends StatelessWidget {
                   controller.isFavorite(item)
                       ? Icons.bookmark_rounded
                       : Icons.bookmark_border_rounded,
-                  color: dark ? const Color(0xFFB9F3E7) : const Color(0xFF147F83),
+                  color: dark ? const Color(0xFFE8DFF0) : WordFlowDesign.plum,
                 ),
               ),
             ],
@@ -82,8 +75,9 @@ class LearningCard extends StatelessWidget {
           Text(
             item.english,
             style: TextStyle(
-              fontSize: item.isWord ? 33 : 26,
-              fontWeight: FontWeight.w800,
+              fontSize: item.isWord ? 37 : 27,
+              fontFamily: 'Georgia',
+              fontWeight: FontWeight.w500,
               height: 1.16,
               letterSpacing: -0.5,
               color: foreground,
@@ -164,14 +158,14 @@ class LearningCard extends StatelessWidget {
             Container(
               padding: const EdgeInsets.fromLTRB(14, 6, 6, 6),
               decoration: BoxDecoration(
-                color: dark ? const Color(0xFF214257) : const Color(0xFFE6F4F1),
+                color: dark ? const Color(0xFF6B5680) : WordFlowDesign.sage,
                 borderRadius: BorderRadius.circular(14),
               ),
               child: Row(
                 children: [
                   Icon(Icons.check_circle_rounded,
                       size: 20,
-                      color: dark ? const Color(0xFF8EE2D3) : const Color(0xFF167F83)),
+                      color: dark ? WordFlowDesign.sage : WordFlowDesign.plum),
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
@@ -186,7 +180,7 @@ class LearningCard extends StatelessWidget {
                   TextButton(
                     onPressed: () => _mark(context, remembered: false),
                     style: TextButton.styleFrom(
-                      foregroundColor: dark ? const Color(0xFFB9F3E7) : const Color(0xFF245064),
+                      foregroundColor: dark ? const Color(0xFFE8DFF0) : WordFlowDesign.plum,
                     ),
                     child: const Text('其實還不熟'),
                   ),
@@ -201,7 +195,7 @@ class LearningCard extends StatelessWidget {
                   child: OutlinedButton(
                     onPressed: () => _mark(context, remembered: false),
                     style: OutlinedButton.styleFrom(
-                      foregroundColor: dark ? Colors.white : const Color(0xFF245064),
+                      foregroundColor: dark ? Colors.white : WordFlowDesign.plum,
                       side: BorderSide(color: divider),
                       minimumSize: const Size.fromHeight(46),
                     ),
@@ -213,8 +207,8 @@ class LearningCard extends StatelessWidget {
                   child: FilledButton(
                     onPressed: () => _mark(context, remembered: true),
                     style: FilledButton.styleFrom(
-                      backgroundColor: dark ? const Color(0xFF8EE2D3) : const Color(0xFF167F83),
-                      foregroundColor: dark ? const Color(0xFF132A38) : Colors.white,
+                      backgroundColor: dark ? WordFlowDesign.sage : WordFlowDesign.plum,
+                      foregroundColor: dark ? WordFlowDesign.plumDeep : Colors.white,
                       minimumSize: const Size.fromHeight(46),
                     ),
                     child: const Text('我記住了'),
@@ -264,10 +258,10 @@ class _FamilySection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final subtle = dark ? const Color(0xFFB3CBD0) : const Color(0xFF6E7E8A);
-    final foreground = dark ? Colors.white : const Color(0xFF152839);
-    final chipBg = dark ? const Color(0xFF214257) : const Color(0xFFF1F5F7);
-    final accent = dark ? const Color(0xFF8EE2D3) : const Color(0xFF684C9F);
+    final subtle = dark ? const Color(0xFFECE3F2) : WordFlowDesign.muted;
+    final foreground = dark ? Colors.white : WordFlowDesign.ink;
+    final chipBg = dark ? const Color(0xFF6B5680) : WordFlowDesign.paper;
+    final accent = dark ? WordFlowDesign.sage : WordFlowDesign.plum;
     final entries = [
       FamilyMember(english: family.root, chinese: family.meaning, hint: '字根'),
       ...family.members,
@@ -391,7 +385,7 @@ void showLearningDetails(
   showModalBottomSheet<void>(
     context: context,
     isScrollControlled: true,
-    backgroundColor: const Color(0xFFF7F9FA),
+    backgroundColor: WordFlowDesign.paper,
     showDragHandle: true,
     builder: (context) => SafeArea(
       child: SingleChildScrollView(

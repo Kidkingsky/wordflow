@@ -172,7 +172,7 @@ private enum WordFlowPalette {
         case "work":
             return [Color(red: 0.26, green: 0.45, blue: 0.86), Color(red: 0.22, green: 0.26, blue: 0.58)]
         default:
-            return [Color(red: 0.60, green: 0.38, blue: 0.89), Color(red: 0.35, green: 0.27, blue: 0.70)]
+            return [Color(red: 0.39, green: 0.30, blue: 0.48), Color(red: 0.28, green: 0.21, blue: 0.35)]
         }
     }
 
@@ -507,7 +507,7 @@ private struct WordFlowStudyLiveActivityWidget: Widget {
             }
             .padding(.horizontal, 13)
             .padding(.vertical, 12)
-            .activityBackgroundTint(Color(red: 0.91, green: 0.88, blue: 0.98))
+            .activityBackgroundTint(Color(red: 0.965, green: 0.953, blue: 0.933))
             .activitySystemActionForegroundColor(.black)
         } dynamicIsland: { context in
             DynamicIsland {

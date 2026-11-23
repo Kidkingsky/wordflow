@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../models/learning_item.dart';
 import '../../services/app_controller.dart';
+import '../theme/wordflow_design.dart';
 import '../widgets/learning_card.dart';
 
 class ReviewPage extends StatefulWidget {
@@ -35,17 +36,15 @@ class _ReviewPageState extends State<ReviewPage> {
     return ListView(
       padding: const EdgeInsets.fromLTRB(20, 25, 20, 36),
       children: [
-        const Text('間隔複習',
-            style: TextStyle(fontSize: 28, fontWeight: FontWeight.w900)),
+        Text('間隔複習', style: WordFlowDesign.title(size: 29)),
         const SizedBox(height: 5),
-        const Text('先回想答案，再翻卡確認，記得才算真的學會。',
-            style: TextStyle(color: Color(0xFF6E7E8A), fontSize: 13)),
+        const Text('先想一下，再翻開答案。', style: WordFlowDesign.label),
         const SizedBox(height: 22),
         Container(
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(23),
-            color: const Color(0xFFDCF1ED),
+            borderRadius: BorderRadius.circular(17),
+            color: WordFlowDesign.sage,
           ),
           child: Row(
             children: [
@@ -127,8 +126,9 @@ class _ReviewFlashcard extends StatelessWidget {
   Widget build(BuildContext context) => Container(
         padding: const EdgeInsets.all(23),
         decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(26),
+          color: WordFlowDesign.card,
+          borderRadius: BorderRadius.circular(18),
+          border: Border.all(color: WordFlowDesign.rule),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -146,9 +146,10 @@ class _ReviewFlashcard extends StatelessWidget {
               item.english,
               textAlign: TextAlign.center,
               style: const TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.w900,
-                color: Color(0xFF152839),
+                fontFamily: 'Georgia',
+                fontSize: 37,
+                fontWeight: FontWeight.w500,
+                color: WordFlowDesign.ink,
               ),
             ),
             const SizedBox(height: 12),
@@ -224,8 +225,9 @@ class _EmptyReview extends StatelessWidget {
   Widget build(BuildContext context) => Container(
         padding: const EdgeInsets.all(28),
         decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(26),
+          color: WordFlowDesign.card,
+          borderRadius: BorderRadius.circular(18),
+          border: Border.all(color: WordFlowDesign.rule),
         ),
         child: Column(
           children: [
