@@ -24,6 +24,15 @@ jobs:
         run: rm -f test/widget_test.dart
       - name: Fetch packages
         run: flutter pub get
+      - name: Read app version from pubspec
+        run: |
+          read -r APP_VERSION APP_BUILD <<< "$(ruby -ryaml -e 'puts YAML.load_file("pubspec.yaml").fetch("version").tr("+", " ")')"
+          [[ "$APP_VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]
+          [[ "$APP_BUILD" =~ ^[1-9][0-9]*$ ]]
+          echo "APP_VERSION=$APP_VERSION" >> "$GITHUB_ENV"
+          echo "APP_BUILD=$APP_BUILD" >> "$GITHUB_ENV"
+          echo "Building WordFlow v$APP_VERSION (Build $APP_BUILD)"
+
       - name: Install WidgetKit extension
         run: |
           ruby -e "require 'xcodeproj'" || gem install xcodeproj --user-install --no-document
@@ -42,6 +51,11 @@ jobs:
           EXT="$APP/PlugIns/WordFlowWidgets.appex"
           test -d "$EXT"
           test -s "$EXT/content.json"
+          test "$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' "$APP/Info.plist")" = "$APP_VERSION"
+          test "$(/usr/libexec/PlistBuddy -c 'Print :CFBundleVersion' "$APP/Info.plist")" = "$APP_BUILD"
+          test "$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' "$EXT/Info.plist")" = "$APP_VERSION"
+          test "$(/usr/libexec/PlistBuddy -c 'Print :CFBundleVersion' "$EXT/Info.plist")" = "$APP_BUILD"
+
           test "$(/usr/libexec/PlistBuddy -c 'Print :NSSupportsLiveActivities' "$APP/Info.plist")" = "true"
 
           test "$(/usr/libexec/PlistBuddy -c 'Print :NSExtension:NSExtensionPointIdentifier' "$EXT/Info.plist")" = "com.apple.widgetkit-extension"
@@ -51,12 +65,12 @@ jobs:
           mkdir -p build/ios/ipa/Payload
           cp -R build/ios/iphoneos/Runner.app build/ios/ipa/Payload/Runner.app
           cd build/ios/ipa
-          zip -qry WordFlow-unsigned.ipa Payload
+          zip -qry "WordFlow-v$APP_VERSION-b$APP_BUILD-unsigned.ipa" Payload
           rm -rf Payload
       - name: Upload IPA artifact
         uses: actions/upload-artifact@v4
         with:
-          name: WordFlow-iOS-unsigned-IPA-REQUIRES-SIGNING
-          path: build/ios/ipa/WordFlow-unsigned.ipa
+          name: WordFlow-iOS-v${{ env.APP_VERSION }}-b${{ env.APP_BUILD }}-unsigned-IPA-REQUIRES-SIGNING
+          path: build/ios/ipa/WordFlow-v${{ env.APP_VERSION }}-b${{ env.APP_BUILD }}-unsigned.ipa
           if-no-files-found: error
           retention-days: 14

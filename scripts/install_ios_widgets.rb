@@ -4,6 +4,15 @@ require 'fileutils'
 require 'xcodeproj'
 
 root = File.expand_path('..', __dir__)
+require 'yaml'
+
+# Single source of truth for the Runner app and WidgetKit extension.
+app_version_text = YAML.load_file(File.join(root, 'pubspec.yaml')).fetch('version').to_s
+app_version, app_build = app_version_text.split('+', 2)
+abort "Invalid pubspec version: #{app_version_text}" unless
+  app_version&.match?(/\A\d+\.\d+\.\d+\z/) &&
+  app_build&.match?(/\A[1-9]\d*\z/)
+
 ios = File.join(root, 'ios')
 widget_source = File.join(root, 'widgetkit')
 project_path = File.join(ios, 'Runner.xcodeproj')
@@ -72,8 +81,8 @@ unless project.targets.any? { |target| target.name == 'WordFlowWidgets' }
       'DEFINES_MODULE' => 'YES',
       'APPLICATION_EXTENSION_API_ONLY' => 'YES',
       'CODE_SIGN_STYLE' => 'Automatic',
-      'MARKETING_VERSION' => '0.2.0',
-      'CURRENT_PROJECT_VERSION' => '2'
+      'MARKETING_VERSION' => app_version,
+      'CURRENT_PROJECT_VERSION' => app_build
     )
   end
 

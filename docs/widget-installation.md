@@ -45,3 +45,11 @@ SideStore/側載工具對包含 extension 的 IPA 支援程度可能不同，需
 - Live Activity 透過 Flutter MethodChannel 呼叫 ActivityKit，原生介面在 WidgetKit extension。
 - 這次 iOS 專案由 CI 即時產生，Ruby 腳本會產生兼容 UIScene 的 AppDelegate、添加共用 ActivityAttributes、原生 MethodChannel，以及主 App 的 NSSupportsLiveActivities。
 - 完成編譯只證明 IPA 包含擴充功能；SideStore 能否簽署與實機啟用仍需 iPhone 驗證。切勿先移除舊 App。
+
+## 版本與 Build 編號
+
+- 版本統一由 `pubspec.yaml` 設定，例如 `0.3.0+3`。
+- WordFlow「我的」頁面底部讀取已安裝 App 的版本，顯示 `v0.3.0 · Build 3`。
+- iOS App 與 WidgetKit Extension 使用相同的版本號與 Build 編號，並在 GitHub Actions 中驗證一致。
+- 新版 IPA 檔名將帶版本號，例如 `WordFlow-v0.3.0-b3-unsigned.ipa`；仍須透過 SideStore 簽署。
+- 更新時請勿先移除舊 App，以免本機學習紀錄遺失。

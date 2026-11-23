@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 import '../../models/learning_item.dart';
 import '../../services/app_controller.dart';
@@ -121,10 +122,7 @@ class SettingsPage extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 20),
-        const Center(
-          child: Text('WordFlow v0.1 · Flutter · iOS / Android',
-              style: TextStyle(fontSize: 11, color: Color(0xFF97A6AF))),
-        ),
+        const _WordFlowVersionFooter(),
       ],
     );
   }
@@ -220,6 +218,60 @@ class _LockScreenStudySectionState extends State<_LockScreenStudySection> {
             ),
         ],
       ),
+    );
+  }
+}
+
+/// Read the actual version from the installed iOS/Android app.
+class _WordFlowVersionFooter extends StatefulWidget {
+  const _WordFlowVersionFooter();
+
+  @override
+  State<_WordFlowVersionFooter> createState() => _WordFlowVersionFooterState();
+}
+
+class _WordFlowVersionFooterState extends State<_WordFlowVersionFooter> {
+  late final Future<PackageInfo> _info = PackageInfo.fromPlatform();
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<PackageInfo>(
+      future: _info,
+      builder: (context, snapshot) {
+        final details = snapshot.hasData
+            ? 'v' + snapshot.data!.version + '  ·  Build ' + snapshot.data!.buildNumber
+            : snapshot.hasError
+                ? '版本資訊暫時無法讀取'
+                : '正在讀取版本資訊';
+        return Column(
+          children: [
+            const Text(
+              'WORDFLOW',
+              style: TextStyle(
+                fontSize: 11,
+                fontWeight: FontWeight.w800,
+                letterSpacing: 1.4,
+                color: Color(0xFF718493),
+              ),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              details,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w700,
+                color: Color(0xFF516C7D),
+              ),
+            ),
+            const SizedBox(height: 5),
+            const Text(
+              'iOS / Android · 本機離線學習',
+              style: TextStyle(fontSize: 10, color: Color(0xFF97A6AF)),
+            ),
+          ],
+        );
+      },
     );
   }
 }

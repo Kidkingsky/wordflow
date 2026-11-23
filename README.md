@@ -10,6 +10,13 @@
 GitHub Pages 完成部署後，在 iPhone Safari 開啟 https://kidkingsky.github.io/wordflow/ ，按分享 → 加入主畫面。
 此版本是可操作的手機瀏覽器預覽（仍為舊版 72 筆教材），**不是已簽署的原生 IPA**。
 
+## 版本號與安裝識別
+
+- 「我的」頁面底部會顯示實際安裝的 App 版本與 Build 編號，而非固定寫死的舊版本。
+- 版本號以 `pubspec.yaml` 為準，現在是 `0.3.0+3`，WidgetKit Extension 同步。
+- GitHub Actions 的 IPA 檔名會自動帶入版本，例如 `WordFlow-v0.3.0-b3-unsigned.ipa`。此檔仍是未簽署 IPA，需要 SideStore 簽署。
+- v0.3.0 包含四格鎖定畫面 Live Activity（需手動開啟，不會永久常駐）。
+
 ## iOS 主畫面與鎖定畫面 Widget
 
 已新增原生 WidgetKit 的每日單字、每日詞句小工具：主畫面支援小／中／大尺寸彩色單字卡，鎖定畫面支援符合系統限制的精簡單色版。可自選 A2／B1 與主題，離線每天輪替（不是每次解鎖換字）。詳見 [Widget 安裝、簽署與驗證說明](docs/widget-installation.md)。
