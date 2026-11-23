@@ -15,13 +15,20 @@ class ReviewPage extends StatefulWidget {
 
 class _ReviewPageState extends State<ReviewPage> {
   final Set<String> _completedInSession = {};
+  // Cards answered "還不熟" this session, in order. They stay in the queue but
+  // move to the back so the learner sees them again before the round ends.
+  final List<String> _retryQueue = [];
   bool _showAnswer = false;
 
   @override
   Widget build(BuildContext context) {
-    final due = widget.controller.dueItems
+    final pending = widget.controller.dueItems
         .where((item) => !_completedInSession.contains(item.id))
         .toList();
+    final due = [
+      ...pending.where((item) => !_retryQueue.contains(item.id)),
+      for (final id in _retryQueue) ...pending.where((item) => item.id == id),
+    ];
     final item = due.isNotEmpty ? due.first : null;
     final total = _completedInSession.length + due.length;
 
@@ -54,7 +61,7 @@ class _ReviewPageState extends State<ReviewPage> {
                   children: [
                     Text('本次複習進度', style: TextStyle(fontWeight: FontWeight.w800)),
                     SizedBox(height: 4),
-                    Text('不熟的題目會保留，稍後可以再練習。',
+                    Text('不熟的題目會排到最後，這一輪再練一次。',
                         style: TextStyle(fontSize: 11, color: Color(0xFF467675))),
                   ],
                 ),
@@ -70,19 +77,26 @@ class _ReviewPageState extends State<ReviewPage> {
             completed: _completedInSession.isNotEmpty,
             onRestart: () => setState(() {
               _completedInSession.clear();
+              _retryQueue.clear();
               _showAnswer = false;
             }),
           )
         else
           _ReviewFlashcard(
             item: item,
+            isRetry: _retryQueue.contains(item.id),
             showAnswer: _showAnswer,
             controller: widget.controller,
             onFlip: () => setState(() => _showAnswer = true),
             onReview: (remembered) {
               widget.controller.review(item, remembered: remembered);
               setState(() {
-                _completedInSession.add(item.id);
+                _retryQueue.remove(item.id);
+                if (remembered) {
+                  _completedInSession.add(item.id);
+                } else {
+                  _retryQueue.add(item.id);
+                }
                 _showAnswer = false;
               });
             },
@@ -96,6 +110,7 @@ class _ReviewFlashcard extends StatelessWidget {
   const _ReviewFlashcard({
     required this.item,
     required this.controller,
+    required this.isRetry,
     required this.showAnswer,
     required this.onFlip,
     required this.onReview,
@@ -103,6 +118,7 @@ class _ReviewFlashcard extends StatelessWidget {
 
   final LearningItem item;
   final AppController controller;
+  final bool isRetry;
   final bool showAnswer;
   final VoidCallback onFlip;
   final ValueChanged<bool> onReview;
@@ -118,7 +134,7 @@ class _ReviewFlashcard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              '${item.level}  ·  ${categoryName(item.category)}  ·  ${item.isWord ? '單字' : '詞句'}',
+              '${item.level}  ·  ${categoryName(item.category)}  ·  ${item.isWord ? '單字' : '詞句'}${isRetry ? '  ·  再試一次' : ''}',
               style: const TextStyle(
                 fontSize: 12,
                 color: Color(0xFF167F83),
@@ -161,12 +177,16 @@ class _ReviewFlashcard extends StatelessWidget {
               Text(item.note,
                   textAlign: TextAlign.center,
                   style: const TextStyle(fontSize: 13, color: Color(0xFF6E7E8A))),
-              const SizedBox(height: 16),
-              Text(item.example,
-                  style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
-              const SizedBox(height: 4),
-              Text(item.exampleChinese,
-                  style: const TextStyle(fontSize: 12, color: Color(0xFF6E7E8A))),
+              if (item.example.trim().isNotEmpty) ...[
+                const SizedBox(height: 16),
+                Text(item.example,
+                    style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
+                if (item.exampleChinese.trim().isNotEmpty) ...[
+                  const SizedBox(height: 4),
+                  Text(item.exampleChinese,
+                      style: const TextStyle(fontSize: 12, color: Color(0xFF6E7E8A))),
+                ],
+              ],
               const SizedBox(height: 22),
               Row(
                 children: [

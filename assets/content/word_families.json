@@ -1,0 +1,1120 @@
+[
+  {
+    "id": "fly",
+    "root": "fly",
+    "meaning": "飛",
+    "tip": "fly 可以和別的字組成新字：butter（奶油）＋fly 就是蝴蝶。",
+    "members": [
+      {
+        "english": "flight",
+        "chinese": "飛行；航班",
+        "hint": "名詞形"
+      },
+      {
+        "english": "flyer",
+        "chinese": "傳單；搭機旅客",
+        "hint": "-er 人或物"
+      },
+      {
+        "english": "butterfly",
+        "chinese": "蝴蝶",
+        "hint": "butter＋fly 複合字"
+      },
+      {
+        "english": "firefly",
+        "chinese": "螢火蟲",
+        "hint": "fire＋fly 會發光的飛蟲"
+      },
+      {
+        "english": "fly away",
+        "chinese": "飛走",
+        "hint": "片語"
+      },
+      {
+        "english": "Time flies.",
+        "chinese": "光陰似箭",
+        "hint": "慣用語"
+      }
+    ]
+  },
+  {
+    "id": "care",
+    "root": "care",
+    "meaning": "在乎；小心",
+    "tip": "-ful＝充滿，-less＝沒有，再加 -ly 就變副詞。",
+    "members": [
+      {
+        "english": "careful",
+        "chinese": "小心的",
+        "hint": "-ful 充滿"
+      },
+      {
+        "english": "careless",
+        "chinese": "粗心的",
+        "hint": "-less 沒有"
+      },
+      {
+        "english": "carefully",
+        "chinese": "小心地",
+        "hint": "-ly 副詞"
+      },
+      {
+        "english": "take care of",
+        "chinese": "照顧",
+        "hint": "片語"
+      }
+    ]
+  },
+  {
+    "id": "use",
+    "root": "use",
+    "meaning": "使用",
+    "tip": "-ful／-less 一組相反；re- 表示「再一次」。",
+    "members": [
+      {
+        "english": "useful",
+        "chinese": "有用的",
+        "hint": "-ful 充滿"
+      },
+      {
+        "english": "useless",
+        "chinese": "沒用的",
+        "hint": "-less 沒有"
+      },
+      {
+        "english": "user",
+        "chinese": "使用者",
+        "hint": "-er 人"
+      },
+      {
+        "english": "reuse",
+        "chinese": "重複使用",
+        "hint": "re- 再"
+      },
+      {
+        "english": "used to",
+        "chinese": "過去常常",
+        "hint": "片語"
+      }
+    ]
+  },
+  {
+    "id": "help",
+    "root": "help",
+    "meaning": "幫助",
+    "tip": "和 care、use 同一套規則：-ful 有、-less 沒有。",
+    "members": [
+      {
+        "english": "helpful",
+        "chinese": "有幫助的",
+        "hint": "-ful 充滿"
+      },
+      {
+        "english": "helpless",
+        "chinese": "無助的",
+        "hint": "-less 沒有"
+      },
+      {
+        "english": "helper",
+        "chinese": "幫手",
+        "hint": "-er 人"
+      }
+    ]
+  },
+  {
+    "id": "like",
+    "root": "like",
+    "meaning": "喜歡；像",
+    "tip": "dis-、un- 都是否定；likely 的 -ly 在這裡是形容詞。",
+    "members": [
+      {
+        "english": "dislike",
+        "chinese": "不喜歡",
+        "hint": "dis- 否定"
+      },
+      {
+        "english": "unlike",
+        "chinese": "不像；和…不同",
+        "hint": "un- 否定"
+      },
+      {
+        "english": "likely",
+        "chinese": "可能的",
+        "hint": "-ly 形容詞"
+      },
+      {
+        "english": "unlikely",
+        "chinese": "不太可能的",
+        "hint": "un- 否定"
+      }
+    ]
+  },
+  {
+    "id": "comfort",
+    "root": "comfort",
+    "meaning": "舒適；安慰",
+    "tip": "-able＝可以…的，un- 再把意思反過來。",
+    "members": [
+      {
+        "english": "comfortable",
+        "chinese": "舒服的",
+        "hint": "-able 形容詞"
+      },
+      {
+        "english": "uncomfortable",
+        "chinese": "不舒服的",
+        "hint": "un- 否定"
+      },
+      {
+        "english": "comfortably",
+        "chinese": "舒適地",
+        "hint": "-ly 副詞"
+      }
+    ]
+  },
+  {
+    "id": "happy",
+    "root": "happy",
+    "meaning": "快樂的",
+    "tip": "字尾 y 加字尾時常變成 i：happy → happiness、happily。",
+    "members": [
+      {
+        "english": "unhappy",
+        "chinese": "不快樂的",
+        "hint": "un- 否定"
+      },
+      {
+        "english": "happiness",
+        "chinese": "幸福；快樂",
+        "hint": "-ness 名詞"
+      },
+      {
+        "english": "happily",
+        "chinese": "快樂地",
+        "hint": "-ly 副詞"
+      }
+    ]
+  },
+  {
+    "id": "friend",
+    "root": "friend",
+    "meaning": "朋友",
+    "tip": "friendly 雖然是 -ly 結尾，但它是形容詞。",
+    "members": [
+      {
+        "english": "friendly",
+        "chinese": "友善的",
+        "hint": "-ly 形容詞"
+      },
+      {
+        "english": "unfriendly",
+        "chinese": "不友善的",
+        "hint": "un- 否定"
+      },
+      {
+        "english": "friendship",
+        "chinese": "友誼",
+        "hint": "-ship 關係／狀態"
+      }
+    ]
+  },
+  {
+    "id": "manage",
+    "root": "manage",
+    "meaning": "管理；設法做到",
+    "tip": "-er 是做這件事的人，-ment 把動詞變名詞。",
+    "members": [
+      {
+        "english": "manager",
+        "chinese": "經理",
+        "hint": "-er 人"
+      },
+      {
+        "english": "management",
+        "chinese": "管理；管理階層",
+        "hint": "-ment 名詞"
+      }
+    ]
+  },
+  {
+    "id": "organize",
+    "root": "organize",
+    "meaning": "組織；安排",
+    "tip": "-ation 名詞、-er 人、-ed 形容詞（有條理的）。",
+    "members": [
+      {
+        "english": "organization",
+        "chinese": "組織；機構",
+        "hint": "-ation 名詞"
+      },
+      {
+        "english": "organizer",
+        "chinese": "主辦人",
+        "hint": "-er 人"
+      },
+      {
+        "english": "organized",
+        "chinese": "有條理的",
+        "hint": "-ed 形容詞"
+      }
+    ]
+  },
+  {
+    "id": "educate",
+    "root": "educate",
+    "meaning": "教育",
+    "tip": "educate → education → educational，一路從動詞變名詞再變形容詞。",
+    "members": [
+      {
+        "english": "education",
+        "chinese": "教育",
+        "hint": "-ion 名詞"
+      },
+      {
+        "english": "educational",
+        "chinese": "有教育意義的",
+        "hint": "-al 形容詞"
+      },
+      {
+        "english": "educated",
+        "chinese": "受過教育的",
+        "hint": "-ed 形容詞"
+      }
+    ]
+  },
+  {
+    "id": "develop",
+    "root": "develop",
+    "meaning": "發展；開發",
+    "tip": "-ment 名詞、-er 人。",
+    "members": [
+      {
+        "english": "development",
+        "chinese": "發展",
+        "hint": "-ment 名詞"
+      },
+      {
+        "english": "developer",
+        "chinese": "開發者",
+        "hint": "-er 人"
+      }
+    ]
+  },
+  {
+    "id": "connect",
+    "root": "connect",
+    "meaning": "連接",
+    "tip": "dis- 表示「分開、相反」。",
+    "members": [
+      {
+        "english": "connection",
+        "chinese": "連結；關係",
+        "hint": "-ion 名詞"
+      },
+      {
+        "english": "connected",
+        "chinese": "連接的",
+        "hint": "-ed 形容詞"
+      },
+      {
+        "english": "disconnect",
+        "chinese": "中斷連線",
+        "hint": "dis- 相反"
+      }
+    ]
+  },
+  {
+    "id": "direct",
+    "root": "direct",
+    "meaning": "直接的；指引",
+    "tip": "in- 是否定：indirect＝間接的。",
+    "members": [
+      {
+        "english": "direction",
+        "chinese": "方向",
+        "hint": "-ion 名詞"
+      },
+      {
+        "english": "director",
+        "chinese": "導演；主管",
+        "hint": "-or 人"
+      },
+      {
+        "english": "directly",
+        "chinese": "直接地",
+        "hint": "-ly 副詞"
+      },
+      {
+        "english": "indirect",
+        "chinese": "間接的",
+        "hint": "in- 否定"
+      }
+    ]
+  },
+  {
+    "id": "effect",
+    "root": "effect",
+    "meaning": "效果；影響",
+    "tip": "-ive 形容詞，再加 -ly 變副詞。",
+    "members": [
+      {
+        "english": "effective",
+        "chinese": "有效的",
+        "hint": "-ive 形容詞"
+      },
+      {
+        "english": "effectively",
+        "chinese": "有效地",
+        "hint": "-ly 副詞"
+      }
+    ]
+  },
+  {
+    "id": "fair",
+    "root": "fair",
+    "meaning": "公平的",
+    "tip": "fairly 除了「公平地」，更常用來表示「相當」。",
+    "members": [
+      {
+        "english": "unfair",
+        "chinese": "不公平的",
+        "hint": "un- 否定"
+      },
+      {
+        "english": "fairly",
+        "chinese": "相當；公平地",
+        "hint": "-ly 副詞"
+      }
+    ]
+  },
+  {
+    "id": "usual",
+    "root": "usual",
+    "meaning": "平常的",
+    "tip": "un- 否定：unusual＝不尋常的。",
+    "members": [
+      {
+        "english": "usually",
+        "chinese": "通常",
+        "hint": "-ly 副詞"
+      },
+      {
+        "english": "unusual",
+        "chinese": "不尋常的",
+        "hint": "un- 否定"
+      }
+    ]
+  },
+  {
+    "id": "agree",
+    "root": "agree",
+    "meaning": "同意",
+    "tip": "dis- 否定，-ment 名詞。",
+    "members": [
+      {
+        "english": "agreement",
+        "chinese": "協議；同意",
+        "hint": "-ment 名詞"
+      },
+      {
+        "english": "disagree",
+        "chinese": "不同意",
+        "hint": "dis- 否定"
+      }
+    ]
+  },
+  {
+    "id": "appear",
+    "root": "appear",
+    "meaning": "出現",
+    "tip": "dis- 讓意思相反：disappear＝消失。",
+    "members": [
+      {
+        "english": "disappear",
+        "chinese": "消失",
+        "hint": "dis- 相反"
+      },
+      {
+        "english": "appearance",
+        "chinese": "外表；出現",
+        "hint": "-ance 名詞"
+      }
+    ]
+  },
+  {
+    "id": "able",
+    "root": "able",
+    "meaning": "能夠的",
+    "tip": "un- 不能、en- 使能夠、-ity 名詞。",
+    "members": [
+      {
+        "english": "ability",
+        "chinese": "能力",
+        "hint": "-ity 名詞"
+      },
+      {
+        "english": "unable",
+        "chinese": "不能的",
+        "hint": "un- 否定"
+      },
+      {
+        "english": "enable",
+        "chinese": "使能夠",
+        "hint": "en- 使…"
+      }
+    ]
+  },
+  {
+    "id": "employ",
+    "root": "employ",
+    "meaning": "僱用",
+    "tip": "-er 是做的人（老闆），-ee 是被…的人（員工）。",
+    "members": [
+      {
+        "english": "employer",
+        "chinese": "雇主",
+        "hint": "-er 做的人"
+      },
+      {
+        "english": "employee",
+        "chinese": "員工",
+        "hint": "-ee 被…的人"
+      },
+      {
+        "english": "employment",
+        "chinese": "就業；僱用",
+        "hint": "-ment 名詞"
+      },
+      {
+        "english": "unemployment",
+        "chinese": "失業",
+        "hint": "un- 否定"
+      }
+    ]
+  },
+  {
+    "id": "port",
+    "root": "port",
+    "meaning": "港口；（字根）搬運",
+    "tip": "port 是「搬運」：im-（進）＋port＝進口，ex-（出）＋port＝出口。",
+    "members": [
+      {
+        "english": "import",
+        "chinese": "進口",
+        "hint": "im- 進入"
+      },
+      {
+        "english": "export",
+        "chinese": "出口",
+        "hint": "ex- 向外"
+      },
+      {
+        "english": "transport",
+        "chinese": "運輸",
+        "hint": "trans- 跨越"
+      },
+      {
+        "english": "report",
+        "chinese": "報告",
+        "hint": "re- 帶回來"
+      },
+      {
+        "english": "airport",
+        "chinese": "機場",
+        "hint": "air＋port 複合字"
+      },
+      {
+        "english": "passport",
+        "chinese": "護照",
+        "hint": "pass＋port 複合字"
+      }
+    ]
+  },
+  {
+    "id": "view",
+    "root": "view",
+    "meaning": "看；景色",
+    "tip": "re- 再看＝複習，pre- 先看＝預覽，inter- 互相看＝面試。",
+    "members": [
+      {
+        "english": "review",
+        "chinese": "複習；評論",
+        "hint": "re- 再"
+      },
+      {
+        "english": "preview",
+        "chinese": "預覽",
+        "hint": "pre- 事先"
+      },
+      {
+        "english": "interview",
+        "chinese": "面試；訪問",
+        "hint": "inter- 互相"
+      },
+      {
+        "english": "viewer",
+        "chinese": "觀眾",
+        "hint": "-er 人"
+      }
+    ]
+  },
+  {
+    "id": "run",
+    "root": "run",
+    "meaning": "跑；經營",
+    "tip": "短母音字加 -er／-ing 要重複字尾：run → runner。",
+    "members": [
+      {
+        "english": "runner",
+        "chinese": "跑者",
+        "hint": "-er 人"
+      },
+      {
+        "english": "running",
+        "chinese": "跑步",
+        "hint": "-ing 名詞"
+      },
+      {
+        "english": "run out of",
+        "chinese": "用完",
+        "hint": "片語"
+      }
+    ]
+  },
+  {
+    "id": "train",
+    "root": "train",
+    "meaning": "訓練；火車",
+    "tip": "-er 是做的人，-ee 是被訓練的人。",
+    "members": [
+      {
+        "english": "trainer",
+        "chinese": "教練",
+        "hint": "-er 人"
+      },
+      {
+        "english": "training",
+        "chinese": "訓練",
+        "hint": "-ing 名詞"
+      },
+      {
+        "english": "trainee",
+        "chinese": "受訓者",
+        "hint": "-ee 被…的人"
+      }
+    ]
+  },
+  {
+    "id": "book",
+    "root": "book",
+    "meaning": "書；預訂",
+    "tip": "book 當動詞是「預訂」，booking 就是訂位紀錄。",
+    "members": [
+      {
+        "english": "booking",
+        "chinese": "預訂",
+        "hint": "-ing 名詞"
+      },
+      {
+        "english": "notebook",
+        "chinese": "筆記本",
+        "hint": "note＋book 複合字"
+      },
+      {
+        "english": "bookshop",
+        "chinese": "書店",
+        "hint": "book＋shop 複合字"
+      }
+    ]
+  },
+  {
+    "id": "heat",
+    "root": "heat",
+    "meaning": "熱；加熱",
+    "tip": "-er 可以是人，也可以是機器：heater＝暖氣機。",
+    "members": [
+      {
+        "english": "heating",
+        "chinese": "暖氣系統",
+        "hint": "-ing 名詞"
+      },
+      {
+        "english": "heater",
+        "chinese": "暖氣機",
+        "hint": "-er 機器"
+      }
+    ]
+  },
+  {
+    "id": "success",
+    "root": "success",
+    "meaning": "成功",
+    "tip": "名詞 success、動詞 succeed、形容詞 successful。",
+    "members": [
+      {
+        "english": "succeed",
+        "chinese": "成功（動詞）",
+        "hint": "動詞形"
+      },
+      {
+        "english": "successful",
+        "chinese": "成功的",
+        "hint": "-ful 形容詞"
+      },
+      {
+        "english": "successfully",
+        "chinese": "成功地",
+        "hint": "-ly 副詞"
+      }
+    ]
+  },
+  {
+    "id": "peace",
+    "root": "peace",
+    "meaning": "和平；平靜",
+    "tip": "-ful 讓名詞變形容詞。",
+    "members": [
+      {
+        "english": "peaceful",
+        "chinese": "平靜的",
+        "hint": "-ful 充滿"
+      },
+      {
+        "english": "peacefully",
+        "chinese": "平靜地",
+        "hint": "-ly 副詞"
+      }
+    ]
+  },
+  {
+    "id": "pain",
+    "root": "pain",
+    "meaning": "疼痛",
+    "tip": "painkiller＝pain＋killer，殺死疼痛的東西＝止痛藥。",
+    "members": [
+      {
+        "english": "painful",
+        "chinese": "痛苦的",
+        "hint": "-ful 充滿"
+      },
+      {
+        "english": "painkiller",
+        "chinese": "止痛藥",
+        "hint": "複合字"
+      }
+    ]
+  },
+  {
+    "id": "attract",
+    "root": "attract",
+    "meaning": "吸引",
+    "tip": "-ion 名詞、-ive 形容詞。",
+    "members": [
+      {
+        "english": "attraction",
+        "chinese": "吸引力；景點",
+        "hint": "-ion 名詞"
+      },
+      {
+        "english": "attractive",
+        "chinese": "有吸引力的",
+        "hint": "-ive 形容詞"
+      }
+    ]
+  },
+  {
+    "id": "predict",
+    "root": "predict",
+    "meaning": "預測",
+    "tip": "pre-（事先）＋dict（說）＝事先說出。",
+    "members": [
+      {
+        "english": "prediction",
+        "chinese": "預測",
+        "hint": "-ion 名詞"
+      },
+      {
+        "english": "predictable",
+        "chinese": "可預測的",
+        "hint": "-able 可以…"
+      },
+      {
+        "english": "unpredictable",
+        "chinese": "難以預料的",
+        "hint": "un- 否定"
+      }
+    ]
+  },
+  {
+    "id": "express",
+    "root": "express",
+    "meaning": "表達；快遞",
+    "tip": "ex-（向外）＋press（壓）＝把想法壓出來。",
+    "members": [
+      {
+        "english": "expression",
+        "chinese": "表情；表達",
+        "hint": "-ion 名詞"
+      },
+      {
+        "english": "expressive",
+        "chinese": "富有表情的",
+        "hint": "-ive 形容詞"
+      }
+    ]
+  },
+  {
+    "id": "perform",
+    "root": "perform",
+    "meaning": "表演；執行",
+    "tip": "-ance 名詞、-er 人。",
+    "members": [
+      {
+        "english": "performance",
+        "chinese": "表演；表現",
+        "hint": "-ance 名詞"
+      },
+      {
+        "english": "performer",
+        "chinese": "表演者",
+        "hint": "-er 人"
+      }
+    ]
+  },
+  {
+    "id": "value",
+    "root": "value",
+    "meaning": "價值",
+    "tip": "小心：invaluable 是「極珍貴的」，不是「沒價值」。",
+    "members": [
+      {
+        "english": "valuable",
+        "chinese": "有價值的",
+        "hint": "-able 形容詞"
+      },
+      {
+        "english": "invaluable",
+        "chinese": "極珍貴的",
+        "hint": "易混淆"
+      }
+    ]
+  },
+  {
+    "id": "tradition",
+    "root": "tradition",
+    "meaning": "傳統",
+    "tip": "-al 讓名詞變形容詞。",
+    "members": [
+      {
+        "english": "traditional",
+        "chinese": "傳統的",
+        "hint": "-al 形容詞"
+      },
+      {
+        "english": "traditionally",
+        "chinese": "傳統上",
+        "hint": "-ly 副詞"
+      }
+    ]
+  },
+  {
+    "id": "nation",
+    "root": "nation",
+    "meaning": "國家；民族",
+    "tip": "inter-（之間）＋national＝國際的。",
+    "members": [
+      {
+        "english": "national",
+        "chinese": "國家的",
+        "hint": "-al 形容詞"
+      },
+      {
+        "english": "international",
+        "chinese": "國際的",
+        "hint": "inter- 之間"
+      },
+      {
+        "english": "nationality",
+        "chinese": "國籍",
+        "hint": "-ity 名詞"
+      }
+    ]
+  },
+  {
+    "id": "surprise",
+    "root": "surprise",
+    "meaning": "驚喜；使驚訝",
+    "tip": "-ed＝人「感到」驚訝，-ing＝事情「令人」驚訝。",
+    "members": [
+      {
+        "english": "surprised",
+        "chinese": "感到驚訝的",
+        "hint": "-ed 感到"
+      },
+      {
+        "english": "surprising",
+        "chinese": "令人驚訝的",
+        "hint": "-ing 令人"
+      }
+    ]
+  },
+  {
+    "id": "annoy",
+    "root": "annoy",
+    "meaning": "使煩惱",
+    "tip": "-ed＝感到煩，-ing＝令人煩。",
+    "members": [
+      {
+        "english": "annoyed",
+        "chinese": "感到煩躁的",
+        "hint": "-ed 感到"
+      },
+      {
+        "english": "annoying",
+        "chinese": "惱人的",
+        "hint": "-ing 令人"
+      }
+    ]
+  },
+  {
+    "id": "noise",
+    "root": "noise",
+    "meaning": "噪音",
+    "tip": "字尾 e 遇到 -y 會去掉：noise → noisy。",
+    "members": [
+      {
+        "english": "noisy",
+        "chinese": "吵鬧的",
+        "hint": "-y 形容詞"
+      },
+      {
+        "english": "noisily",
+        "chinese": "吵鬧地",
+        "hint": "-ly 副詞"
+      }
+    ]
+  },
+  {
+    "id": "wood",
+    "root": "wood",
+    "meaning": "木頭",
+    "tip": "-en 讓材料名詞變形容詞：wood → wooden，gold → golden。",
+    "members": [
+      {
+        "english": "wooden",
+        "chinese": "木製的",
+        "hint": "-en 形容詞"
+      },
+      {
+        "english": "woods",
+        "chinese": "樹林",
+        "hint": "複數另有意思"
+      }
+    ]
+  },
+  {
+    "id": "sleep",
+    "root": "sleep",
+    "meaning": "睡覺",
+    "tip": "over-（過度）＋sleep＝睡過頭。",
+    "members": [
+      {
+        "english": "sleepy",
+        "chinese": "想睡的",
+        "hint": "-y 形容詞"
+      },
+      {
+        "english": "asleep",
+        "chinese": "睡著的",
+        "hint": "a- 處於…狀態"
+      },
+      {
+        "english": "oversleep",
+        "chinese": "睡過頭",
+        "hint": "over- 過度"
+      }
+    ]
+  },
+  {
+    "id": "act",
+    "root": "act",
+    "meaning": "行動；演戲",
+    "tip": "re-（回）＋act＝反應。",
+    "members": [
+      {
+        "english": "action",
+        "chinese": "行動",
+        "hint": "-ion 名詞"
+      },
+      {
+        "english": "active",
+        "chinese": "活躍的",
+        "hint": "-ive 形容詞"
+      },
+      {
+        "english": "actor",
+        "chinese": "演員",
+        "hint": "-or 人"
+      },
+      {
+        "english": "react",
+        "chinese": "反應",
+        "hint": "re- 回"
+      }
+    ]
+  },
+  {
+    "id": "move",
+    "root": "move",
+    "meaning": "移動；搬家",
+    "tip": "re-（離開）＋move＝移除。",
+    "members": [
+      {
+        "english": "movement",
+        "chinese": "動作；運動",
+        "hint": "-ment 名詞"
+      },
+      {
+        "english": "remove",
+        "chinese": "移除",
+        "hint": "re- 離開"
+      },
+      {
+        "english": "move on",
+        "chinese": "繼續前進；放下",
+        "hint": "片語"
+      }
+    ]
+  },
+  {
+    "id": "pay",
+    "root": "pay",
+    "meaning": "付錢",
+    "tip": "re-（回）＋pay＝償還。",
+    "members": [
+      {
+        "english": "payment",
+        "chinese": "付款",
+        "hint": "-ment 名詞"
+      },
+      {
+        "english": "repay",
+        "chinese": "償還",
+        "hint": "re- 回"
+      },
+      {
+        "english": "pay back",
+        "chinese": "還錢",
+        "hint": "片語"
+      }
+    ]
+  },
+  {
+    "id": "place",
+    "root": "place",
+    "meaning": "地方；放置",
+    "tip": "re-（再）＋place＝再放一個上去＝取代。",
+    "members": [
+      {
+        "english": "replace",
+        "chinese": "取代；更換",
+        "hint": "re- 再"
+      },
+      {
+        "english": "replacement",
+        "chinese": "替換品",
+        "hint": "-ment 名詞"
+      },
+      {
+        "english": "take place",
+        "chinese": "發生；舉行",
+        "hint": "片語"
+      }
+    ]
+  },
+  {
+    "id": "invite",
+    "root": "invite",
+    "meaning": "邀請",
+    "tip": "-ation 把動詞變名詞。",
+    "members": [
+      {
+        "english": "invitation",
+        "chinese": "邀請；請帖",
+        "hint": "-ation 名詞"
+      }
+    ]
+  },
+  {
+    "id": "suggest",
+    "root": "suggest",
+    "meaning": "建議",
+    "tip": "-ion 把動詞變名詞。",
+    "members": [
+      {
+        "english": "suggestion",
+        "chinese": "建議",
+        "hint": "-ion 名詞"
+      }
+    ]
+  },
+  {
+    "id": "fit",
+    "root": "fit",
+    "meaning": "健康的；合身",
+    "tip": "-ness 把形容詞變名詞：fit → fitness。",
+    "members": [
+      {
+        "english": "fitness",
+        "chinese": "健康；體能",
+        "hint": "-ness 名詞"
+      },
+      {
+        "english": "keep fit",
+        "chinese": "保持健康",
+        "hint": "片語"
+      }
+    ]
+  },
+  {
+    "id": "camp",
+    "root": "camp",
+    "meaning": "露營；營地",
+    "tip": "go＋活動-ing：go camping、go fishing、go skiing。",
+    "members": [
+      {
+        "english": "camping",
+        "chinese": "露營",
+        "hint": "-ing 活動"
+      },
+      {
+        "english": "go camping",
+        "chinese": "去露營",
+        "hint": "片語"
+      }
+    ]
+  },
+  {
+    "id": "lead",
+    "root": "lead",
+    "meaning": "帶領",
+    "tip": "-er 人、-ship 身分或能力。",
+    "members": [
+      {
+        "english": "leader",
+        "chinese": "領導者",
+        "hint": "-er 人"
+      },
+      {
+        "english": "leadership",
+        "chinese": "領導力",
+        "hint": "-ship 能力"
+      },
+      {
+        "english": "leading",
+        "chinese": "主要的；領先的",
+        "hint": "-ing 形容詞"
+      }
+    ]
+  }
+]

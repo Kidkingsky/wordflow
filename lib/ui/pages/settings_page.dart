@@ -5,6 +5,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 import '../../models/learning_item.dart';
 import '../../services/app_controller.dart';
 import '../../services/lock_screen_service.dart';
+import '../../services/speech_service.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({required this.controller, super.key});
@@ -70,16 +71,18 @@ class SettingsPage extends StatelessWidget {
         _LockScreenStudySection(controller: controller),
         const SizedBox(height: 13),
         _SettingsSection(
-          title: '英文朗讀速度',
-          subtitle: '使用裝置的英文語音朗讀，不需要 AI API。',
+          title: '英文發音',
+          subtitle: '使用裝置內建的英文語音，不需要網路或 AI API。',
           child: Column(
             children: [
+              _VoicePicker(controller: controller),
+              const SizedBox(height: 6),
               Slider(
-                min: 0.35,
-                max: 0.65,
-                divisions: 6,
-                value: controller.speechRate,
-                label: '${(controller.speechRate * 100).round()}%',
+                min: 0.3,
+                max: 0.7,
+                divisions: 8,
+                value: controller.speechRate.clamp(0.3, 0.7).toDouble(),
+                label: '${(controller.speechRate / 0.5 * 100).round()}%',
                 onChanged: controller.changeSpeechRate,
               ),
               const Padding(
@@ -331,4 +334,84 @@ class _SettingsSection extends StatelessWidget {
           ],
         ),
       );
+}
+
+/// Lets the learner pick a natural-sounding English voice and preview it.
+class _VoicePicker extends StatefulWidget {
+  const _VoicePicker({required this.controller});
+
+  final AppController controller;
+
+  @override
+  State<_VoicePicker> createState() => _VoicePickerState();
+}
+
+class _VoicePickerState extends State<_VoicePicker> {
+  late final Future<List<TtsVoice>> _voices =
+      widget.controller.speech.englishVoices();
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<List<TtsVoice>>(
+      future: _voices,
+      builder: (context, snapshot) {
+        final voices = snapshot.data ?? const <TtsVoice>[];
+        final selected = voices.any((v) => v.name == widget.controller.voiceName)
+            ? widget.controller.voiceName
+            : null;
+        final hasHighQuality = voices.any((v) => v.isHighQuality);
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 13),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    child: DropdownButton<String?>(
+                      isExpanded: true,
+                      value: selected,
+                      underline: const SizedBox.shrink(),
+                      items: [
+                        DropdownMenuItem<String?>(
+                          value: null,
+                          child: Text(voices.isEmpty
+                              ? '自動選擇'
+                              : '自動（${voices.first.name}）'),
+                        ),
+                        for (final voice in voices)
+                          DropdownMenuItem<String?>(
+                            value: voice.name,
+                            child: Text(voice.label,
+                                overflow: TextOverflow.ellipsis),
+                          ),
+                      ],
+                      onChanged: (name) {
+                        widget.controller.changeVoice(name);
+                        widget.controller.speak('Nice to meet you.');
+                      },
+                    ),
+                  ),
+                  IconButton.filledTonal(
+                    tooltip: '試聽',
+                    onPressed: () => widget.controller.speak('Nice to meet you.'),
+                    icon: const Icon(Icons.volume_up_rounded),
+                  ),
+                ],
+              ),
+              if (snapshot.connectionState == ConnectionState.done &&
+                  !hasHighQuality &&
+                  defaultTargetPlatform == TargetPlatform.iOS)
+                const Text(
+                  '聲音太像機器人？到 iPhone「設定 › 輔助使用 › 朗讀內容 › 聲音 › 英文」'
+                  '下載標示「增強」或「高品質」的語音（例如 Ava、Samantha），'
+                  '回到 App 重新開啟後就會自動使用。',
+                  style: TextStyle(fontSize: 12, height: 1.5, color: Color(0xFF6E7E8A)),
+                ),
+            ],
+          ),
+        );
+      },
+    );
+  }
 }

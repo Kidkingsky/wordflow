@@ -76,6 +76,18 @@ void main() {
     expect(third.nextDueDay, '2026-12-02');
   });
 
+  test('remembered only counts once per day unless due again', () {
+    final day = DateTime(2026, 11, 21);
+    expect(ReviewRecord.empty.canCountRemembered(day), isTrue);
+
+    final remembered = ReviewRecord.empty.review(now: day, remembered: true);
+    expect(remembered.canCountRemembered(day), isFalse);
+    expect(remembered.canCountRemembered(DateTime(2026, 11, 22)), isTrue);
+
+    final forgotten = remembered.review(now: day, remembered: false);
+    expect(forgotten.canCountRemembered(day), isTrue);
+  });
+
   test('a forgotten card resets success streak and is due today', () {
     final first = ReviewRecord.empty.review(now: DateTime(2026, 11, 21), remembered: true);
     final retry = first.review(now: DateTime(2026, 11, 22), remembered: false);

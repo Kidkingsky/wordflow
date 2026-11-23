@@ -5,9 +5,12 @@ import '../../services/app_controller.dart';
 import '../widgets/learning_card.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({required this.controller, super.key});
+  const HomePage({required this.controller, this.onOpenTab, super.key});
 
   final AppController controller;
+
+  /// Switches the bottom navigation tab (1 = 探索, 2 = 複習).
+  final ValueChanged<int>? onOpenTab;
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +18,8 @@ class HomePage extends StatelessWidget {
     final word = controller.todayWord(today);
     final phrase = controller.todayPhrase(today);
     final todayCount = controller.studiedToday;
+    final remaining = (5 - todayCount).clamp(0, 5);
+    final dueCount = controller.dueItems.length;
 
     return ListView(
       padding: const EdgeInsets.fromLTRB(20, 22, 20, 36),
@@ -88,10 +93,27 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 9),
-              const Align(
-                alignment: Alignment.centerLeft,
-                child: Text('學會 5 個內容，就完成每日小挑戰。',
-                    style: TextStyle(fontSize: 12, color: Color(0xFF467675))),
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      remaining == 0
+                          ? '今天的小挑戰完成了，太棒了！'
+                          : '今日卡片＋探索／複習，再練 $remaining 個就完成。',
+                      style: const TextStyle(fontSize: 12, color: Color(0xFF467675)),
+                    ),
+                  ),
+                  if (remaining > 0 && onOpenTab != null)
+                    TextButton.icon(
+                      onPressed: () => onOpenTab!(dueCount > 0 ? 2 : 1),
+                      icon: const Icon(Icons.arrow_forward_rounded, size: 16),
+                      label: Text(dueCount > 0 ? '去複習 $dueCount 張' : '去探索'),
+                      style: TextButton.styleFrom(
+                        visualDensity: VisualDensity.compact,
+                        foregroundColor: const Color(0xFF137D7D),
+                      ),
+                    ),
+                ],
               ),
             ],
           ),
