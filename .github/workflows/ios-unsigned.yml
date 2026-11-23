@@ -3,6 +3,7 @@ name: WordFlow iOS unsigned IPA for SideStore
 on:
   push:
     branches: [main]
+  pull_request:
   workflow_dispatch:
 
 jobs:
@@ -23,12 +24,24 @@ jobs:
         run: rm -f test/widget_test.dart
       - name: Fetch packages
         run: flutter pub get
+      - name: Install WidgetKit extension
+        run: |
+          ruby -e "require 'xcodeproj'" || gem install xcodeproj --user-install --no-document
+          ruby scripts/install_ios_widgets.rb
       - name: Check Dart and test
         run: |
           flutter analyze --no-fatal-infos
           flutter test
       - name: Build iOS app without signing
         run: flutter build ios --release --no-codesign
+      - name: Verify widgets are packaged inside the iOS app
+        run: |
+          APP="build/ios/iphoneos/Runner.app"
+          EXT="$APP/PlugIns/WordFlowWidgets.appex"
+          test -d "$EXT"
+          test -s "$EXT/content.json"
+          test "$(/usr/libexec/PlistBuddy -c 'Print :NSExtension:NSExtensionPointIdentifier' "$EXT/Info.plist")" = "com.apple.widgetkit-extension"
+          echo "Confirmed WidgetKit extension and offline lesson catalog"
       - name: Package app into unsigned IPA container
         run: |
           mkdir -p build/ios/ipa/Payload

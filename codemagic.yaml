@@ -16,6 +16,10 @@ workflows:
           rm -f test/widget_test.dart
       - name: Install packages
         script: flutter pub get
+      - name: Add WordFlow WidgetKit extension
+        script: |
+          ruby -e "require 'xcodeproj'" || gem install xcodeproj --user-install --no-document
+          ruby scripts/install_ios_widgets.rb
       - name: Run tests and static analysis
         script: |
           flutter analyze --no-fatal-infos
@@ -47,6 +51,10 @@ workflows:
           rm -f test/widget_test.dart
       - name: Install packages
         script: flutter pub get
+      - name: Add WordFlow WidgetKit extension
+        script: |
+          ruby -e "require 'xcodeproj'" || gem install xcodeproj --user-install --no-document
+          ruby scripts/install_ios_widgets.rb
       - name: Check project
         script: |
           flutter analyze --no-fatal-infos
