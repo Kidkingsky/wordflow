@@ -1,0 +1,154 @@
+import '../models/learning_item.dart';
+
+/// Keeps natural contractions and hyphenated tokens intact.
+final RegExp _englishWords =
+    RegExp(r"[A-Za-z]+(?:['’][A-Za-z]+)?(?:-[A-Za-z]+)*");
+
+List<String> englishWordTokens(String sentence) =>
+    _englishWords.allMatches(sentence).map((match) => match.group(0)!).toList();
+
+String normalizeEnglishWord(String token) =>
+    token.trim().replaceAll('’', "'").toLowerCase();
+
+/// Curated Traditional Chinese meanings for common phrase words.
+/// These are contextual hints, not a general-purpose machine translation API.
+const Map<String, String> phraseWordGlossary = {
+  "the": "這個、那個（定冠詞）",
+  "to": "到、向；動詞不定詞標記",
+  "me": "我（受格）",
+  "you": "你、你們",
+  "on": "在……上、處於某種狀態",
+  "a": "一個（不定冠詞）",
+  "we": "我們",
+  "could": "可以、能否（委婉語氣）",
+  "it": "它；這件事",
+  "in": "在……裡；進入",
+  "have": "有；作為助動詞",
+  "i'm": "我是、我正在",
+  "let's": "讓我們……",
+  "for": "為了、替；持續一段時間",
+  "is": "是；處於",
+  "take": "拿、帶；拍攝、花費",
+  "my": "我的",
+  "give": "給",
+  "can": "可以、能夠",
+  "not": "不、沒有",
+  "let": "讓、允許",
+  "your": "你的、你們的",
+  "an": "一個（接母音音素）",
+  "and": "和、以及",
+  "i'd": "我想要；我會（I would）",
+  "table": "桌子；餐桌座位",
+  "four": "四；四個",
+  "where": "哪裡",
+  "boarding": "登機；正在登機的",
+  "picture": "照片、圖片",
+  "us": "我們（受格）",
+  "breakfast": "早餐",
+  "leave": "離開；留下、寄放",
+  "our": "我們的",
+  "bags": "袋子；行李（複數）",
+  "here": "這裡",
+  "way": "道路；方式",
+  "minute": "分鐘",
+  "sounds": "聽起來；聲音（複數）",
+  "good": "好的；不錯",
+  "slipped": "滑落；（此句）突然忘記了",
+  "play": "玩；表演；（片語中）隨機應變",
+  "ear": "耳朵",
+  "keep": "保持；繼續",
+  "short": "短的；短暫的",
+  "break": "休息；中斷",
+  "out": "向外；出去",
+  "how": "如何、怎麼；多麼",
+  "many": "許多；多少",
+  "reps": "次數、反覆動作（訓練）",
+  "do": "做；助動詞",
+  "left": "剩下的；左邊",
+  "controlled": "受到控制的、有控制的",
+  "adjust": "調整",
+  "intensity": "強度",
+  "get": "取得、得到；開始",
+  "we're": "我們是、我們正在",
+  "meeting": "會議；見面",
+  "align": "對齊；達成一致",
+  "requirements": "需求、要求（複數）",
+  "address": "處理（問題）；地址",
+  "root": "根本、根源",
+  "i": "我",
+  "near": "靠近、附近",
+  "window": "窗戶",
+  "excuse": "打擾、原諒",
+  "room": "房間；空間",
+  "until": "直到",
+  "three": "三、三個",
+  "i'll": "我將、我會",
+  "be": "是；處於",
+  "there": "那裡",
+  "ten": "十、十個",
+  "minutes": "分鐘（複數）",
+  "ready": "準備好的",
+  "dinner": "晚餐",
+  "at": "在（時間／地點）",
+  "six": "六、六個",
+  "sorry": "抱歉",
+  "depending": "視……而定",
+  "weather": "天氣",
+  "during": "在……期間",
+  "sets": "組數（訓練）；集合（複數）",
+  "match": "符合、搭配；比賽",
+  "today": "今天",
+  "project": "專案、計畫",
+  "afternoon": "下午",
+  "soon": "很快、不久",
+  "friday": "星期五",
+  "coding": "寫程式、編碼",
+  "of": "……的",
+  "applying": "套用、應用",
+  "another": "另一個",
+  "patch": "修補程式；修補、修正",
+};
+
+class PhraseWordMeaning {
+  const PhraseWordMeaning({
+    required this.english,
+    required this.chinese,
+    this.partOfSpeech = '',
+    this.catalogItem,
+    this.fromPhraseGlossary = false,
+  });
+
+  final String english;
+  final String chinese;
+  final String partOfSpeech;
+  final LearningItem? catalogItem;
+  final bool fromPhraseGlossary;
+  bool get isKnown => chinese.isNotEmpty;
+}
+
+/// Exact dictionary matches are preferred; unknown words remain unknown.
+PhraseWordMeaning lookupPhraseWord(
+  String token,
+  Iterable<LearningItem> items,
+) {
+  final normalized = normalizeEnglishWord(token);
+  for (final item in items) {
+    if (item.isWord && normalizeEnglishWord(item.english) == normalized) {
+      return PhraseWordMeaning(
+        english: token,
+        chinese: item.chinese,
+        partOfSpeech: item.partOfSpeech,
+        catalogItem: item,
+      );
+    }
+  }
+  final commonMeaning = phraseWordGlossary[normalized];
+  if (commonMeaning != null) {
+    return PhraseWordMeaning(
+      english: token,
+      chinese: commonMeaning,
+      fromPhraseGlossary: true,
+    );
+  }
+  return PhraseWordMeaning(english: token, chinese: '');
+}

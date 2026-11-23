@@ -4,6 +4,7 @@ import '../../models/learning_item.dart';
 import '../../models/word_family.dart';
 import '../../services/app_controller.dart';
 import '../theme/wordflow_design.dart';
+import 'phrase_lookup_text.dart';
 
 class LearningCard extends StatelessWidget {
   const LearningCard({
@@ -72,17 +73,39 @@ class LearningCard extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 15),
-          Text(
-            item.english,
-            style: TextStyle(
-              fontSize: item.isWord ? 37 : 27,
-              fontFamily: 'Georgia',
-              fontWeight: FontWeight.w500,
-              height: 1.16,
-              letterSpacing: -0.5,
-              color: foreground,
+          if (item.isWord)
+            Text(
+              item.english,
+              style: TextStyle(
+                fontSize: 37,
+                fontFamily: 'Georgia',
+                fontWeight: FontWeight.w500,
+                height: 1.16,
+                letterSpacing: -0.5,
+                color: foreground,
+              ),
+            )
+          else
+            PhraseLookupText(
+              text: item.english,
+              controller: controller,
+              contextPhrase: item,
+              onOpenWord: (word) => showLearningDetails(
+                context, word, controller),
+              style: TextStyle(
+                fontSize: 27,
+                fontFamily: 'Georgia',
+                fontWeight: FontWeight.w500,
+                height: 1.16,
+                letterSpacing: -0.5,
+                color: foreground,
+              ),
             ),
-          ),
+          if (!item.isWord) ...[
+            const SizedBox(height: 5),
+            Text('點選英文單字，可查中文與聽發音。',
+              style: TextStyle(color: subtle, fontSize: 12)),
+          ],
           const SizedBox(height: 10),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -132,10 +155,18 @@ class LearningCard extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 8),
-            Text(
-              item.example,
-              style: TextStyle(color: foreground, fontSize: 15, height: 1.5),
-            ),
+            if (item.isWord)
+              Text(item.example,
+                style: TextStyle(color: foreground, fontSize: 15, height: 1.5))
+            else
+              PhraseLookupText(
+                text: item.example,
+                controller: controller,
+                contextPhrase: item,
+                onOpenWord: (word) => showLearningDetails(
+                  context, word, controller),
+                style: TextStyle(color: foreground, fontSize: 15, height: 1.5),
+              ),
             if (item.exampleChinese.trim().isNotEmpty) ...[
               const SizedBox(height: 6),
               Text(item.exampleChinese,

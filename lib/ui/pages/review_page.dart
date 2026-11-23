@@ -4,6 +4,7 @@ import '../../models/learning_item.dart';
 import '../../services/app_controller.dart';
 import '../theme/wordflow_design.dart';
 import '../widgets/learning_card.dart';
+import '../widgets/phrase_lookup_text.dart';
 
 class ReviewPage extends StatefulWidget {
   const ReviewPage({required this.controller, super.key});
@@ -142,16 +143,32 @@ class _ReviewFlashcard extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 22),
-            Text(
-              item.english,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontFamily: 'Georgia',
-                fontSize: 37,
-                fontWeight: FontWeight.w500,
-                color: WordFlowDesign.ink,
+            if (item.isWord || !showAnswer)
+              Text(
+                item.english,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontFamily: 'Georgia',
+                  fontSize: 37,
+                  fontWeight: FontWeight.w500,
+                  color: WordFlowDesign.ink,
+                ),
+              )
+            else
+              PhraseLookupText(
+                text: item.english,
+                controller: controller,
+                contextPhrase: item,
+                textAlign: TextAlign.center,
+                onOpenWord: (word) => showLearningDetails(
+                  context, word, controller),
+                style: const TextStyle(
+                  fontFamily: 'Georgia',
+                  fontSize: 37,
+                  fontWeight: FontWeight.w500,
+                  color: WordFlowDesign.ink,
+                ),
               ),
-            ),
             const SizedBox(height: 12),
             Center(
               child: IconButton.filledTonal(
