@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../models/learning_item.dart';
 import '../../services/app_controller.dart';
+import '../../services/lock_screen_service.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({required this.controller, super.key});
@@ -64,6 +65,8 @@ class SettingsPage extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 13),
+        _LockScreenStudySection(controller: controller),
+        const SizedBox(height: 13),
         _SettingsSection(
           title: '英文朗讀速度',
           subtitle: '使用裝置的英文語音朗讀，不需要 AI API。',
@@ -122,6 +125,100 @@ class SettingsPage extends StatelessWidget {
               style: TextStyle(fontSize: 11, color: Color(0xFF97A6AF))),
         ),
       ],
+    );
+  }
+}
+
+
+class _LockScreenStudySection extends StatefulWidget {
+  const _LockScreenStudySection({required this.controller});
+  final AppController controller;
+
+  @override
+  State<_LockScreenStudySection> createState() => _LockScreenStudySectionState();
+}
+
+class _LockScreenStudySectionState extends State<_LockScreenStudySection> {
+  bool _busy = false;
+  String? _message;
+
+  Future<void> _run({required bool start}) async {
+    if (_busy) return;
+    setState(() {
+      _busy = true;
+      _message = null;
+    });
+    try {
+      if (start) {
+        await WordFlowLockScreenService.start(widget.controller);
+      } else {
+        await WordFlowLockScreenService.stop();
+      }
+      if (!mounted) return;
+      setState(() {
+        _message = start
+            ? '四格單字已啟動。鎖定 iPhone 即可查看（系統可能延遲顯示）。'
+            : '已停止鎖定畫面的四格單字。';
+      });
+    } on PlatformException catch (error) {
+      if (!mounted) return;
+      setState(() => _message = error.message ?? error.code);
+    } on MissingPluginException {
+      if (!mounted) return;
+      setState(() => _message = '這個功能需要安裝包含 Live Activity 的新版 iOS IPA。');
+    } catch (error) {
+      if (!mounted) return;
+      setState(() => _message = '無法操作：$error');
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return _SettingsSection(
+      title: '鎖定畫面四格單字',
+      subtitle: '像四宮格單字卡一樣，在鎖定畫面顯示 4 個英文單字與繁體中文。',
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              color: const Color(0xFFEDE4FA),
+              borderRadius: BorderRadius.circular(16),
+            ),
+            padding: const EdgeInsets.all(14),
+            child: const Text(
+              '這是 iOS 即時動態（Live Activity），不是永久 Widget。'
+              ' 每次手動開啟後最長運作 8 小時，系統可能額外顯示最多 4 小時。'
+              ' 單字取自上方選擇的程度和主題。',
+              style: TextStyle(fontSize: 12, height: 1.5, color: Color(0xFF604982)),
+            ),
+          ),
+          const SizedBox(height: 12),
+          FilledButton.icon(
+            onPressed: _busy ? null : () => _run(start: true),
+            icon: const Icon(Icons.lock_clock_outlined),
+            label: const Text('開始今日四格單字'),
+            style: FilledButton.styleFrom(
+              backgroundColor: const Color(0xFF7652BB),
+              minimumSize: const Size.fromHeight(46),
+            ),
+          ),
+          const SizedBox(height: 5),
+          TextButton(
+            onPressed: _busy ? null : () => _run(start: false),
+            child: const Text('停止鎖定畫面單字'),
+          ),
+          if (_busy) const LinearProgressIndicator(),
+          if (_message != null)
+            Padding(
+              padding: const EdgeInsets.only(top: 8),
+              child: Text(_message!,
+                  style: const TextStyle(fontSize: 12, color: Color(0xFF604982))),
+            ),
+        ],
+      ),
     );
   }
 }

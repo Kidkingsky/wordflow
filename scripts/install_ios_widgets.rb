@@ -14,6 +14,32 @@ FileUtils.mkdir_p(widget_folder)
 FileUtils.cp(File.join(widget_source, 'WordFlowWidgets.swift'), widget_folder)
 FileUtils.cp(File.join(widget_source, 'Info.plist'), widget_folder)
 FileUtils.cp(File.join(root, 'assets/content/content.json'), File.join(widget_folder, 'content.json'))
+FileUtils.cp(File.join(widget_source, 'WordFlowLiveAttributes.swift'), File.join(widget_folder, 'WordFlowLiveAttributes.swift'))
+FileUtils.cp(File.join(root, 'ios_native', 'WordFlowLiveActivityBridge.swift'), File.join(ios, 'Runner', 'WordFlowLiveActivityBridge.swift'))
+
+# Flutter 3.41+ uses UIScene; the UIApplicationDelegate window is nil on launch.
+# Register native channels in the implicit engine callback, not didFinishLaunching.
+app_delegate = File.join(ios, 'Runner', 'AppDelegate.swift')
+File.write(app_delegate, <<~SWIFT)
+  import Flutter
+  import UIKit
+
+  @main
+  @objc class AppDelegate: FlutterAppDelegate, FlutterImplicitEngineDelegate {
+      override func application(
+          _ application: UIApplication,
+          didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+      ) -> Bool {
+          return super.application(application, didFinishLaunchingWithOptions: launchOptions)
+      }
+
+      func didInitializeImplicitFlutterEngine(_ engineBridge: FlutterImplicitEngineBridge) {
+          GeneratedPluginRegistrant.register(with: engineBridge.pluginRegistry)
+          WordFlowLiveActivityBridge.register(messenger: engineBridge.applicationRegistrar.messenger())
+      }
+  }
+SWIFT
+
 
 project = Xcodeproj::Project.open(project_path)
 runner = project.targets.find { |target| target.name == 'Runner' }
@@ -22,9 +48,12 @@ unless project.targets.any? { |target| target.name == 'WordFlowWidgets' }
   widget = project.new_target(:app_extension, 'WordFlowWidgets', :ios, '17.0')
   group = project.main_group.new_group('WordFlowWidgets', 'WordFlowWidgets')
   swift_file = group.new_file('WordFlowWidgets.swift')
+  attributes_file = group.new_file('WordFlowLiveAttributes.swift')
   json_file = group.new_file('content.json')
   group.new_file('Info.plist')
-  widget.add_file_references([swift_file])
+  widget.add_file_references([swift_file, attributes_file])
+  bridge_file = project.main_group.new_file('Runner/WordFlowLiveActivityBridge.swift')
+  runner.add_file_references([bridge_file, attributes_file])
 
   resource = project.new(Xcodeproj::Project::Object::PBXBuildFile)
   resource.file_ref = json_file
@@ -61,6 +90,15 @@ unless project.targets.any? { |target| target.name == 'WordFlowWidgets' }
   phases.delete(embed)
   first_script = phases.index { |phase| phase.is_a?(Xcodeproj::Project::Object::PBXShellScriptBuildPhase) }
   phases.insert(first_script || phases.size, embed)
+end
+
+# ActivityKit requires a capability flag in the host application's Info.plist.
+app_plist_for_live = File.join(ios, 'Runner', 'Info.plist')
+plist_buddy_for_live = '/usr/libexec/PlistBuddy'
+if File.file?(app_plist_for_live) && File.executable?(plist_buddy_for_live)
+  unless system(plist_buddy_for_live, '-c', 'Print :NSSupportsLiveActivities', app_plist_for_live, out: File::NULL, err: File::NULL)
+    abort 'Cannot enable Live Activities' unless system(plist_buddy_for_live, '-c', 'Add :NSSupportsLiveActivities bool YES', app_plist_for_live)
+  end
 end
 
 runner.build_configurations.each do |config|

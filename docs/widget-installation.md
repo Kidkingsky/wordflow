@@ -34,3 +34,14 @@ SideStore/側載工具對包含 extension 的 IPA 支援程度可能不同，需
 - **鎖定畫面能顯示大型彩色卡片嗎？** 不能。iPhone Lock Screen 的 accessory Widget 受系統尺寸與 vibrant（單色）渲染限制；彩色 Small / Medium / Large 卡片請加入「主畫面」。
 - **更新 IPA 需要注意什麼？** 必須用 SideStore 再次簽署含 `WordFlowWidgets.appex` 的新 IPA。請勿先移除舊 App，以免本機收藏和複習紀錄遺失。
 - **為什麼部分新單字沒有例句？** 新增的 1,452 個詞條目前提供雙語詞義與詞性，尚未逐條校對例句；原有 72 筆教材的雙語例句保留。
+
+
+## 大型鎖定畫面四格單字（Live Activity）
+
+- 這不是一般的 accessory Widget；是透過 ActivityKit 顯示在鎖定畫面下方的四格學習卡。
+- 在 WordFlow App →「我的」→「鎖定畫面四格單字」→「開始今日四格單字」啟動。需允許 WordFlow 的「即時動態」。
+- 每次從所選 A2/B1、主題中選出 4 個不重複詞條，顯示英文和繁體中文。點卡片可開啟 App；畫面中的書籤圖示目前僅為裝飾，不提供獨立收藏互動。
+- Apple 規定 Live Activity 最多進行 8 小時，結束後鎖定畫面可能繼續顯示最多 4 小時；不是永久鎖定畫面小工具。到期後需手動再次開啟。
+- Live Activity 透過 Flutter MethodChannel 呼叫 ActivityKit，原生介面在 WidgetKit extension。
+- 這次 iOS 專案由 CI 即時產生，Ruby 腳本會產生兼容 UIScene 的 AppDelegate、添加共用 ActivityAttributes、原生 MethodChannel，以及主 App 的 NSSupportsLiveActivities。
+- 完成編譯只證明 IPA 包含擴充功能；SideStore 能否簽署與實機啟用仍需 iPhone 驗證。切勿先移除舊 App。

@@ -42,6 +42,8 @@ jobs:
           EXT="$APP/PlugIns/WordFlowWidgets.appex"
           test -d "$EXT"
           test -s "$EXT/content.json"
+          test "$(/usr/libexec/PlistBuddy -c 'Print :NSSupportsLiveActivities' "$APP/Info.plist")" = "true"
+
           test "$(/usr/libexec/PlistBuddy -c 'Print :NSExtension:NSExtensionPointIdentifier' "$EXT/Info.plist")" = "com.apple.widgetkit-extension"
           echo "Confirmed WidgetKit extension and offline lesson catalog"
       - name: Package app into unsigned IPA container

@@ -322,10 +322,98 @@ struct WordFlowDailyPhraseWidget: Widget {
     }
 }
 
+
+private struct WordFlowStudyLiveActivityWidget: Widget {
+    var body: some WidgetConfiguration {
+        ActivityConfiguration(for: WordFlowLiveAttributes.self) { context in
+            VStack(alignment: .leading, spacing: 9) {
+                HStack(spacing: 5) {
+                    Image(systemName: "sparkles")
+                    Text("WORDFLOW  ·  鎖定畫面單字")
+                        .font(.system(size: 12, weight: .heavy))
+                    Spacer(minLength: 2)
+                    Text(context.state.level)
+                        .font(.system(size: 12, weight: .bold))
+                }
+                .foregroundStyle(Color(red: 0.28, green: 0.20, blue: 0.45))
+
+                LazyVGrid(
+                    columns: [GridItem(.flexible(), spacing: 7), GridItem(.flexible(), spacing: 7)],
+                    spacing: 7
+                ) {
+                    ForEach(0..<min(4, context.state.words.count), id: \.self) { i in
+                        let word = context.state.words[i]
+                        VStack(alignment: .leading, spacing: 4) {
+                            HStack(alignment: .firstTextBaseline, spacing: 3) {
+                                Text(word.english)
+                                    .font(.system(size: 17, weight: .bold, design: .rounded))
+                                    .lineLimit(1)
+                                    .minimumScaleFactor(0.65)
+                                Spacer(minLength: 0)
+                                Image(systemName: "bookmark")
+                                    .font(.system(size: 11))
+                                    .accessibilityHidden(true)
+                            }
+                            Text(word.chinese)
+                                .font(.system(size: 12, weight: .medium))
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.72)
+                        }
+                        .foregroundStyle(Color(red: 0.20, green: 0.17, blue: 0.30))
+                        .padding(.horizontal, 9)
+                        .padding(.vertical, 11)
+                        .frame(maxWidth: .infinity, minHeight: 51, alignment: .leading)
+                        .background(
+                            Color.white.opacity(0.86),
+                            in: RoundedRectangle(cornerRadius: 11)
+                        )
+                    }
+                }
+
+                HStack {
+                    Text("打開 WordFlow 複習")
+                        .font(.system(size: 11, weight: .medium))
+                    Spacer()
+                    Image(systemName: "arrow.up.right")
+                        .font(.system(size: 12, weight: .bold))
+                }
+                .foregroundStyle(Color(red: 0.37, green: 0.29, blue: 0.51))
+            }
+            .padding(.horizontal, 13)
+            .padding(.vertical, 12)
+            .activityBackgroundTint(Color(red: 0.91, green: 0.88, blue: 0.98))
+            .activitySystemActionForegroundColor(.black)
+        } dynamicIsland: { context in
+            DynamicIsland {
+                DynamicIslandExpandedRegion(.leading) {
+                    Label("WordFlow", systemImage: "book.closed.fill")
+                        .font(.caption.bold())
+                }
+                DynamicIslandExpandedRegion(.trailing) {
+                    Text(context.state.level).font(.caption.bold())
+                }
+                DynamicIslandExpandedRegion(.bottom) {
+                    Text(context.state.words.map(\.english).joined(separator: " · "))
+                        .font(.caption)
+                        .lineLimit(2)
+                }
+            } compactLeading: {
+                Image(systemName: "book.closed.fill")
+            } compactTrailing: {
+                Text("4字").font(.caption2.bold())
+            } minimal: {
+                Image(systemName: "book.closed.fill")
+            }
+            .widgetURL(URL(string: "wordflow:///"))
+        }
+    }
+}
+
 @main
 struct WordFlowWidgets: WidgetBundle {
     var body: some Widget {
         WordFlowDailyWordWidget()
         WordFlowDailyPhraseWidget()
+        WordFlowStudyLiveActivityWidget()
     }
 }
