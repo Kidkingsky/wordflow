@@ -4,6 +4,7 @@ import '../../models/learning_item.dart';
 import '../../services/app_controller.dart';
 import '../theme/wordflow_design.dart';
 import '../widgets/learning_card.dart';
+import '../widgets/phrase_lookup_text.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({required this.controller, this.onOpenTab, super.key});
@@ -115,10 +116,19 @@ class HomePage extends StatelessWidget {
                   Expanded(child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(phrase.english,
-                        style: WordFlowDesign.english(size: 23)),
+                      PhraseLookupText(
+                        text: phrase.english,
+                        controller: controller,
+                        contextPhrase: phrase,
+                        onOpenWord: (word) => showLearningDetails(
+                          context, word, controller),
+                        style: WordFlowDesign.english(size: 23),
+                      ),
                       const SizedBox(height: 9),
                       Text(phrase.chinese, style: WordFlowDesign.body),
+                      const SizedBox(height: 7),
+                      const Text('點字可查意思與發音',
+                        style: WordFlowDesign.label),
                     ],
                   )),
                   const SizedBox(width: 9),
