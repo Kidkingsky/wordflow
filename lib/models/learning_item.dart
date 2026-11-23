@@ -23,6 +23,18 @@ class LearningItem {
 
   bool get isWord => kind == 'word';
 
+  /// The vocabulary stores the grammatical class at the start of note.
+  String get partOfSpeech {
+    if (!isWord) return '';
+    final label = note.split('｜').first.trim();
+    const wordClasses = <String>{
+      '名詞', '動詞', '形容詞', '副詞', '介系詞', '連接詞',
+      '代名詞', '名詞／動詞', '動詞／名詞', '名詞片語',
+      '名詞複數', '常用詞',
+    };
+    return wordClasses.contains(label) ? label : '';
+  }
+
   factory LearningItem.fromJson(Map<String, dynamic> json) {
     return LearningItem(
       id: json['id'] as String,

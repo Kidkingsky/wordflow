@@ -56,6 +56,14 @@ class LearningCard extends StatelessWidget {
                 background: dark ? const Color(0xFF2B5061) : const Color(0xFFEFF2F4),
                 foreground: dark ? const Color(0xFFD2F9ED) : const Color(0xFF516370),
               ),
+              if (item.partOfSpeech.isNotEmpty) ...[
+                const SizedBox(width: 7),
+                _InfoBadge(
+                  text: item.partOfSpeech,
+                  background: dark ? const Color(0xFF3C5276) : const Color(0xFFECE4F8),
+                  foreground: dark ? Colors.white : const Color(0xFF684C9F),
+                ),
+              ],
               const Spacer(),
               IconButton(
                 tooltip: controller.isFavorite(item) ? '取消收藏' : '加入收藏',

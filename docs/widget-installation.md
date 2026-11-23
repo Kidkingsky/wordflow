@@ -2,7 +2,7 @@
 
 ## 功能
 - 使用 Apple 原生 WidgetKit + SwiftUI，而不是 Safari 網頁捷徑。
-- **主畫面**：小／中／大尺寸的主題彩色漸層卡片，顯示英文單字和繁體中文；原有詞條若有例句，中／大尺寸也能顯示。
+- **主畫面**：小／中／大尺寸的主題彩色漸層卡片，顯示英文、詞性（如名詞／動詞）和繁體中文；原有詞條若有例句，中／大尺寸也能顯示。
 - **鎖定畫面**：單行與矩形；每日單字另有圓形小工具。
 - 提供「每日單字」、「每日詞句」兩款 Widget。
 - 長按 Widget 的「編輯 Widget」可選 A2／B1，以及全部、旅遊、生活、健身、工作。
@@ -40,7 +40,7 @@ SideStore/側載工具對包含 extension 的 IPA 支援程度可能不同，需
 
 - 這不是一般的 accessory Widget；是透過 ActivityKit 顯示在鎖定畫面下方的四格學習卡。
 - 在 WordFlow App →「我的」→「鎖定畫面四格單字」→「開始今日四格單字」啟動。需允許 WordFlow 的「即時動態」。
-- 每次從所選 A2/B1、主題中選出 4 個不重複詞條，顯示英文和繁體中文。點卡片可開啟 App；畫面中的書籤圖示目前僅為裝飾，不提供獨立收藏互動。
+- 每次從所選 A2/B1、主題中選出 4 個不重複詞條，顯示英文、詞性與繁體中文。點卡片可開啟 App，詞性標籤本身沒有獨立操作。
 - Apple 規定 Live Activity 最多進行 8 小時，結束後鎖定畫面可能繼續顯示最多 4 小時；不是永久鎖定畫面小工具。到期後需手動再次開啟。
 - Live Activity 透過 Flutter MethodChannel 呼叫 ActivityKit，原生介面在 WidgetKit extension。
 - 這次 iOS 專案由 CI 即時產生，Ruby 腳本會產生兼容 UIScene 的 AppDelegate、添加共用 ActivityAttributes、原生 MethodChannel，以及主 App 的 NSSupportsLiveActivities。

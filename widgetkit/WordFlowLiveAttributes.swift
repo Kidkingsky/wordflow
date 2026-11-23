@@ -4,6 +4,7 @@ import ActivityKit
 struct WordFlowLiveWord: Codable, Hashable {
     let english: String
     let chinese: String
+    let partOfSpeech: String
 }
 
 struct WordFlowLiveAttributes: ActivityAttributes {

@@ -31,6 +31,7 @@ class WordFlowLockScreenService {
       return <String, String>{
         'english': item.english,
         'chinese': item.chinese,
+        'partOfSpeech': item.partOfSpeech,
       };
     });
 

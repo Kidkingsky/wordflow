@@ -35,7 +35,11 @@ enum WordFlowLiveActivityBridge {
                           !zh.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
                         return nil
                     }
-                    return WordFlowLiveWord(english: en, chinese: zh)
+                    return WordFlowLiveWord(
+                        english: en,
+                        chinese: zh,
+                        partOfSpeech: raw["partOfSpeech"] as? String ?? ""
+                    )
                 }
                 guard words.count == 4 else {
                     result(FlutterError(code: "INVALID_WORDS", message: "需要四個完整的中英單字。", details: nil))

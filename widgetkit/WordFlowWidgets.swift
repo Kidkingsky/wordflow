@@ -13,6 +13,17 @@ private struct LearningItem: Codable {
     let example: String
     let exampleChinese: String
 
+    var partOfSpeech: String? {
+        guard kind == "word" else { return nil }
+        let label = note.components(separatedBy: "｜").first?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        return label.isEmpty ? nil : label
+    }
+
+    var labeledMeaning: String {
+        guard let partOfSpeech = partOfSpeech else { return chinese }
+        return "\(partOfSpeech) · \(chinese)"
+    }
+
     static let placeholder = LearningItem(
         id: "preview", kind: "word", category: "daily", level: "A2",
         english: "balance", chinese: "平衡", note: "名詞／動詞",
@@ -197,7 +208,7 @@ private struct WordFlowWidgetView: View {
                     Text(entry.item.english)
                         .font(.system(size: 16, weight: .bold, design: .rounded))
                         .lineLimit(1).minimumScaleFactor(0.7)
-                    Text(entry.item.chinese)
+                    Text(entry.item.labeledMeaning)
                         .font(.system(size: 12, weight: .medium))
                         .lineLimit(1)
                 }.frame(maxWidth: .infinity, alignment: .leading)
@@ -249,6 +260,15 @@ private struct WordFlowWidgetView: View {
                 .foregroundStyle(.white)
                 .lineLimit(isSmall ? 2 : 3)
                 .minimumScaleFactor(0.58)
+
+            if let partOfSpeech = entry.item.partOfSpeech {
+                Text(partOfSpeech)
+                    .font(.system(size: isSmall ? 10 : 12, weight: .semibold))
+                    .foregroundStyle(.white.opacity(0.95))
+                    .padding(.horizontal, 9)
+                    .padding(.vertical, 4)
+                    .background(.white.opacity(0.19), in: Capsule())
+            }
 
             Text(entry.item.chinese)
                 .font(.system(size: isSmall ? 16 : (isLarge ? 22 : 19),
@@ -350,9 +370,13 @@ private struct WordFlowStudyLiveActivityWidget: Widget {
                                     .lineLimit(1)
                                     .minimumScaleFactor(0.65)
                                 Spacer(minLength: 0)
-                                Image(systemName: "bookmark")
-                                    .font(.system(size: 11))
-                                    .accessibilityHidden(true)
+                                if !word.partOfSpeech.isEmpty {
+                                    Text(word.partOfSpeech)
+                                        .font(.system(size: 9, weight: .semibold))
+                                        .lineLimit(1)
+                                        .minimumScaleFactor(0.6)
+                                        .foregroundStyle(Color(red: 0.36, green: 0.27, blue: 0.57))
+                                }
                             }
                             Text(word.chinese)
                                 .font(.system(size: 12, weight: .medium))
