@@ -15,6 +15,13 @@ class ReviewRecord {
 
   bool isDue(DateTime now) => nextDueDay.compareTo(dayKey(now)) <= 0;
 
+  bool reviewedOn(DateTime now) => lastReviewedDay == dayKey(now);
+
+  /// A "remembered" answer only counts once per day unless the card is due
+  /// again (e.g. it was marked as forgotten earlier today). Without this,
+  /// tapping "記住了" three times in a row would mark a card as mastered.
+  bool canCountRemembered(DateTime now) => !reviewedOn(now) || isDue(now);
+
   ReviewRecord review({required DateTime now, required bool remembered}) {
     final nextStreak = remembered ? successStreak + 1 : 0;
     const days = [1, 3, 7, 14, 30, 60];

@@ -16,8 +16,18 @@ private struct LearningItem: Codable {
     var partOfSpeech: String? {
         guard kind == "word" else { return nil }
         let label = note.components(separatedBy: "｜").first?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-        return label.isEmpty ? nil : label
+        // Same whitelist as LearningItem.partOfSpeech in Dart, so a free-text
+        // note never ends up squeezed into the word-class capsule.
+        return Self.wordClasses.contains(label) ? label : nil
     }
+
+    private static let wordClasses: Set<String> = [
+        "名詞", "動詞", "形容詞", "副詞", "介系詞", "連接詞",
+        "代名詞", "名詞／動詞", "動詞／名詞", "名詞片語",
+        "名詞複數", "常用詞",
+    ]
+
+    var hasExample: Bool { !example.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
 
     var labeledMeaning: String {
         guard let partOfSpeech = partOfSpeech else { return chinese }
@@ -196,12 +206,18 @@ private struct WordFlowWidgetView: View {
                 Text("\(entry.item.english) · \(entry.item.chinese)")
                     .lineLimit(1)
             case .accessoryCircular:
-                VStack(spacing: 2) {
-                    Image(systemName: "character.book.closed.fill").font(.system(size: 14))
-                    Text(String(entry.item.english.prefix(8)))
-                        .font(.system(size: 9, weight: .bold))
-                        .minimumScaleFactor(0.65)
-                        .lineLimit(1)
+                ZStack {
+                    AccessoryWidgetBackground()
+                    VStack(spacing: 1) {
+                        Image(systemName: "character.book.closed.fill").font(.system(size: 12))
+                        // Show the full word scaled down instead of cutting it
+                        // to 8 letters ("reservat" is not a word).
+                        Text(entry.item.english)
+                            .font(.system(size: 12, weight: .bold, design: .rounded))
+                            .minimumScaleFactor(0.45)
+                            .lineLimit(1)
+                            .padding(.horizontal, 3)
+                    }
                 }
             case .accessoryRectangular:
                 VStack(alignment: .leading, spacing: 3) {
@@ -232,86 +248,172 @@ private struct WordFlowWidgetView: View {
         .widgetURL(URL(string: "wordflow:///"))
     }
 
+    // MARK: - Home Screen layouts
+
+    @ViewBuilder
     private var fullColorCard: some View {
-        let isSmall = family == .systemSmall
-        let isLarge = family == .systemLarge
+        switch family {
+        case .systemSmall: smallCard
+        case .systemMedium: mediumCard
+        default: largeCard
+        }
+    }
 
-        return VStack(alignment: .leading, spacing: isSmall ? 7 : 10) {
-            HStack(spacing: 8) {
-                Image(systemName: WordFlowPalette.symbol(for: entry.item.category))
-                    .font(.system(size: isSmall ? 12 : 15, weight: .bold))
-                Text(entry.kind.label)
-                    .font(.system(size: isSmall ? 11 : 13, weight: .heavy))
-                Spacer(minLength: 2)
-                Text(entry.item.level)
-                    .font(.system(size: 11, weight: .bold))
-                    .padding(.horizontal, 8)
-                    .padding(.vertical, 4)
-                    .background(.white.opacity(0.20), in: Capsule())
-            }
-            .foregroundStyle(.white.opacity(0.95))
+    private var item: LearningItem { entry.item }
 
+    private func header(compact: Bool) -> some View {
+        HStack(spacing: 6) {
+            Image(systemName: WordFlowPalette.symbol(for: item.category))
+                .font(.system(size: compact ? 11 : 14, weight: .bold))
+            Text(compact ? (entry.kind == .word ? "今日單字" : "今日詞句") : entry.kind.label)
+                .font(.system(size: compact ? 11 : 13, weight: .heavy))
+                .lineLimit(1)
+            Spacer(minLength: 2)
+            Text(item.level)
+                .font(.system(size: compact ? 10 : 11, weight: .bold))
+                .padding(.horizontal, compact ? 6 : 8)
+                .padding(.vertical, 3)
+                .background(.white.opacity(0.20), in: Capsule())
+        }
+        .foregroundStyle(.white.opacity(0.95))
+    }
+
+    private func englishText(size: CGFloat, lines: Int) -> some View {
+        Text(item.english)
+            .font(.system(size: size, weight: .heavy, design: .rounded))
+            .tracking(-0.5)
+            .foregroundStyle(.white)
+            .lineLimit(lines)
+            .minimumScaleFactor(0.5)
+    }
+
+    @ViewBuilder
+    private func posCapsule(size: CGFloat) -> some View {
+        if let pos = item.partOfSpeech {
+            Text(pos)
+                .font(.system(size: size, weight: .semibold))
+                .foregroundStyle(.white.opacity(0.95))
+                .padding(.horizontal, 8)
+                .padding(.vertical, 3)
+                .background(.white.opacity(0.19), in: Capsule())
+                .fixedSize()
+        }
+    }
+
+    private var footer: some View {
+        HStack {
+            Text("WORDFLOW  ·  \(WordFlowPalette.name(for: item.category))")
+                .font(.system(size: 11, weight: .bold))
+                .tracking(1.1)
+            Spacer()
+            Image(systemName: "arrow.up.right")
+                .font(.system(size: 10, weight: .bold))
+        }
+        .foregroundStyle(.white.opacity(0.76))
+    }
+
+    /// About 158pt square: header, word, and one "word class · meaning" line.
+    /// No footer: there is no room for it once the word wraps to two lines.
+    private var smallCard: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            header(compact: true)
             Spacer(minLength: 0)
+            englishText(size: entry.kind == .word ? 28 : 19, lines: entry.kind == .word ? 2 : 3)
+            Text(item.labeledMeaning)
+                .font(.system(size: 13, weight: .semibold))
+                .foregroundStyle(.white.opacity(0.92))
+                .lineLimit(2)
+                .minimumScaleFactor(0.8)
+        }
+        .padding(2)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+    }
 
-            Text(entry.item.english)
-                .font(.system(size: isSmall ? 26 : (isLarge ? 39 : 34),
-                              weight: .heavy, design: .rounded))
-                .tracking(-0.6)
-                .foregroundStyle(.white)
-                .lineLimit(isSmall ? 2 : 3)
-                .minimumScaleFactor(0.58)
-
-            if let partOfSpeech = entry.item.partOfSpeech {
-                Text(partOfSpeech)
-                    .font(.system(size: isSmall ? 10 : 12, weight: .semibold))
-                    .foregroundStyle(.white.opacity(0.95))
-                    .padding(.horizontal, 9)
-                    .padding(.vertical, 4)
-                    .background(.white.opacity(0.19), in: Capsule())
-            }
-
-            Text(entry.item.chinese)
-                .font(.system(size: isSmall ? 16 : (isLarge ? 22 : 19),
-                              weight: .semibold))
-                .foregroundStyle(.white.opacity(0.94))
-                .lineLimit(isSmall ? 2 : 3)
-                .minimumScaleFactor(0.78)
-
-            if !isSmall {
-                if !entry.item.example.isEmpty {
-                    Text(entry.item.example)
-                        .font(.system(size: isLarge ? 16 : 13, weight: .medium))
-                        .foregroundStyle(.white.opacity(0.87))
-                        .lineLimit(isLarge ? 3 : 2)
-                } else {
-                    Text("每天學一個，慢慢累積英文力")
-                        .font(.system(size: isLarge ? 15 : 12, weight: .medium))
-                        .foregroundStyle(.white.opacity(0.83))
-                        .lineLimit(1)
-                }
-
-                if isLarge && !entry.item.exampleChinese.isEmpty {
-                    Text(entry.item.exampleChinese)
-                        .font(.system(size: 14))
-                        .foregroundStyle(.white.opacity(0.78))
+    /// About 338x158pt: wide and short, so word and meaning go on the left and
+    /// the example (or the topic icon) on the right, instead of one tall column.
+    private var mediumCard: some View {
+        HStack(alignment: .top, spacing: 12) {
+            VStack(alignment: .leading, spacing: 6) {
+                header(compact: true)
+                Spacer(minLength: 0)
+                englishText(size: entry.kind == .word ? 30 : 20, lines: 2)
+                HStack(spacing: 6) {
+                    posCapsule(size: 10)
+                    Text(item.chinese)
+                        .font(.system(size: 14, weight: .semibold))
+                        .foregroundStyle(.white.opacity(0.94))
                         .lineLimit(2)
+                        .minimumScaleFactor(0.8)
                 }
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
 
-            Spacer(minLength: 0)
-
-            HStack {
-                Text("WORDFLOW  ·  \(WordFlowPalette.name(for: entry.item.category))")
-                    .font(.system(size: isSmall ? 9 : 11, weight: .bold))
-                    .tracking(isSmall ? 0.5 : 1.1)
-                    .foregroundStyle(.white.opacity(0.76))
-                Spacer()
-                Image(systemName: "arrow.up.right")
-                    .font(.system(size: 10, weight: .bold))
-                    .foregroundStyle(.white.opacity(0.76))
+            if item.hasExample {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(entry.kind == .word ? "EXAMPLE" : "IN CONTEXT")
+                        .font(.system(size: 9, weight: .heavy))
+                        .tracking(1.2)
+                        .foregroundStyle(.white.opacity(0.7))
+                    Text(item.example)
+                        .font(.system(size: 12, weight: .medium))
+                        .foregroundStyle(.white.opacity(0.92))
+                        .lineLimit(4)
+                        .minimumScaleFactor(0.85)
+                    Spacer(minLength: 0)
+                }
+                .padding(10)
+                .frame(width: 130, alignment: .leading)
+                .frame(maxHeight: .infinity, alignment: .topLeading)
+                .background(.white.opacity(0.14), in: RoundedRectangle(cornerRadius: 14))
+            } else {
+                Image(systemName: WordFlowPalette.symbol(for: item.category))
+                    .font(.system(size: 52, weight: .bold))
+                    .foregroundStyle(.white.opacity(0.22))
+                    .frame(width: 84)
+                    .frame(maxHeight: .infinity)
             }
         }
-        .padding(isSmall ? 15 : (isLarge ? 25 : 20))
+        .padding(4)
+    }
+
+    /// About 338x354pt: room for everything; the example sits in its own panel.
+    private var largeCard: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            header(compact: false)
+            Spacer(minLength: 0)
+            englishText(size: entry.kind == .word ? 42 : 28, lines: 3)
+            posCapsule(size: 12)
+            Text(item.chinese)
+                .font(.system(size: 21, weight: .semibold))
+                .foregroundStyle(.white.opacity(0.94))
+                .lineLimit(3)
+                .minimumScaleFactor(0.8)
+            if item.hasExample {
+                VStack(alignment: .leading, spacing: 5) {
+                    Text(item.example)
+                        .font(.system(size: 15, weight: .medium))
+                        .foregroundStyle(.white.opacity(0.92))
+                        .lineLimit(3)
+                    if !item.exampleChinese.isEmpty {
+                        Text(item.exampleChinese)
+                            .font(.system(size: 13))
+                            .foregroundStyle(.white.opacity(0.75))
+                            .lineLimit(2)
+                    }
+                }
+                .padding(12)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(.white.opacity(0.14), in: RoundedRectangle(cornerRadius: 16))
+            } else {
+                Text("先想想怎麼用在句子裡，再打開 App 複習")
+                    .font(.system(size: 14, weight: .medium))
+                    .foregroundStyle(.white.opacity(0.8))
+                    .lineLimit(2)
+            }
+            Spacer(minLength: 0)
+            footer
+        }
+        .padding(6)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
     }
 }

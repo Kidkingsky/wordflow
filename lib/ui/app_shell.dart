@@ -28,7 +28,10 @@ class _AppShellState extends State<AppShell> {
             child: IndexedStack(
               index: _index,
               children: [
-                HomePage(controller: widget.controller),
+                HomePage(
+                  controller: widget.controller,
+                  onOpenTab: (index) => setState(() => _index = index),
+                ),
                 ExplorePage(controller: widget.controller),
                 ReviewPage(controller: widget.controller),
                 SettingsPage(controller: widget.controller),

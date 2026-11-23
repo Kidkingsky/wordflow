@@ -7,22 +7,31 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../logic/learning_logic.dart';
 import '../models/learning_item.dart';
 import '../models/review_record.dart';
+import '../models/word_family.dart';
 import 'speech_service.dart';
 
 class AppController extends ChangeNotifier {
-  AppController._(this.items, this._preferences);
+  AppController._(this.items, this._preferences, List<WordFamily> families)
+      : _familyIndex = indexFamilies(families);
 
   static const _storageKey = 'wordflow_local_data_v1';
 
   final List<LearningItem> items;
   final SharedPreferencesAsync _preferences;
   final SpeechService speech = SpeechService();
+  final Map<String, List<WordFamily>> _familyIndex;
 
   final Map<String, ReviewRecord> _records = {};
   final Set<String> _favorites = {};
   String category = 'all';
   String level = 'A2';
-  double speechRate = 0.48;
+  /// 0.0–1.0 where 0.5 is natural speed on every platform; SpeechService
+  /// converts it to the platform's own scale.
+  double speechRate = 0.5;
+
+  /// Voice chosen in settings (`name`), or null to pick the best one
+  /// automatically.
+  String? voiceName;
 
   static Future<AppController> initialize() async {
     final raw = await rootBundle.loadString('assets/content/content.json');
@@ -30,7 +39,13 @@ class AppController extends ChangeNotifier {
     final items = data
         .map((value) => LearningItem.fromJson(value as Map<String, dynamic>))
         .toList(growable: false);
-    final controller = AppController._(items, SharedPreferencesAsync());
+    final familyRaw =
+        await rootBundle.loadString('assets/content/word_families.json');
+    final families = (jsonDecode(familyRaw) as List<dynamic>)
+        .map((value) => WordFamily.fromJson(value as Map<String, dynamic>))
+        .toList(growable: false);
+    final controller =
+        AppController._(items, SharedPreferencesAsync(), families);
     await controller._load();
     return controller;
   }
@@ -44,9 +59,10 @@ class AppController extends ChangeNotifier {
           ? data['category'] as String
           : 'all';
       level = data['level'] == 'B1' ? 'B1' : 'A2';
-      speechRate = ((data['speechRate'] as num?)?.toDouble() ?? 0.48)
-          .clamp(0.35, 0.65)
+      speechRate = ((data['speechRate'] as num?)?.toDouble() ?? 0.5)
+          .clamp(0.3, 0.7)
           .toDouble();
+      voiceName = data['voiceName'] as String?;
       _favorites.addAll((data['favorites'] as List<dynamic>? ?? []).cast<String>());
       final saved = data['records'] as Map<String, dynamic>? ?? {};
       for (final entry in saved.entries) {
@@ -64,6 +80,7 @@ class AppController extends ChangeNotifier {
       'category': category,
       'level': level,
       'speechRate': speechRate,
+      'voiceName': voiceName,
       'favorites': _favorites.toList()..sort(),
       'records': _records.map((key, value) => MapEntry(key, value.toJson())),
     };
@@ -94,6 +111,19 @@ class AppController extends ChangeNotifier {
     _save();
   }
 
+  void changeVoice(String? name) {
+    voiceName = name;
+    notifyListeners();
+    _save();
+  }
+
+  Future<void> speak(String text) =>
+      speech.speak(text, rate: speechRate, voiceName: voiceName);
+
+  /// Word families (affixes, compounds, phrasal verbs) containing [item].
+  List<WordFamily> familiesFor(LearningItem item) =>
+      item.isWord ? _familyIndex[item.english.toLowerCase()] ?? const [] : const [];
+
   bool isFavorite(LearningItem item) => _favorites.contains(item.id);
 
   void toggleFavorite(LearningItem item) {
@@ -105,13 +135,20 @@ class AppController extends ChangeNotifier {
   ReviewRecord record(LearningItem item) =>
       _records[item.id] ?? ReviewRecord.empty;
 
-  void review(LearningItem item, {required bool remembered}) {
-    _records[item.id] = record(item).review(
-      now: DateTime.now(),
-      remembered: remembered,
-    );
+  /// True when the item was already answered "remembered" today and is not
+  /// due again, so another "remembered" tap would not count.
+  bool rememberedToday(LearningItem item) =>
+      !record(item).canCountRemembered(DateTime.now());
+
+  /// Returns false when the answer was ignored (repeat "remembered" today).
+  bool review(LearningItem item, {required bool remembered}) {
+    final now = DateTime.now();
+    final current = record(item);
+    if (remembered && !current.canCountRemembered(now)) return false;
+    _records[item.id] = current.review(now: now, remembered: remembered);
     notifyListeners();
     _save();
+    return true;
   }
 
   LearningItem? todayWord(DateTime today) => dailyPick(

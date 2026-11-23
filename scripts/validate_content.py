@@ -15,3 +15,17 @@ assert all(x["level"] in {"A2", "B1"} for x in items), "Unsupported CEFR level"
 assert all(x["category"] in {"travel", "daily", "fitness", "work"} for x in items), "Bad category"
 assert all(set(x) >= {"id", "kind", "category", "level", "english", "chinese", "note", "example", "exampleChinese"} for x in items), "Invalid schema"
 print(f"Validated {len(words)} words and {len(phrases)} phrases ({len(items)} items).")
+
+# Word families (同家族單字): every family must link to at least one bundled word,
+# and every entry needs English, Chinese and a formation hint.
+families = json.loads(Path("assets/content/word_families.json").read_text(encoding="utf-8"))
+library = {x["english"].casefold() for x in words}
+assert len({f["id"] for f in families}) == len(families), "Duplicate family id"
+for f in families:
+    assert f["root"].strip() and f["meaning"].strip(), f"Family {f['id']} missing root/meaning"
+    assert f["members"], f"Family {f['id']} has no members"
+    for m in f["members"]:
+        assert m["english"].strip() and m["chinese"].strip() and m["hint"].strip(), f"Bad member in {f['id']}: {m}"
+    spellings = [f["root"]] + [m["english"] for m in f["members"]]
+    assert any(s.casefold() in library for s in spellings), f"Family {f['id']} matches no bundled word"
+print(f"Validated {len(families)} word families.")

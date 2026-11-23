@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../models/learning_item.dart';
+import '../../models/word_family.dart';
 import '../../services/app_controller.dart';
 
 class LearningCard extends StatelessWidget {
@@ -147,7 +148,52 @@ class LearningCard extends StatelessWidget {
                   style: TextStyle(color: subtle, fontSize: 13, height: 1.45)),
             ],
           ],
-          if (showReviewActions) ...[
+          for (final family in controller.familiesFor(item)) ...[
+            const SizedBox(height: 18),
+            Divider(height: 1, color: divider),
+            const SizedBox(height: 16),
+            _FamilySection(
+              family: family,
+              current: item.english,
+              dark: dark,
+              onSpeak: (text) => speakEnglish(context, controller, text),
+            ),
+          ],
+          if (showReviewActions && controller.rememberedToday(item)) ...[
+            const SizedBox(height: 20),
+            Container(
+              padding: const EdgeInsets.fromLTRB(14, 6, 6, 6),
+              decoration: BoxDecoration(
+                color: dark ? const Color(0xFF214257) : const Color(0xFFE6F4F1),
+                borderRadius: BorderRadius.circular(14),
+              ),
+              child: Row(
+                children: [
+                  Icon(Icons.check_circle_rounded,
+                      size: 20,
+                      color: dark ? const Color(0xFF8EE2D3) : const Color(0xFF167F83)),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      '今天已記住，${_nextReviewLabel()}再複習',
+                      style: TextStyle(
+                        color: foreground,
+                        fontSize: 13,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () => _mark(context, remembered: false),
+                    style: TextButton.styleFrom(
+                      foregroundColor: dark ? const Color(0xFFB9F3E7) : const Color(0xFF245064),
+                    ),
+                    child: const Text('其實還不熟'),
+                  ),
+                ],
+              ),
+            ),
+          ] else if (showReviewActions) ...[
             const SizedBox(height: 20),
             Row(
               children: [
@@ -182,13 +228,118 @@ class LearningCard extends StatelessWidget {
     );
   }
 
+  String _nextReviewLabel() {
+    final due = DateTime.tryParse(controller.record(item).nextDueDay);
+    if (due == null) return '之後';
+    final now = DateTime.now();
+    final days = due.difference(DateTime(now.year, now.month, now.day)).inDays;
+    return days <= 1 ? '明天' : '$days 天後';
+  }
+
   void _mark(BuildContext context, {required bool remembered}) {
-    controller.review(item, remembered: remembered);
+    if (!controller.review(item, remembered: remembered)) return;
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(remembered ? '答對了！已安排下一次複習。' : '已加入今日待複習清單。'),
         duration: const Duration(seconds: 2),
       ),
+    );
+  }
+}
+
+/// "同家族單字": the root plus affix / compound / phrasal-verb relatives.
+class _FamilySection extends StatelessWidget {
+  const _FamilySection({
+    required this.family,
+    required this.current,
+    required this.dark,
+    required this.onSpeak,
+  });
+
+  final WordFamily family;
+  final String current;
+  final bool dark;
+  final ValueChanged<String> onSpeak;
+
+  @override
+  Widget build(BuildContext context) {
+    final subtle = dark ? const Color(0xFFB3CBD0) : const Color(0xFF6E7E8A);
+    final foreground = dark ? Colors.white : const Color(0xFF152839);
+    final chipBg = dark ? const Color(0xFF214257) : const Color(0xFFF1F5F7);
+    final accent = dark ? const Color(0xFF8EE2D3) : const Color(0xFF684C9F);
+    final entries = [
+      FamilyMember(english: family.root, chinese: family.meaning, hint: '字根'),
+      ...family.members,
+    ].where((m) => m.english.toLowerCase() != current.toLowerCase());
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Icon(Icons.account_tree_outlined, size: 16, color: subtle),
+            const SizedBox(width: 6),
+            Text(
+              '同家族單字 · ${family.root}',
+              style: TextStyle(
+                letterSpacing: 0.4,
+                fontWeight: FontWeight.w800,
+                color: subtle,
+                fontSize: 12,
+              ),
+            ),
+          ],
+        ),
+        if (family.tip.isNotEmpty) ...[
+          const SizedBox(height: 6),
+          Text(family.tip,
+              style: TextStyle(color: subtle, fontSize: 12, height: 1.45)),
+        ],
+        const SizedBox(height: 10),
+        Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: [
+            for (final member in entries)
+              Material(
+                color: chipBg,
+                borderRadius: BorderRadius.circular(12),
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(12),
+                  onTap: () => onSpeak(member.english),
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 7, 10, 7),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(member.english,
+                            style: TextStyle(
+                              color: foreground,
+                              fontWeight: FontWeight.w800,
+                              fontSize: 14,
+                            )),
+                        const SizedBox(height: 2),
+                        Text(member.chinese,
+                            style: TextStyle(color: subtle, fontSize: 11)),
+                        if (member.hint.isNotEmpty) ...[
+                          const SizedBox(height: 2),
+                          Text(member.hint,
+                              style: TextStyle(
+                                color: accent,
+                                fontSize: 10,
+                                fontWeight: FontWeight.w700,
+                              )),
+                        ],
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+          ],
+        ),
+      ],
     );
   }
 }
@@ -223,7 +374,7 @@ Future<void> speakEnglish(
   String text,
 ) async {
   try {
-    await controller.speech.speak(text, rate: controller.speechRate);
+    await controller.speak(text);
   } catch (_) {
     if (!context.mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(

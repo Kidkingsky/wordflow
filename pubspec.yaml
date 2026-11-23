@@ -1,7 +1,7 @@
 name: wordflow
 description: A bilingual, offline-first daily English learning app for iOS and Android.
 publish_to: none
-version: 0.3.0+3
+version: 0.3.1+4
 
 environment:
   sdk: '>=3.5.0 <4.0.0'
@@ -22,3 +22,4 @@ flutter:
   uses-material-design: true
   assets:
     - assets/content/content.json
+    - assets/content/word_families.json
