@@ -105,35 +105,40 @@ class LearningCard extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           Text(item.note, style: TextStyle(color: subtle, height: 1.5, fontSize: 13)),
-          const SizedBox(height: 18),
-          Divider(height: 1, color: divider),
-          const SizedBox(height: 18),
-          Row(
-            children: [
-              Text(
-                item.isWord ? 'EXAMPLE' : 'IN CONTEXT',
-                style: TextStyle(
-                  letterSpacing: 1.6,
-                  fontWeight: FontWeight.w800,
-                  color: subtle,
-                  fontSize: 10,
+          if (item.example.trim().isNotEmpty) ...[
+            const SizedBox(height: 18),
+            Divider(height: 1, color: divider),
+            const SizedBox(height: 18),
+            Row(
+              children: [
+                Text(
+                  item.isWord ? 'EXAMPLE' : 'IN CONTEXT',
+                  style: TextStyle(
+                    letterSpacing: 1.6,
+                    fontWeight: FontWeight.w800,
+                    color: subtle,
+                    fontSize: 10,
+                  ),
                 ),
-              ),
-              const Spacer(),
-              InkWell(
-                borderRadius: BorderRadius.circular(6),
-                onTap: () => speakEnglish(context, controller, item.example),
-                child: Icon(Icons.play_circle_outline, color: subtle, size: 22),
-              ),
+                const Spacer(),
+                InkWell(
+                  borderRadius: BorderRadius.circular(6),
+                  onTap: () => speakEnglish(context, controller, item.example),
+                  child: Icon(Icons.play_circle_outline, color: subtle, size: 22),
+                ),
+              ],
+            ),
+            const SizedBox(height: 8),
+            Text(
+              item.example,
+              style: TextStyle(color: foreground, fontSize: 15, height: 1.5),
+            ),
+            if (item.exampleChinese.trim().isNotEmpty) ...[
+              const SizedBox(height: 6),
+              Text(item.exampleChinese,
+                  style: TextStyle(color: subtle, fontSize: 13, height: 1.45)),
             ],
-          ),
-          const SizedBox(height: 8),
-          Text(
-            item.example,
-            style: TextStyle(color: foreground, fontSize: 15, height: 1.5),
-          ),
-          const SizedBox(height: 6),
-          Text(item.exampleChinese, style: TextStyle(color: subtle, fontSize: 13, height: 1.45)),
+          ],
           if (showReviewActions) ...[
             const SizedBox(height: 20),
             Row(

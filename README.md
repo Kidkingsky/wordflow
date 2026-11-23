@@ -8,16 +8,16 @@
 
 首次需在 GitHub → **Settings → Pages**，設定 **Deploy from a branch → main → /(root) → Save**。
 GitHub Pages 完成部署後，在 iPhone Safari 開啟 https://kidkingsky.github.io/wordflow/ ，按分享 → 加入主畫面。
-此版本是可操作的手機瀏覽器預覽，**不是已簽署的原生 IPA**。
+此版本是可操作的手機瀏覽器預覽（仍為舊版 72 筆教材），**不是已簽署的原生 IPA**。
 
 ## iOS 主畫面與鎖定畫面 Widget
 
-已新增原生 WidgetKit 的每日單字、每日詞句小工具，支援 iPhone 主畫面和鎖定畫面，可自選 A2／B1 與主題，離線按日輪替。詳見 [Widget 安裝、簽署與驗證說明](docs/widget-installation.md)。
+已新增原生 WidgetKit 的每日單字、每日詞句小工具：主畫面支援小／中／大尺寸彩色單字卡，鎖定畫面支援符合系統限制的精簡單色版。可自選 A2／B1 與主題，離線每天輪替（不是每次解鎖換字）。詳見 [Widget 安裝、簽署與驗證說明](docs/widget-installation.md)。
 
 ## 第一版包含什麼？
 
 - **每日推薦**：單字卡＋實用詞句卡，同一天固定推薦，隔日輪換。
-- **72 筆內建內容**：48 個單字、24 個實用詞句，A2 / B1，旅遊／生活／健身／工作四個主題。
+- **1,524 筆原生 App 內建內容**：1,500 個單字、24 個實用詞句，A2 / B1，旅遊／生活／健身／工作四個主題。
 - **英文朗讀**：使用 iOS / Android 的系統語音合成（TTS），可調整語速；並非真人錄音。
 - **單字庫／詞句庫**：搜尋中文、英文及例句；依主題篩選及收藏。
 - **間隔複習**：記住後分別隔 1、3、7、14、30、60 天複習；忘記則當日到期。
@@ -121,7 +121,7 @@ Apple / Codemagic 的簽署設定、權限、帳號、Provisioning Profile 都�
 
 ### Preview without any computer
 
-- `docs/index.html` is a **mobile browser preview** with the same 72 lesson items as Flutter. Its native implementation is still `lib/`.
+- `docs/index.html` is a **mobile browser preview** with the same 72 lesson items as Flutter. Its native implementation is still `lib/` and the native IPA uses 1,524 items. The web preview has not yet been migrated to the new catalog.
 - In GitHub Settings → Pages, publish from `main` / `docs` to open `https://kidkingsky.github.io/wordflow/` **after** this repository exists and deployment completes.
 - In iPhone Safari, choose **Share → Add to Home Screen** to launch the preview like an app. This is not an IPA and cannot create native lock-screen widgets.
 - Its reviews and favorites use browser localStorage (not automatically shared with Flutter or other phones). Speech uses browser TTS.
@@ -139,3 +139,13 @@ Apple / Codemagic 的簽署設定、權限、帳號、Provisioning Profile 都�
 
 - The original non-Widget build previously succeeded; the updated WidgetKit build requires its own successful GitHub Actions run and a separate signed iPhone installation test.
 - Repository `Kidkingsky/wordflow` has been created; Android/iOS Actions are configured. Enable GitHub Pages in Settings to publish the preview.
+
+
+## 2026/11/23 原生版字庫與彩色 Widget 改版
+
+- 原有 48 個單字與 24 句實用詞句全部保留；另外增加 1,452 個不重複的 A2/B1 英文單字，合計 1,500 單字（共 1,524 筆）。
+- 新增詞彙搭配繁體中文常用義及詞性標籤。新增詞彙尚未逐筆編輯雙語例句，App 對沒有例句的詞條不顯示空白例句區；原有內容的例句完整保留。
+- 主畫面 Widget 支援 Small / Medium / Large 彩色漸層卡片；鎖定畫面因 iOS 的顯示限制維持簡潔單色樣式。
+- 每天依本機日期切換推薦單字，不會每次解鎖就變更；iOS 可能略微延遲 Widget 顯示更新。
+- 單字參考 CEFR A2/B1 常用詞表，中英釋義參考 ECDICT，以 OpenCC 轉為繁體中文；詳見 [來源及授權](docs/vocabulary-sources.md)。
+- **注意**：網頁預覽 `docs/index.html` 仍是 72 筆舊版教材，這次字庫與 Widget 改版針對 Flutter 原生 App 與 WidgetKit Extension。

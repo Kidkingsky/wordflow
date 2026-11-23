@@ -28,6 +28,8 @@ jobs:
         run: |
           ruby -e "require 'xcodeproj'" || gem install xcodeproj --user-install --no-document
           ruby scripts/install_ios_widgets.rb
+      - name: Validate 1,500-word offline catalog
+        run: python3 scripts/validate_content.py
       - name: Check Dart and test
         run: |
           flutter analyze --no-fatal-infos

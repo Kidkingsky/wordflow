@@ -2,11 +2,11 @@
 
 ## 功能
 - 使用 Apple 原生 WidgetKit + SwiftUI，而不是 Safari 網頁捷徑。
-- **主畫面**：小／中尺寸，顯示每日英文、中文意思；中尺寸附英文例句。
+- **主畫面**：小／中／大尺寸的主題彩色漸層卡片，顯示英文單字和繁體中文；原有詞條若有例句，中／大尺寸也能顯示。
 - **鎖定畫面**：單行與矩形；每日單字另有圓形小工具。
 - 提供「每日單字」、「每日詞句」兩款 Widget。
 - 長按 Widget 的「編輯 Widget」可選 A2／B1，以及全部、旅遊、生活、健身、工作。
-- 72 筆離線教材依本機日期輪替，預先建立 14 天 WidgetKit Timeline。
+- 1,524 筆離線教材（1,500 個單字、24 句詞句）依本機日期輪替，預先建立 14 天 WidgetKit Timeline。
 - 點擊 Widget 可啟動 WordFlow。
 
 ## 加到 iPhone
@@ -26,3 +26,11 @@ GitHub Actions 會檢查兩者是否存在；但編譯成功**不代表**已成�
 
 **未簽署 IPA 必須分別簽署 Runner.app 與內含的 WordFlowWidgets.appex。**
 SideStore/側載工具對包含 extension 的 IPA 支援程度可能不同，需要以實機安裝驗收。若使用 Apple Developer / TestFlight，需替主 App 與 extension 配好對應的 signing profile。
+
+
+## 常見問題
+
+- **會每次解鎖變不同單字嗎？** 不會。程式依照本機日曆日期每日選一個固定詞條。WidgetKit 使用預排 14 天的每日更新時間線，切換可能受系統排程略微延遲。
+- **鎖定畫面能顯示大型彩色卡片嗎？** 不能。iPhone Lock Screen 的 accessory Widget 受系統尺寸與 vibrant（單色）渲染限制；彩色 Small / Medium / Large 卡片請加入「主畫面」。
+- **更新 IPA 需要注意什麼？** 必須用 SideStore 再次簽署含 `WordFlowWidgets.appex` 的新 IPA。請勿先移除舊 App，以免本機收藏和複習紀錄遺失。
+- **為什麼部分新單字沒有例句？** 新增的 1,452 個詞條目前提供雙語詞義與詞性，尚未逐條校對例句；原有 72 筆教材的雙語例句保留。

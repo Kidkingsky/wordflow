@@ -141,6 +141,39 @@ struct WordFlowProvider: AppIntentTimelineProvider {
     }
 }
 
+private enum WordFlowPalette {
+    static func gradient(for category: String) -> [Color] {
+        switch category {
+        case "travel":
+            return [Color(red: 0.06, green: 0.54, blue: 0.70), Color(red: 0.05, green: 0.29, blue: 0.55)]
+        case "fitness":
+            return [Color(red: 0.98, green: 0.42, blue: 0.38), Color(red: 0.72, green: 0.25, blue: 0.45)]
+        case "work":
+            return [Color(red: 0.26, green: 0.45, blue: 0.86), Color(red: 0.22, green: 0.26, blue: 0.58)]
+        default:
+            return [Color(red: 0.60, green: 0.38, blue: 0.89), Color(red: 0.35, green: 0.27, blue: 0.70)]
+        }
+    }
+
+    static func name(for category: String) -> String {
+        switch category {
+        case "travel": return "旅遊"
+        case "fitness": return "健身"
+        case "work": return "工作"
+        default: return "生活"
+        }
+    }
+
+    static func symbol(for category: String) -> String {
+        switch category {
+        case "travel": return "airplane"
+        case "fitness": return "figure.run"
+        case "work": return "briefcase.fill"
+        default: return "sparkles"
+        }
+    }
+}
+
 private struct WordFlowWidgetView: View {
     let entry: WordFlowEntry
     @Environment(\.widgetFamily) private var family
@@ -149,51 +182,117 @@ private struct WordFlowWidgetView: View {
         Group {
             switch family {
             case .accessoryInline:
-                Text("\(entry.item.english) · \(entry.item.chinese)").lineLimit(1)
+                Text("\(entry.item.english) · \(entry.item.chinese)")
+                    .lineLimit(1)
             case .accessoryCircular:
                 VStack(spacing: 2) {
-                    Image(systemName: "character.book.closed.fill").font(.system(size: 15))
-                    Text(String(entry.item.english.prefix(9)))
+                    Image(systemName: "character.book.closed.fill").font(.system(size: 14))
+                    Text(String(entry.item.english.prefix(8)))
                         .font(.system(size: 9, weight: .bold))
-                        .minimumScaleFactor(0.6).lineLimit(1)
+                        .minimumScaleFactor(0.65)
+                        .lineLimit(1)
                 }
             case .accessoryRectangular:
                 VStack(alignment: .leading, spacing: 3) {
-                    Text(entry.item.english).font(.headline).minimumScaleFactor(0.75).lineLimit(1)
-                    Text(entry.item.chinese).font(.caption).lineLimit(1)
+                    Text(entry.item.english)
+                        .font(.system(size: 16, weight: .bold, design: .rounded))
+                        .lineLimit(1).minimumScaleFactor(0.7)
+                    Text(entry.item.chinese)
+                        .font(.system(size: 12, weight: .medium))
+                        .lineLimit(1)
                 }.frame(maxWidth: .infinity, alignment: .leading)
             default:
-                VStack(alignment: .leading, spacing: 8) {
-                    HStack {
-                        Text(entry.kind.label)
-                            .font(.system(size: 11, weight: .bold))
-                            .foregroundStyle(Color(red: 0.08, green: 0.48, blue: 0.48))
-                        Spacer(minLength: 4)
-                        Text(entry.item.level).font(.system(size: 11, weight: .bold)).foregroundStyle(.secondary)
-                    }
-                    Text(entry.item.english)
-                        .font(.system(size: family == .systemSmall ? 23 : 27, weight: .bold, design: .rounded))
-                        .foregroundStyle(Color(red: 0.08, green: 0.15, blue: 0.21))
-                        .lineLimit(2).minimumScaleFactor(0.6)
-                    Text(entry.item.chinese)
-                        .font(.system(size: 15, weight: .semibold))
-                        .foregroundStyle(Color(red: 0.13, green: 0.36, blue: 0.38))
-                        .lineLimit(2)
-                    if family == .systemMedium {
-                        Text(entry.item.example).font(.system(size: 12)).foregroundStyle(.secondary).lineLimit(2)
-                    }
-                    Spacer(minLength: 0)
-                    Text("WORDFLOW · 每天一點英文")
-                        .font(.system(size: 10, weight: .medium)).foregroundStyle(.secondary)
-                }
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-                .padding(16)
+                fullColorCard
             }
         }
         .containerBackground(for: .widget) {
-            Color(red: 0.90, green: 0.96, blue: 0.94)
+            ZStack(alignment: .topTrailing) {
+                LinearGradient(
+                    colors: WordFlowPalette.gradient(for: entry.item.category),
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
+                )
+                Circle()
+                    .fill(.white.opacity(0.09))
+                    .frame(width: 190, height: 190)
+                    .offset(x: 80, y: -90)
+            }
         }
         .widgetURL(URL(string: "wordflow:///"))
+    }
+
+    private var fullColorCard: some View {
+        let isSmall = family == .systemSmall
+        let isLarge = family == .systemLarge
+
+        return VStack(alignment: .leading, spacing: isSmall ? 7 : 10) {
+            HStack(spacing: 8) {
+                Image(systemName: WordFlowPalette.symbol(for: entry.item.category))
+                    .font(.system(size: isSmall ? 12 : 15, weight: .bold))
+                Text(entry.kind.label)
+                    .font(.system(size: isSmall ? 11 : 13, weight: .heavy))
+                Spacer(minLength: 2)
+                Text(entry.item.level)
+                    .font(.system(size: 11, weight: .bold))
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 4)
+                    .background(.white.opacity(0.20), in: Capsule())
+            }
+            .foregroundStyle(.white.opacity(0.95))
+
+            Spacer(minLength: 0)
+
+            Text(entry.item.english)
+                .font(.system(size: isSmall ? 26 : (isLarge ? 39 : 34),
+                              weight: .heavy, design: .rounded))
+                .tracking(-0.6)
+                .foregroundStyle(.white)
+                .lineLimit(isSmall ? 2 : 3)
+                .minimumScaleFactor(0.58)
+
+            Text(entry.item.chinese)
+                .font(.system(size: isSmall ? 16 : (isLarge ? 22 : 19),
+                              weight: .semibold))
+                .foregroundStyle(.white.opacity(0.94))
+                .lineLimit(isSmall ? 2 : 3)
+                .minimumScaleFactor(0.78)
+
+            if !isSmall {
+                if !entry.item.example.isEmpty {
+                    Text(entry.item.example)
+                        .font(.system(size: isLarge ? 16 : 13, weight: .medium))
+                        .foregroundStyle(.white.opacity(0.87))
+                        .lineLimit(isLarge ? 3 : 2)
+                } else {
+                    Text("每天學一個，慢慢累積英文力")
+                        .font(.system(size: isLarge ? 15 : 12, weight: .medium))
+                        .foregroundStyle(.white.opacity(0.83))
+                        .lineLimit(1)
+                }
+
+                if isLarge && !entry.item.exampleChinese.isEmpty {
+                    Text(entry.item.exampleChinese)
+                        .font(.system(size: 14))
+                        .foregroundStyle(.white.opacity(0.78))
+                        .lineLimit(2)
+                }
+            }
+
+            Spacer(minLength: 0)
+
+            HStack {
+                Text("WORDFLOW  ·  \(WordFlowPalette.name(for: entry.item.category))")
+                    .font(.system(size: isSmall ? 9 : 11, weight: .bold))
+                    .tracking(isSmall ? 0.5 : 1.1)
+                    .foregroundStyle(.white.opacity(0.76))
+                Spacer()
+                Image(systemName: "arrow.up.right")
+                    .font(.system(size: 10, weight: .bold))
+                    .foregroundStyle(.white.opacity(0.76))
+            }
+        }
+        .padding(isSmall ? 15 : (isLarge ? 25 : 20))
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
     }
 }
 
@@ -206,7 +305,7 @@ struct WordFlowDailyWordWidget: Widget {
         ) { entry in WordFlowWidgetView(entry: entry) }
             .configurationDisplayName("WordFlow 每日單字")
             .description("每天更新英文單字與中文解釋。")
-            .supportedFamilies([.systemSmall, .systemMedium, .accessoryInline, .accessoryCircular, .accessoryRectangular])
+            .supportedFamilies([.systemSmall, .systemMedium, .systemLarge, .accessoryInline, .accessoryCircular, .accessoryRectangular])
     }
 }
 
@@ -219,7 +318,7 @@ struct WordFlowDailyPhraseWidget: Widget {
         ) { entry in WordFlowWidgetView(entry: entry) }
             .configurationDisplayName("WordFlow 每日詞句")
             .description("每天輪換實用英文句子。")
-            .supportedFamilies([.systemSmall, .systemMedium, .accessoryInline, .accessoryRectangular])
+            .supportedFamilies([.systemSmall, .systemMedium, .systemLarge, .accessoryInline, .accessoryRectangular])
     }
 }
 
