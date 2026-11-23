@@ -2,14 +2,12 @@ import 'package:flutter/material.dart';
 
 import '../../models/learning_item.dart';
 import '../../services/app_controller.dart';
+import '../theme/wordflow_design.dart';
 import '../widgets/learning_card.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({required this.controller, this.onOpenTab, super.key});
-
   final AppController controller;
-
-  /// Switches the bottom navigation tab (1 = 探索, 2 = 複習).
   final ValueChanged<int>? onOpenTab;
 
   @override
@@ -18,198 +16,218 @@ class HomePage extends StatelessWidget {
     final word = controller.todayWord(today);
     final phrase = controller.todayPhrase(today);
     final todayCount = controller.studiedToday;
-    final remaining = (5 - todayCount).clamp(0, 5);
     final dueCount = controller.dueItems.length;
-
+    final progress = (todayCount / 5).clamp(0.0, 1.0).toDouble();
+    const weekdays = ['一', '二', '三', '四', '五', '六', '日'];
     return ListView(
-      padding: const EdgeInsets.fromLTRB(20, 22, 20, 36),
+      padding: const EdgeInsets.fromLTRB(22, 17, 22, 34),
       children: [
-        Row(
-          children: [
-            const Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'WORDFLOW',
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w900,
-                      letterSpacing: 3,
-                      color: Color(0xFF178082),
-                    ),
-                  ),
-                  SizedBox(height: 7),
-                  Text(
-                    '每天一點，英文更自然。',
-                    style: TextStyle(
-                      fontSize: 23,
-                      fontWeight: FontWeight.w800,
-                      color: Color(0xFF152839),
-                    ),
-                  ),
-                ],
-              ),
+        Row(children: [
+          const WordFlowWordmark(),
+          const Spacer(),
+          IconButton(
+            onPressed: onOpenTab == null ? null : () => onOpenTab!(3),
+            tooltip: '我的設定',
+            icon: const Icon(Icons.person_outline),
+            style: IconButton.styleFrom(
+              minimumSize: const Size(44, 44),
+              backgroundColor: WordFlowDesign.card,
+              foregroundColor: WordFlowDesign.plum,
+              side: const BorderSide(color: WordFlowDesign.rule),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12)),
             ),
-            Container(
-              width: 48,
-              height: 48,
-              decoration: BoxDecoration(
-                color: const Color(0xFFDFF2EC),
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: const Icon(Icons.auto_stories_rounded, color: Color(0xFF167F83)),
-            ),
-          ],
-        ),
-        const SizedBox(height: 23),
-        Container(
-          padding: const EdgeInsets.all(19),
-          decoration: BoxDecoration(
-            color: const Color(0xFFDCF1ED),
-            borderRadius: BorderRadius.circular(23),
           ),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  const Icon(Icons.bolt_rounded, size: 21, color: Color(0xFF137D7D)),
-                  const SizedBox(width: 5),
-                  const Expanded(
-                    child: Text('今天的學習目標', style: TextStyle(fontWeight: FontWeight.w800)),
-                  ),
-                  Text('$todayCount / 5',
-                      style: const TextStyle(fontWeight: FontWeight.w900, fontSize: 17)),
-                ],
-              ),
-              const SizedBox(height: 12),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child: LinearProgressIndicator(
-                  value: (todayCount / 5).clamp(0, 1).toDouble(),
-                  minHeight: 9,
-                  backgroundColor: Colors.white,
-                  valueColor: const AlwaysStoppedAnimation(Color(0xFF167F83)),
-                ),
-              ),
-              const SizedBox(height: 9),
-              Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      remaining == 0
-                          ? '今天的小挑戰完成了，太棒了！'
-                          : '今日卡片＋探索／複習，再練 $remaining 個就完成。',
-                      style: const TextStyle(fontSize: 12, color: Color(0xFF467675)),
-                    ),
-                  ),
-                  if (remaining > 0 && onOpenTab != null)
-                    TextButton.icon(
-                      onPressed: () => onOpenTab!(dueCount > 0 ? 2 : 1),
-                      icon: const Icon(Icons.arrow_forward_rounded, size: 16),
-                      label: Text(dueCount > 0 ? '去複習 $dueCount 張' : '去探索'),
-                      style: TextButton.styleFrom(
-                        visualDensity: VisualDensity.compact,
-                        foregroundColor: const Color(0xFF137D7D),
-                      ),
-                    ),
-                ],
-              ),
-            ],
+        ]),
+        const SizedBox(height: 31),
+        Text('${today.month}月${today.day}日 · 星期${weekdays[today.weekday - 1]}',
+          style: WordFlowDesign.label),
+        const SizedBox(height: 9),
+        Text('今天，學一個好用的英文。', style: WordFlowDesign.title(size: 25)),
+        const SizedBox(height: 8),
+        const Text('用一個單字，累積每天都用得上的英文。',
+          style: WordFlowDesign.body),
+        const SizedBox(height: 20),
+        _DailyWordCard(item: word, controller: controller),
+        const SizedBox(height: 27),
+        WordFlowSectionTitle(
+          text: '今日練習',
+          trailing: Text('$todayCount / 5', style: const TextStyle(
+              color: WordFlowDesign.plum, fontSize: 16,
+              fontWeight: FontWeight.w700)),
+        ),
+        const SizedBox(height: 13),
+        ClipRRect(
+          borderRadius: BorderRadius.circular(9),
+          child: LinearProgressIndicator(
+            minHeight: 7,
+            value: progress,
+            backgroundColor: WordFlowDesign.rule,
+            valueColor: const AlwaysStoppedAnimation(WordFlowDesign.plum),
           ),
         ),
-        const SizedBox(height: 24),
-        const Text('選擇今天想學的主題',
-            style: TextStyle(fontSize: 15, fontWeight: FontWeight.w800)),
-        const SizedBox(height: 10),
+        const SizedBox(height: 11),
+        Row(children: [
+          Expanded(child: Text(todayCount >= 5 ? '今天的學習目標已完成。'
+              : '再學 ${(5 - todayCount).clamp(0, 5)} 個，完成今日目標。',
+              style: WordFlowDesign.label)),
+          TextButton(
+            onPressed: onOpenTab == null ? null
+                : () => onOpenTab!(dueCount > 0 ? 2 : 1),
+            child: Text(dueCount > 0 ? '去複習 $dueCount 張 ↗' : '去探索 ↗'),
+          ),
+        ]),
+        const SizedBox(height: 18),
+        const WordFlowSectionTitle(text: '選擇學習主題'),
+        const SizedBox(height: 13),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
-          child: Row(
-            children: categories.entries.map((entry) {
-              final selected = controller.category == entry.key;
-              return Padding(
+          child: Row(children: [
+            for (final option in categories.entries)
+              Padding(
                 padding: const EdgeInsets.only(right: 8),
                 child: ChoiceChip(
-                  label: Text(entry.value),
-                  selected: selected,
-                  onSelected: (_) => controller.changeCategory(entry.key),
-                  selectedColor: const Color(0xFFCEF0E8),
-                  side: BorderSide.none,
-                  backgroundColor: Colors.white,
-                ),
-              );
-            }).toList(),
-          ),
-        ),
-        const SizedBox(height: 23),
-        const _SectionHeading(title: '每日推薦單字', subtitle: 'WORD OF THE DAY'),
-        const SizedBox(height: 12),
-        if (word != null)
-          LearningCard(item: word, controller: controller)
-        else
-          const _MissingItem(),
-        const SizedBox(height: 27),
-        const _SectionHeading(title: '每日實用詞句', subtitle: 'PHRASE OF THE DAY'),
-        const SizedBox(height: 12),
-        if (phrase != null)
-          LearningCard(item: phrase, controller: controller, isHighlighted: true)
-        else
-          const _MissingItem(),
-        const SizedBox(height: 25),
-        Container(
-          padding: const EdgeInsets.all(17),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            color: Colors.white,
-          ),
-          child: const Row(
-            children: [
-              Icon(Icons.tips_and_updates_outlined, color: Color(0xFF167F83)),
-              SizedBox(width: 12),
-              Expanded(
-                child: Text(
-                  '學完後到「複習」測試記憶；每天的推薦會依日期輪換，不需要網路。',
-                  style: TextStyle(fontSize: 13, height: 1.5, color: Color(0xFF536773)),
+                  label: Text(option.value),
+                  selected: controller.category == option.key,
+                  onSelected: (_) => controller.changeCategory(option.key),
                 ),
               ),
-            ],
-          ),
+          ]),
         ),
+        const SizedBox(height: 27),
+        const WordFlowSectionTitle(text: '今日實用詞句'),
+        const SizedBox(height: 12),
+        if (phrase == null)
+          const Text('這個程度或主題目前沒有實用詞句。',
+              style: WordFlowDesign.body)
+        else
+          Material(
+            color: WordFlowDesign.card,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+              side: const BorderSide(color: WordFlowDesign.rule)),
+            clipBehavior: Clip.antiAlias,
+            child: InkWell(
+              onTap: () => showLearningDetails(context, phrase, controller),
+              child: Padding(
+                padding: const EdgeInsets.all(18),
+                child: Row(children: [
+                  Expanded(child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(phrase.english,
+                        style: WordFlowDesign.english(size: 23)),
+                      const SizedBox(height: 9),
+                      Text(phrase.chinese, style: WordFlowDesign.body),
+                    ],
+                  )),
+                  const SizedBox(width: 9),
+                  const Icon(Icons.north_east,
+                    size: 20, color: WordFlowDesign.plum),
+                ]),
+              ),
+            ),
+          ),
+        const SizedBox(height: 25),
+        const Text('收藏與複習紀錄儲存在這支 iPhone，離線也能學習。',
+            style: WordFlowDesign.label),
       ],
     );
   }
 }
 
-class _SectionHeading extends StatelessWidget {
-  const _SectionHeading({required this.title, required this.subtitle});
-  final String title;
-  final String subtitle;
+class _DailyWordCard extends StatelessWidget {
+  const _DailyWordCard({required this.item, required this.controller});
+  final LearningItem? item;
+  final AppController controller;
 
   @override
-  Widget build(BuildContext context) => Row(
-        crossAxisAlignment: CrossAxisAlignment.end,
+  Widget build(BuildContext context) {
+    if (item == null) {
+      return Container(
+        padding: const EdgeInsets.all(20),
+        decoration: WordFlowDesign.panel(),
+        child: const Text('目前沒有符合的單字，請試試其他主題。',
+            style: WordFlowDesign.body),
+      );
+    }
+    final word = item!;
+    return Container(
+      padding: const EdgeInsets.fromLTRB(22, 21, 22, 16),
+      decoration: BoxDecoration(
+        color: WordFlowDesign.plum,
+        borderRadius: BorderRadius.circular(19),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(title,
-              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w900)),
-          const Spacer(),
-          Text(subtitle,
-              style: const TextStyle(
-                  fontSize: 10,
-                  fontWeight: FontWeight.w800,
-                  letterSpacing: 1.3,
-                  color: Color(0xFF91A0AA))),
+          Row(children: [
+            const Text('每日單字', style: TextStyle(
+              color: Color(0xFFF0E7F2),
+              fontSize: 13, fontWeight: FontWeight.w600)),
+            const Spacer(),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+              decoration: BoxDecoration(
+                color: const Color(0xFF7C688D),
+                borderRadius: BorderRadius.circular(8)),
+              child: Text(word.level, style: const TextStyle(
+                color: Colors.white, fontWeight: FontWeight.w700)),
+            ),
+          ]),
+          const SizedBox(height: 30),
+          Text(word.english,
+              style: WordFlowDesign.english(size: 42, color: Colors.white),
+              maxLines: 2),
+          const SizedBox(height: 12),
+          if (word.partOfSpeech.isNotEmpty)
+            Text(word.partOfSpeech,
+              style: const TextStyle(color: Color(0xFFE8DFF0),
+                fontSize: 13)),
+          const SizedBox(height: 7),
+          Text(word.chinese, style: const TextStyle(
+            color: Colors.white, fontSize: 20,
+            fontWeight: FontWeight.w600, height: 1.4)),
+          const SizedBox(height: 25),
+          const Divider(color: Color(0xFF897699), height: 1),
+          const SizedBox(height: 17),
+          Text(word.example.isNotEmpty
+              ? word.example : '每天學一個，慢慢累積英文力。',
+            style: const TextStyle(color: Colors.white,
+              fontSize: 15, height: 1.5)),
+          if (word.exampleChinese.isNotEmpty) ...[
+            const SizedBox(height: 6),
+            Text(word.exampleChinese, style: const TextStyle(
+              color: Color(0xFFE8DFF0), fontSize: 13, height: 1.5)),
+          ],
+          const SizedBox(height: 14),
+          Row(children: [
+            TextButton.icon(
+              onPressed: () => showLearningDetails(context, word, controller),
+              icon: const Icon(Icons.arrow_forward, size: 17),
+              label: const Text('深入學習'),
+              style: TextButton.styleFrom(foregroundColor: Colors.white),
+            ),
+            const Spacer(),
+            IconButton(
+              tooltip: '朗讀英文',
+              onPressed: () => speakEnglish(context, controller, word.english),
+              icon: const Icon(Icons.volume_up_outlined),
+              color: Colors.white,
+            ),
+            IconButton(
+              tooltip: controller.isFavorite(word) ? '取消收藏' : '加入收藏',
+              onPressed: () => controller.toggleFavorite(word),
+              icon: Icon(controller.isFavorite(word)
+                  ? Icons.bookmark : Icons.bookmark_border),
+              color: Colors.white,
+            ),
+          ]),
+          if (controller.rememberedToday(word))
+            const Text('今天已記住', style: TextStyle(
+              color: WordFlowDesign.sage, fontSize: 12)),
         ],
-      );
-}
-
-class _MissingItem extends StatelessWidget {
-  const _MissingItem();
-
-  @override
-  Widget build(BuildContext context) => const Card(
-        child: Padding(
-          padding: EdgeInsets.all(20),
-          child: Text('目前沒有符合這個程度／主題的內容，請換個主題看看。'),
-        ),
-      );
+      ),
+    );
+  }
 }

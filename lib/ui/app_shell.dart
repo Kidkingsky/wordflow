@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../services/app_controller.dart';
+import 'theme/wordflow_design.dart';
 import 'pages/explore_page.dart';
 import 'pages/home_page.dart';
 import 'pages/review_page.dart';
@@ -24,6 +25,7 @@ class _AppShellState extends State<AppShell> {
       animation: widget.controller,
       builder: (context, child) {
         return Scaffold(
+          backgroundColor: WordFlowDesign.paper,
           body: SafeArea(
             child: IndexedStack(
               index: _index,

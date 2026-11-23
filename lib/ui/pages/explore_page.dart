@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../models/learning_item.dart';
 import '../../services/app_controller.dart';
+import '../theme/wordflow_design.dart';
 import '../widgets/learning_card.dart';
 
 class ExplorePage extends StatefulWidget {
@@ -41,11 +42,9 @@ class _ExplorePageState extends State<ExplorePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('探索英文',
-                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.w900)),
+              Text('探索英文', style: WordFlowDesign.title(size: 29)),
               const SizedBox(height: 4),
-              const Text('把想學的單字和詞句，變成每天用得上的英文。',
-                  style: TextStyle(color: Color(0xFF6E7E8A), fontSize: 13)),
+              const Text('收集那些你想在生活中用上的字。', style: WordFlowDesign.label),
               const SizedBox(height: 17),
               TextField(
                 onChanged: (value) => setState(() => _query = value),
@@ -93,7 +92,7 @@ class _ExplorePageState extends State<ExplorePage> {
                         onSelected: (_) => setState(() => _category = entry.key),
                         side: BorderSide.none,
                         backgroundColor: Colors.white,
-                        selectedColor: const Color(0xFFD6EFE9),
+                        selectedColor: WordFlowDesign.plumWash,
                       ),
                     );
                   }).toList(),
@@ -113,57 +112,38 @@ class _ExplorePageState extends State<ExplorePage> {
               : ListView.separated(
                   padding: const EdgeInsets.fromLTRB(20, 4, 20, 28),
                   itemCount: filtered.length,
-                  separatorBuilder: (context, index) => const SizedBox(height: 9),
+                  separatorBuilder: (context, index) => const Divider(height: 1, color: WordFlowDesign.rule),
                   itemBuilder: (context, index) {
                     final item = filtered[index];
-                    return Material(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(19),
-                      child: InkWell(
-                        borderRadius: BorderRadius.circular(19),
-                        onTap: () => showLearningDetails(
-                            context, item, widget.controller),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 17, vertical: 14),
-                          child: Row(
+                    return InkWell(
+                      onTap: () => showLearningDetails(
+                          context, item, widget.controller),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 15),
+                        child: Row(children: [
+                          Expanded(child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(item.english,
-                                        style: const TextStyle(
-                                          fontSize: 17,
-                                          fontWeight: FontWeight.w800,
-                                          color: Color(0xFF152839),
-                                        )),
-                                    const SizedBox(height: 5),
-                                    Text(item.chinese,
-                                        style: const TextStyle(
-                                            fontSize: 13,
-                                            color: Color(0xFF6E7E8A))),
-                                    const SizedBox(height: 7),
-                                    Text('${item.level} · ${categoryName(item.category)}',
-                                        style: const TextStyle(
-                                            fontSize: 11,
-                                            color: Color(0xFF178082),
-                                            fontWeight: FontWeight.w700)),
-                                  ],
-                                ),
-                              ),
-                              IconButton(
-                                tooltip: '播放發音',
-                                onPressed: () => speakEnglish(
-                                    context, widget.controller, item.english),
-                                icon: const Icon(Icons.volume_up_outlined,
-                                    color: Color(0xFF167F83)),
-                              ),
-                              const Icon(Icons.chevron_right_rounded,
-                                  color: Color(0xFF9CACB5)),
+                              Text(item.english,
+                                style: WordFlowDesign.english(size: 24)),
+                              const SizedBox(height: 5),
+                              Text(item.chinese, style: WordFlowDesign.body,
+                                maxLines: 2, overflow: TextOverflow.ellipsis),
+                              const SizedBox(height: 5),
+                              Text('${item.level}  /  ${categoryName(item.category)}',
+                                style: WordFlowDesign.label),
                             ],
+                          )),
+                          IconButton(
+                            tooltip: '朗讀英文',
+                            onPressed: () => speakEnglish(
+                                context, widget.controller, item.english),
+                            icon: const Icon(Icons.volume_up_outlined),
+                            color: WordFlowDesign.plum,
                           ),
-                        ),
+                          const Icon(Icons.chevron_right,
+                            color: WordFlowDesign.muted, size: 18),
+                        ]),
                       ),
                     );
                   },

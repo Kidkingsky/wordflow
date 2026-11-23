@@ -6,6 +6,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 import '../../models/learning_item.dart';
 import '../../services/app_controller.dart';
 import '../../services/lock_screen_service.dart';
+import '../theme/wordflow_design.dart';
 import '../../services/speech_service.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -17,8 +18,7 @@ class SettingsPage extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.fromLTRB(20, 25, 20, 36),
       children: [
-        const Text('我的學習',
-            style: TextStyle(fontSize: 28, fontWeight: FontWeight.w900)),
+        Text('我的學習', style: WordFlowDesign.title(size: 29)),
         const SizedBox(height: 4),
         const Text('照自己的節奏，每天一點點。',
             style: TextStyle(fontSize: 13, color: Color(0xFF6E7E8A))),
@@ -43,7 +43,7 @@ class SettingsPage extends StatelessWidget {
                 label: Text('$value  ${value == 'A2' ? '基礎' : '進階'}'),
                 selected: controller.level == value,
                 onSelected: (_) => controller.changeLevel(value),
-                selectedColor: const Color(0xFFD5F1EA),
+                selectedColor: WordFlowDesign.plumWash,
                 side: BorderSide.none,
               );
             }).toList(),
@@ -61,8 +61,8 @@ class SettingsPage extends StatelessWidget {
                 label: Text(entry.value),
                 selected: controller.category == entry.key,
                 onSelected: (_) => controller.changeCategory(entry.key),
-                backgroundColor: const Color(0xFFF3F6F7),
-                selectedColor: const Color(0xFFD5F1EA),
+                backgroundColor: WordFlowDesign.paper,
+                selectedColor: WordFlowDesign.plumWash,
                 side: BorderSide.none,
               );
             }).toList(),
@@ -102,7 +102,7 @@ class SettingsPage extends StatelessWidget {
         const SizedBox(height: 13),
         Container(
           decoration: BoxDecoration(
-            color: const Color(0xFFEAF1F3),
+            color: WordFlowDesign.sage,
             borderRadius: BorderRadius.circular(20),
           ),
           padding: const EdgeInsets.all(18),
@@ -187,7 +187,7 @@ class _LockScreenStudySectionState extends State<_LockScreenStudySection> {
         children: [
           Container(
             decoration: BoxDecoration(
-              color: const Color(0xFFEDE4FA),
+              color: WordFlowDesign.plumWash,
               borderRadius: BorderRadius.circular(16),
             ),
             padding: const EdgeInsets.all(14),
@@ -204,7 +204,7 @@ class _LockScreenStudySectionState extends State<_LockScreenStudySection> {
             icon: const Icon(Icons.lock_clock_outlined),
             label: const Text('開始今日四格單字'),
             style: FilledButton.styleFrom(
-              backgroundColor: const Color(0xFF7652BB),
+              backgroundColor: WordFlowDesign.plum,
               minimumSize: const Size.fromHeight(46),
             ),
           ),
@@ -289,8 +289,9 @@ class _Metric extends StatelessWidget {
   Widget build(BuildContext context) => Container(
         padding: const EdgeInsets.symmetric(vertical: 19),
         decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(19),
+          color: WordFlowDesign.card,
+          borderRadius: BorderRadius.circular(17),
+          border: Border.all(color: WordFlowDesign.rule),
         ),
         child: Column(
           children: [
