@@ -17,7 +17,7 @@ class HomePage extends StatelessWidget {
     final phrase = controller.todayPhrase(today);
     final todayCount = controller.studiedToday;
     final dueCount = controller.dueItems.length;
-    final progress = (todayCount / 5).clamp(0.0, 1.0);
+    final progress = (todayCount / 5).clamp(0.0, 1.0).toDouble();
     const weekdays = ['一', '二', '三', '四', '五', '六', '日'];
     return ListView(
       padding: const EdgeInsets.fromLTRB(22, 17, 22, 34),
