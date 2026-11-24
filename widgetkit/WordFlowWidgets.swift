@@ -2,6 +2,42 @@ import AppIntents
 import SwiftUI
 import WidgetKit
 
+/// Finds the App Group this build can actually open.
+///
+/// SideStore / AltStore re-sign the app with the user's own team, which
+/// rewrites the App Group ID (for example
+/// `group.com.kidkingsky.wordflow.ABCDE12345`). A hard-coded
+/// `group.com.kidkingsky.wordflow` then silently fails in the app, the widget
+/// or both. The rewritten IDs are published in the `ALTAppGroups` Info.plist
+/// key, and the bundle ID gets the same suffix, so try those first.
+enum WordFlowAppGroup {
+    static let baseID = "group.com.kidkingsky.wordflow"
+
+    static var candidates: [String] {
+        var ids: [String] = []
+        if let alt = Bundle.main.object(forInfoDictionaryKey: "ALTAppGroups") as? [String] {
+            ids.append(contentsOf: alt)
+        }
+        if var bundleID = Bundle.main.bundleIdentifier {
+            // The widget extension is "<app id>.WordFlowWidgets".
+            if Bundle.main.bundleURL.pathExtension == "appex",
+               let dot = bundleID.lastIndex(of: ".") {
+                bundleID = String(bundleID[..<dot])
+            }
+            ids.append("group.\(bundleID)")
+        }
+        ids.append(baseID)
+        var seen = Set<String>()
+        return ids.filter { seen.insert($0).inserted }
+    }
+
+    static func resolve() -> String? {
+        candidates.first {
+            FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: $0) != nil
+        }
+    }
+}
+
 private struct LearningItem: Codable {
     let id: String
     let kind: String
@@ -108,10 +144,7 @@ private enum Vocabulary {
     /// This can fail with free SideStore provisioning even when the host app
     /// can write successfully. Never fake the synchronized word.
     static func appSelectedWord() -> (item: LearningItem, revision: Int)? {
-        let groupID = "group.com.kidkingsky.wordflow"
-        guard FileManager.default.containerURL(
-            forSecurityApplicationGroupIdentifier: groupID
-        ) != nil,
+        guard let groupID = WordFlowAppGroup.resolve(),
             let shared = UserDefaults(suiteName: groupID),
             let selectedId = shared.string(forKey: "wordflow.sync.selectedWordId"),
             let selected = all.filter { $0.kind == "word" && $0.id == selectedId }.first
@@ -486,65 +519,68 @@ struct WordFlowDailyPhraseWidget: Widget {
 private struct WordFlowStudyLiveActivityWidget: Widget {
     var body: some WidgetConfiguration {
         ActivityConfiguration(for: WordFlowLiveAttributes.self) { context in
-            VStack(alignment: .leading, spacing: 9) {
-                HStack(spacing: 5) {
+            // The Lock Screen gives a Live Activity at most ~160pt of height.
+            // Header + two rows of cards must fit inside that, so the old
+            // footer row is folded into the header and the cards are tighter.
+            VStack(alignment: .leading, spacing: 6) {
+                HStack(spacing: 4) {
                     Image(systemName: "sparkles")
-                    Text("WORDFLOW  ·  鎖定畫面單字")
-                        .font(.system(size: 12, weight: .heavy))
-                    Spacer(minLength: 2)
+                        .font(.system(size: 10, weight: .bold))
+                    Text("WORDFLOW · 今日單字")
+                        .font(.system(size: 11, weight: .heavy))
+                        .lineLimit(1)
                     Text(context.state.level)
-                        .font(.system(size: 12, weight: .bold))
+                        .font(.system(size: 10, weight: .bold))
+                        .padding(.horizontal, 5)
+                        .padding(.vertical, 1)
+                        .background(Color(red: 0.28, green: 0.20, blue: 0.45).opacity(0.12), in: Capsule())
+                    Spacer(minLength: 2)
+                    Text("點開複習")
+                        .font(.system(size: 10, weight: .semibold))
+                    Image(systemName: "arrow.up.right")
+                        .font(.system(size: 9, weight: .bold))
                 }
                 .foregroundStyle(Color(red: 0.28, green: 0.20, blue: 0.45))
 
                 LazyVGrid(
-                    columns: [GridItem(.flexible(), spacing: 7), GridItem(.flexible(), spacing: 7)],
-                    spacing: 7
+                    columns: [GridItem(.flexible(), spacing: 6), GridItem(.flexible(), spacing: 6)],
+                    spacing: 6
                 ) {
                     ForEach(0..<min(4, context.state.words.count), id: \.self) { i in
                         let word = context.state.words[i]
-                        VStack(alignment: .leading, spacing: 4) {
+                        VStack(alignment: .leading, spacing: 2) {
                             HStack(alignment: .firstTextBaseline, spacing: 3) {
                                 Text(word.english)
-                                    .font(.system(size: 17, weight: .bold, design: .rounded))
+                                    .font(.system(size: 16, weight: .bold, design: .rounded))
                                     .lineLimit(1)
-                                    .minimumScaleFactor(0.65)
+                                    .minimumScaleFactor(0.6)
                                 Spacer(minLength: 0)
                                 if !word.partOfSpeech.isEmpty {
                                     Text(word.partOfSpeech)
                                         .font(.system(size: 9, weight: .semibold))
                                         .lineLimit(1)
-                                        .minimumScaleFactor(0.6)
+                                        .fixedSize()
                                         .foregroundStyle(Color(red: 0.36, green: 0.27, blue: 0.57))
                                 }
                             }
                             Text(word.chinese)
                                 .font(.system(size: 12, weight: .medium))
                                 .lineLimit(1)
-                                .minimumScaleFactor(0.72)
+                                .minimumScaleFactor(0.7)
                         }
                         .foregroundStyle(Color(red: 0.20, green: 0.17, blue: 0.30))
                         .padding(.horizontal, 9)
-                        .padding(.vertical, 11)
-                        .frame(maxWidth: .infinity, minHeight: 51, alignment: .leading)
+                        .padding(.vertical, 7)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                         .background(
                             Color.white.opacity(0.86),
-                            in: RoundedRectangle(cornerRadius: 11)
+                            in: RoundedRectangle(cornerRadius: 10)
                         )
                     }
                 }
-
-                HStack {
-                    Text("打開 WordFlow 複習")
-                        .font(.system(size: 11, weight: .medium))
-                    Spacer()
-                    Image(systemName: "arrow.up.right")
-                        .font(.system(size: 12, weight: .bold))
-                }
-                .foregroundStyle(Color(red: 0.37, green: 0.29, blue: 0.51))
             }
-            .padding(.horizontal, 13)
-            .padding(.vertical, 12)
+            .padding(.horizontal, 12)
+            .padding(.vertical, 10)
             .activityBackgroundTint(Color(red: 0.965, green: 0.953, blue: 0.933))
             .activitySystemActionForegroundColor(.black)
         } dynamicIsland: { context in
