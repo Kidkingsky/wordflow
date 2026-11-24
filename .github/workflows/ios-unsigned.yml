@@ -83,6 +83,26 @@ jobs:
 
           test "$(/usr/libexec/PlistBuddy -c 'Print :NSExtension:NSExtensionPointIdentifier' "$EXT/Info.plist")" = "com.apple.widgetkit-extension"
           echo "Confirmed WidgetKit extension and offline lesson catalog"
+      - name: Embed App Groups entitlements (ad-hoc signature)
+        # `--no-codesign` leaves the binaries without any entitlements, so
+        # SideStore re-signs the app WITHOUT App Groups and neither the app nor
+        # the widget can open the shared container. An ad-hoc signature carries
+        # the entitlements; SideStore reads them and registers the group.
+        run: |
+          APP="build/ios/iphoneos/Runner.app"
+          EXT="$APP/PlugIns/WordFlowWidgets.appex"
+          find "$APP/Frameworks" -maxdepth 1 \( -name '*.framework' -o -name '*.dylib' \) -print0 2>/dev/null |
+            while IFS= read -r -d '' lib; do
+              codesign --force --sign - --timestamp=none "$lib"
+            done
+          codesign --force --sign - --timestamp=none             --entitlements ios/WordFlowWidgets/WordFlowAppGroups.entitlements "$EXT"
+          codesign --force --sign - --timestamp=none             --entitlements ios/Runner/WordFlowAppGroups.entitlements "$APP"
+          for bundle in "$APP" "$EXT"; do
+            codesign -d --entitlements - --xml "$bundle" 2>&1 | tee /tmp/ent.xml
+            grep -q 'group.com.kidkingsky.wordflow' /tmp/ent.xml || {
+              echo "App Groups entitlement missing from $bundle"; exit 1; }
+          done
+          echo "App Groups entitlements embedded in app and widget"
       - name: Package app into unsigned IPA container
         run: |
           mkdir -p build/ios/ipa/Payload
