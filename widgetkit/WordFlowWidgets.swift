@@ -257,13 +257,19 @@ private struct WordFlowWidgetView: View {
                     // Phrase widgets keep their existing behavior.
                     if entry.kind == .word {
                         Button(intent: WordFlowNextWordIntent()) {
-                            Image(systemName: "arrow.clockwise")
-                                .font(.system(size: 13, weight: .semibold))
-                                .frame(width: 30, height: 35)
-                                .contentShape(Rectangle())
+                            VStack(spacing: 3) {
+                                Image(systemName: "arrow.clockwise")
+                                    .font(.system(size: 14, weight: .semibold))
+                                Text("換字")
+                                    .font(.system(size: 10, weight: .medium))
+                                    .lineLimit(1)
+                            }
+                            .frame(width: 42, height: 44)
+                            .background(.primary.opacity(0.12), in: RoundedRectangle(cornerRadius: 9))
+                            .contentShape(Rectangle())
                         }
                         .buttonStyle(.plain)
-                        .accessibilityLabel("換下一個英文單字")
+                        .accessibilityLabel("換下一個英文單字，解鎖後可使用")
                     }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -284,7 +290,11 @@ private struct WordFlowWidgetView: View {
                     .offset(x: 80, y: -90)
             }
         }
-        .widgetURL(URL(string: "wordflow:///"))
+        // Avoid a whole-widget launch URL competing with the interactive
+        // button's tap target on the Lock Screen rectangle.
+        // Other widgets still open the WordFlow app when tapped.
+        .widgetURL(family == .accessoryRectangular && entry.kind == .word
+            ? nil : URL(string: "wordflow:///"))
     }
 
     // MARK: - Home Screen layouts
