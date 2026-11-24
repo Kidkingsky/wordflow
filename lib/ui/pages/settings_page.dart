@@ -219,6 +219,11 @@ class _AppGroupSyncExperimentState extends State<_AppGroupSyncExperiment> {
             const SizedBox(height: 8),
             Text(status!.reason!, style: WordFlowDesign.label),
           ],
+          if (status?.groupId != null) ...[
+            const SizedBox(height: 6),
+            Text('使用的 App Group：${status!.groupId}',
+                style: WordFlowDesign.label),
+          ],
           if (_error != null) ...[
             const SizedBox(height: 8),
             Text(_error!, style: const TextStyle(

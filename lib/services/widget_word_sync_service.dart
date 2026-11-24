@@ -11,12 +11,16 @@ class WidgetWordSyncState {
     required this.revision,
     this.wordId,
     this.reason,
+    this.groupId,
   });
 
   final bool available;
   final int revision;
   final String? wordId;
   final String? reason;
+
+  /// The App Group ID the host app actually opened (SideStore may rewrite it).
+  final String? groupId;
 
   factory WidgetWordSyncState.fromMap(Map<dynamic, dynamic>? map) {
     final data = map ?? const <dynamic, dynamic>{};
@@ -25,6 +29,7 @@ class WidgetWordSyncState {
       revision: (data['revision'] as num?)?.toInt() ?? 0,
       wordId: data['wordId'] as String?,
       reason: data['reason'] as String?,
+      groupId: data['groupId'] as String?,
     );
   }
 }

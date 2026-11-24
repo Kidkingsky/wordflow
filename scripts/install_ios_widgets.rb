@@ -152,6 +152,16 @@ if File.file?(app_plist) && File.executable?(plist_buddy)
       abort "Cannot register widget link: #{command}" unless system(plist_buddy, '-c', command, app_plist)
     end
   end
+  # SideStore / AltStore rewrite App Group IDs when re-signing and publish the
+  # new IDs here; the app and widget read this key to find the real group.
+  unless system(plist_buddy, '-c', 'Print :ALTAppGroups', app_plist, out: File::NULL, err: File::NULL)
+    [
+      'Add :ALTAppGroups array',
+      'Add :ALTAppGroups:0 string group.com.kidkingsky.wordflow'
+    ].each do |command|
+      abort "Cannot declare ALTAppGroups: #{command}" unless system(plist_buddy, '-c', command, app_plist)
+    end
+  end
 end
 
 podfile = File.join(ios, 'Podfile')
