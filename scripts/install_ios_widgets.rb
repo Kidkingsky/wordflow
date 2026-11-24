@@ -26,6 +26,25 @@ FileUtils.cp(File.join(root, 'assets/content/content.json'), File.join(widget_fo
 FileUtils.cp(File.join(widget_source, 'WordFlowLiveAttributes.swift'), File.join(widget_folder, 'WordFlowLiveAttributes.swift'))
 FileUtils.cp(File.join(root, 'ios_native', 'WordFlowLiveActivityBridge.swift'), File.join(ios, 'Runner', 'WordFlowLiveActivityBridge.swift'))
 
+# Experiment: both Runner and WidgetKit request the SAME App Groups entitlement.
+FileUtils.cp(File.join(root, 'ios_native', 'WordFlowWidgetSyncBridge.swift'),
+             File.join(ios, 'Runner', 'WordFlowWidgetSyncBridge.swift'))
+app_group_entitlements = <<~XML
+  <?xml version="1.0" encoding="UTF-8"?>
+  <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+  <plist version="1.0">
+  <dict>
+    <key>com.apple.security.application-groups</key>
+    <array><string>group.com.kidkingsky.wordflow</string></array>
+  </dict>
+  </plist>
+XML
+File.write(File.join(ios, 'Runner', 'WordFlowAppGroups.entitlements'),
+           app_group_entitlements)
+File.write(File.join(widget_folder, 'WordFlowAppGroups.entitlements'),
+           app_group_entitlements)
+
+
 # Flutter 3.41+ uses UIScene; the UIApplicationDelegate window is nil on launch.
 # Register native channels in the implicit engine callback, not didFinishLaunching.
 app_delegate = File.join(ios, 'Runner', 'AppDelegate.swift')
@@ -45,6 +64,7 @@ File.write(app_delegate, <<~SWIFT)
       func didInitializeImplicitFlutterEngine(_ engineBridge: FlutterImplicitEngineBridge) {
           GeneratedPluginRegistrant.register(with: engineBridge.pluginRegistry)
           WordFlowLiveActivityBridge.register(messenger: engineBridge.applicationRegistrar.messenger())
+          WordFlowWidgetSyncBridge.register(messenger: engineBridge.applicationRegistrar.messenger())
       }
   }
 SWIFT
@@ -62,7 +82,8 @@ unless project.targets.any? { |target| target.name == 'WordFlowWidgets' }
   group.new_file('Info.plist')
   widget.add_file_references([swift_file, attributes_file])
   bridge_file = project.main_group.new_file('Runner/WordFlowLiveActivityBridge.swift')
-  runner.add_file_references([bridge_file, attributes_file])
+  sync_bridge_file = project.main_group.new_file('Runner/WordFlowWidgetSyncBridge.swift')
+  runner.add_file_references([bridge_file, sync_bridge_file, attributes_file])
 
   resource = project.new(Xcodeproj::Project::Object::PBXBuildFile)
   resource.file_ref = json_file
@@ -81,6 +102,7 @@ unless project.targets.any? { |target| target.name == 'WordFlowWidgets' }
       'DEFINES_MODULE' => 'YES',
       'APPLICATION_EXTENSION_API_ONLY' => 'YES',
       'CODE_SIGN_STYLE' => 'Automatic',
+      'CODE_SIGN_ENTITLEMENTS' => 'WordFlowWidgets/WordFlowAppGroups.entitlements',
       'MARKETING_VERSION' => app_version,
       'CURRENT_PROJECT_VERSION' => app_build
     )
@@ -112,6 +134,7 @@ end
 
 runner.build_configurations.each do |config|
   config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '17.0'
+  config.build_settings['CODE_SIGN_ENTITLEMENTS'] = 'Runner/WordFlowAppGroups.entitlements'
 end
 project.save
 

@@ -37,6 +37,29 @@ jobs:
         run: |
           ruby -e "require 'xcodeproj'" || gem install xcodeproj --user-install --no-document
           ruby scripts/install_ios_widgets.rb
+      - name: Verify experimental App Groups are declared for both targets
+        run: |
+          APP_GROUP='group.com.kidkingsky.wordflow'
+          RUNNER_ENTITLEMENTS='ios/Runner/WordFlowAppGroups.entitlements'
+          WIDGET_ENTITLEMENTS='ios/WordFlowWidgets/WordFlowAppGroups.entitlements'
+          test -f "$RUNNER_ENTITLEMENTS"
+          test -f "$WIDGET_ENTITLEMENTS"
+          test "$(/usr/libexec/PlistBuddy -c 'Print :com.apple.security.application-groups:0' "$RUNNER_ENTITLEMENTS")" = "$APP_GROUP"
+          test "$(/usr/libexec/PlistBuddy -c 'Print :com.apple.security.application-groups:0' "$WIDGET_ENTITLEMENTS")" = "$APP_GROUP"
+          ruby -rxcodeproj -e '
+            project = Xcodeproj::Project.open("ios/Runner.xcodeproj")
+            {"Runner" => "Runner/WordFlowAppGroups.entitlements",
+             "WordFlowWidgets" => "WordFlowWidgets/WordFlowAppGroups.entitlements"}.each do |name, expected|
+              target = project.targets.find { |t| t.name == name }
+              abort "Missing #{name}" unless target
+              abort "Missing group entitlement settings for #{name}" unless
+                target.build_configurations.all? { |c|
+                  c.build_settings["CODE_SIGN_ENTITLEMENTS"] == expected
+                }
+            end
+          '
+          grep -q 'WordFlowWidgetSyncBridge.register' ios/Runner/AppDelegate.swift
+          echo "Source project requests shared App Groups, but signing support still needs an iPhone test."
       - name: Validate 1,500-word offline catalog
         run: python3 scripts/validate_content.py
       - name: Check Dart and test

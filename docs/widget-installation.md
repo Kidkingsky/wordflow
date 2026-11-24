@@ -73,3 +73,16 @@ SideStore/側載工具對包含 extension 的 IPA 支援程度可能不同，需
 - WidgetKit AppIntent 在擴充程序內更新本機輪替索引，更新時向 WidgetCenter 請求重新載入每日單字時間線。實際顯示仍須透過 Face ID 驗證並以 iPhone 實機確認。
 - 若更新 IPA 後仍顯示舊按鈕樣式，可先從鎖定畫面移除**單字 Widget 本身**，再重新加入；**不要刪除 WordFlow App**，以免失去收藏和學習紀錄。
 - 若完成解鎖仍無反應，須收集裝置系統版本、按鈕點擊是否打開 App 或完全無回應，以及實機 Console 日誌；雲端編譯通過不能證明 AppIntent 已在 iPhone 實際執行。
+
+
+## v0.4.3（Build 8）App Groups / SideStore 實機驗證版（非正式版）
+
+- 測試分支：`experiment/appgroup-widget-sync-b8`；此功能尚未合併 `main`。
+- iOS Runner 與 WidgetKit extension 均透過 `CODE_SIGN_ENTITLEMENTS` **要求** 同一個 `group.com.kidkingsky.wordflow`。未簽署 IPA 會保留程式碼，但 SideStore 重新簽署時是否實際授權尚未知。
+- 在 WordFlow「我的」→「鎖定畫面單字同步測試」查看 App 端共用容器能否存取。若不可用，顯示失敗原因，不會假稱同步成功。
+- App 端可存取時，按「從 App 換下一個單字」，寫入詞條 ID 與遞增同步序號；同時要求 WidgetCenter 重新整理每日單字 Widget。
+- **正確驗收**：鎖定畫面「每日單字」矩形 Widget 顯示和 App 完全相同的英文，以及「App 同步 #N」。若 Widget 顯示「尚未收到 App 同步」或仍是舊字，即使 App 顯示成功也不算通過。
+- 測試版取消原本 Widget 的互動 ↻ 按鈕，改為點擊 Widget 開啟 App 並在 App 內切換。
+- App 可按「恢復每日自動」清除測試選字，不會動到收藏與間隔複習紀錄。
+- 如 SideStore 提示 App Group/Provisioning/Entitlement 不支援，不要刪除既有 WordFlow。可回報 SideStore 版本、完整錯誤和 iOS 版本；這是測試結果，不代表可以直接上線。
+- **雲端 unsigned IPA 編譯通過只證明編譯成功，不代表 SideStore 能替 App 和 Widget 簽到需要的 App Groups 權限。**

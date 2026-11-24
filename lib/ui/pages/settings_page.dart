@@ -6,6 +6,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 import '../../models/learning_item.dart';
 import '../../services/app_controller.dart';
 import '../../services/lock_screen_service.dart';
+import '../../services/widget_word_sync_service.dart';
 import '../theme/wordflow_design.dart';
 import '../../services/speech_service.dart';
 
@@ -71,16 +72,7 @@ class SettingsPage extends StatelessWidget {
         const SizedBox(height: 13),
         _LockScreenStudySection(controller: controller),
         const SizedBox(height: 12),
-        _SettingsSection(
-          title: '每日單字 Widget 換字',
-          subtitle: '鎖定畫面時鐘下方的矩形單字小工具。',
-          child: const Text(
-            '先用 Face ID 或密碼解鎖，保持在鎖定畫面，再按右側「↻ 換字」。'
-            '如果按鈕仍顯示舊樣式，可以只移除小工具並重新加入，'
-            '不需要刪除 WordFlow App。',
-            style: WordFlowDesign.body,
-          ),
-        ),
+        _AppGroupSyncExperiment(controller: controller),
         const SizedBox(height: 13),
         _SettingsSection(
           title: '英文發音',
@@ -143,6 +135,155 @@ class SettingsPage extends StatelessWidget {
   }
 }
 
+
+
+class _AppGroupSyncExperiment extends StatefulWidget {
+  const _AppGroupSyncExperiment({required this.controller});
+  final AppController controller;
+
+  @override
+  State<_AppGroupSyncExperiment> createState() => _AppGroupSyncExperimentState();
+}
+
+class _AppGroupSyncExperimentState extends State<_AppGroupSyncExperiment> {
+  WidgetWordSyncState? _status;
+  bool _busy = false;
+  String? _error;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) _perform(WidgetWordSyncService.status);
+    });
+  }
+
+  Future<void> _perform(Future<WidgetWordSyncState> Function() action) async {
+    if (_busy) return;
+    setState(() {
+      _busy = true;
+      _error = null;
+    });
+    try {
+      final result = await action();
+      if (!mounted) return;
+      setState(() => _status = result);
+    } on MissingPluginException {
+      if (!mounted) return;
+      setState(() => _error =
+          '找不到原生同步橋接，請確認已安裝 App Groups 實驗版。');
+    } on PlatformException catch (error) {
+      if (!mounted) return;
+      setState(() => _error = error.message ?? error.code);
+    } catch (error) {
+      if (!mounted) return;
+      setState(() => _error = '同步測試失敗：$error');
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final status = _status;
+    final selected = WidgetWordSyncService.selectedItem(
+      widget.controller, status);
+    final usable = status?.available == true;
+
+    return _SettingsSection(
+      title: '鎖定畫面單字同步測試',
+      subtitle: 'SideStore + App Groups 實驗版，不會改動學習紀錄。',
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (_busy)
+            const Padding(
+              padding: EdgeInsets.only(bottom: 12),
+              child: LinearProgressIndicator(),
+            ),
+          Text(
+            status == null
+                ? '正在檢查 App Groups 權限…'
+                : usable
+                    ? 'App 端：共用容器可用（Widget 端仍須實測）。'
+                    : 'App 端：共用容器不可用。',
+            style: TextStyle(
+              fontSize: 13,
+              fontWeight: FontWeight.w700,
+              color: usable
+                  ? WordFlowDesign.sageDeep
+                  : WordFlowDesign.muted,
+            ),
+          ),
+          if (status?.reason != null) ...[
+            const SizedBox(height: 8),
+            Text(status!.reason!, style: WordFlowDesign.label),
+          ],
+          if (_error != null) ...[
+            const SizedBox(height: 8),
+            Text(_error!, style: const TextStyle(
+              fontSize: 13, color: Color(0xFF9D4438))),
+          ],
+          const SizedBox(height: 13),
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: WordFlowDesign.panel(
+                color: WordFlowDesign.plumWash),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  selected == null ? '目前為每日自動單字' : selected.english,
+                  style: WordFlowDesign.english(size: 26),
+                ),
+                if (selected != null) ...[
+                  const SizedBox(height: 6),
+                  Text(selected.chinese, style: WordFlowDesign.body),
+                ],
+                const SizedBox(height: 8),
+                Text('同步序號：#${status?.revision ?? 0}', style: WordFlowDesign.label),
+              ],
+            ),
+          ),
+          const SizedBox(height: 12),
+          FilledButton.icon(
+            onPressed: usable && !_busy
+                ? () => _perform(() =>
+                    WidgetWordSyncService.nextWord(widget.controller))
+                : null,
+            icon: const Icon(Icons.refresh),
+            label: const Text('從 App 換下一個單字'),
+            style: FilledButton.styleFrom(
+              minimumSize: const Size.fromHeight(48)),
+          ),
+          const SizedBox(height: 5),
+          Row(children: [
+            TextButton(
+              onPressed: usable && !_busy
+                  ? () => _perform(WidgetWordSyncService.showDailyWord)
+                  : null,
+              child: const Text('恢復每日自動'),
+            ),
+            const Spacer(),
+            TextButton(
+              onPressed: _busy
+                  ? null
+                  : () => _perform(WidgetWordSyncService.status),
+              child: const Text('重新檢查'),
+            ),
+          ]),
+          const SizedBox(height: 9),
+          const Text(
+            '實測：按換字後鎖定 iPhone。小工具必須顯示相同英文，'
+            '並出現「App 同步 #數字」，才算 App 與 Widget 共用資料成功。'
+            '只看到 App 端成功還不算通過。',
+            style: WordFlowDesign.label,
+          ),
+        ],
+      ),
+    );
+  }
+}
 
 class _LockScreenStudySection extends StatefulWidget {
   const _LockScreenStudySection({required this.controller});

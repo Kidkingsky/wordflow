@@ -95,23 +95,6 @@ struct WordFlowWidgetSettings: WidgetConfigurationIntent {
     }
 }
 
-/// The next-word action runs inside the WidgetKit extension and deliberately
-/// avoids App Groups, which may be unavailable to SideStore free signing.
-private struct WordFlowNextWordIntent: AppIntent {
-    static var title: LocalizedStringResource = "換下一個英文單字"
-    static var description = IntentDescription("鎖定畫面看熟的字，可直接換成下一個單字。")
-    static var openAppWhenRun = false
-
-    func perform() async throws -> some IntentResult {
-        let defaults = UserDefaults.standard
-        let key = "wordflow.widget.word_rotation"
-        let current = defaults.integer(forKey: key)
-        defaults.set((current + 1) % 1500, forKey: key)
-        WidgetCenter.shared.reloadTimelines(ofKind: "WordFlowDailyWord")
-        return .result()
-    }
-}
-
 private enum Vocabulary {
     static let all: [LearningItem] = {
         guard let url = Bundle.main.url(forResource: "content", withExtension: "json"),
@@ -120,6 +103,24 @@ private enum Vocabulary {
         else { return [LearningItem.placeholder] }
         return items
     }()
+
+    /// The signed extension independently reads the App Groups container.
+    /// This can fail with free SideStore provisioning even when the host app
+    /// can write successfully. Never fake the synchronized word.
+    static func appSelectedWord() -> (item: LearningItem, revision: Int)? {
+        let groupID = "group.com.kidkingsky.wordflow"
+        guard FileManager.default.containerURL(
+            forSecurityApplicationGroupIdentifier: groupID
+        ) != nil,
+            let shared = UserDefaults(suiteName: groupID),
+            let selectedId = shared.string(forKey: "wordflow.sync.selectedWordId"),
+            let selected = all.filter { $0.kind == "word" && $0.id == selectedId }.first
+        else { return nil }
+        return (
+            item: selected,
+            revision: shared.integer(forKey: "wordflow.sync.revision")
+        )
+    }
 
     // Same local-date / UTC-day index and sorted-ID rotation as Flutter.
     static func pick(date: Date, kind: LessonKind, level: WordFlowLevel, topic: WordFlowTopic) -> LearningItem {
@@ -151,6 +152,7 @@ struct WordFlowEntry: TimelineEntry {
     let date: Date
     fileprivate let item: LearningItem
     fileprivate let kind: LessonKind
+    let syncRevision: Int?
 }
 
 struct WordFlowProvider: AppIntentTimelineProvider {
@@ -159,7 +161,7 @@ struct WordFlowProvider: AppIntentTimelineProvider {
     fileprivate let kind: LessonKind
 
     func placeholder(in context: Context) -> WordFlowEntry {
-        WordFlowEntry(date: Date(), item: .placeholder, kind: kind)
+        WordFlowEntry(date: Date(), item: .placeholder, kind: kind, syncRevision: nil)
     }
 
     func snapshot(for configuration: WordFlowWidgetSettings, in context: Context) async -> WordFlowEntry {
@@ -177,10 +179,15 @@ struct WordFlowProvider: AppIntentTimelineProvider {
     }
 
     private func makeEntry(date: Date, configuration: WordFlowWidgetSettings) -> WordFlowEntry {
-        WordFlowEntry(
+        let fromApp = kind == .word ? Vocabulary.appSelectedWord() : nil
+        return WordFlowEntry(
             date: date,
-            item: Vocabulary.pick(date: date, kind: kind, level: configuration.level, topic: configuration.topic),
-            kind: kind
+            item: fromApp?.item ?? Vocabulary.pick(
+                date: date, kind: kind,
+                level: configuration.level, topic: configuration.topic
+            ),
+            kind: kind,
+            syncRevision: fromApp?.revision
         )
     }
 }
@@ -243,33 +250,18 @@ private struct WordFlowWidgetView: View {
                     }
                 }
             case .accessoryRectangular:
-                HStack(alignment: .center, spacing: 5) {
-                    VStack(alignment: .leading, spacing: 3) {
-                        Text(entry.item.english)
-                            .font(.system(size: 16, weight: .bold, design: .rounded))
-                            .lineLimit(1).minimumScaleFactor(0.7)
-                        Text(entry.item.labeledMeaning)
-                            .font(.system(size: 12, weight: .medium))
-                            .lineLimit(1)
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-
-                    // Phrase widgets keep their existing behavior.
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(entry.item.english)
+                        .font(.system(size: 16, weight: .bold, design: .rounded))
+                        .lineLimit(1).minimumScaleFactor(0.7)
+                    Text(entry.item.labeledMeaning)
+                        .font(.system(size: 12, weight: .medium))
+                        .lineLimit(1)
                     if entry.kind == .word {
-                        Button(intent: WordFlowNextWordIntent()) {
-                            VStack(spacing: 3) {
-                                Image(systemName: "arrow.clockwise")
-                                    .font(.system(size: 14, weight: .semibold))
-                                Text("換字")
-                                    .font(.system(size: 10, weight: .medium))
-                                    .lineLimit(1)
-                            }
-                            .frame(width: 42, height: 44)
-                            .background(.primary.opacity(0.12), in: RoundedRectangle(cornerRadius: 9))
-                            .contentShape(Rectangle())
-                        }
-                        .buttonStyle(.plain)
-                        .accessibilityLabel("換下一個英文單字，解鎖後可使用")
+                        Text(entry.syncRevision.map { "App 同步 #\($0)" }
+                                ?? "尚未收到 App 同步")
+                            .font(.system(size: 9, weight: .medium))
+                            .lineLimit(1)
                     }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -290,11 +282,8 @@ private struct WordFlowWidgetView: View {
                     .offset(x: 80, y: -90)
             }
         }
-        // Avoid a whole-widget launch URL competing with the interactive
-        // button's tap target on the Lock Screen rectangle.
-        // Other widgets still open the WordFlow app when tapped.
-        .widgetURL(family == .accessoryRectangular && entry.kind == .word
-            ? nil : URL(string: "wordflow:///"))
+        // In this experiment tapping the widget opens the app to change words.
+        .widgetURL(URL(string: "wordflow:///"))
     }
 
     // MARK: - Home Screen layouts
