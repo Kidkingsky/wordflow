@@ -26,12 +26,16 @@ jobs:
         run: flutter pub get
       - name: Read app version from pubspec
         run: |
-          read -r APP_VERSION APP_BUILD <<< "$(ruby -ryaml -e 'puts YAML.load_file("pubspec.yaml").fetch("version").tr("+", " ")')"
+          read -r APP_VERSION BASE_BUILD <<< "$(ruby -ryaml -e 'puts YAML.load_file("pubspec.yaml").fetch("version").tr("+", " ")')"
           [[ "$APP_VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]
-          [[ "$APP_BUILD" =~ ^[1-9][0-9]*$ ]]
+          [[ "$BASE_BUILD" =~ ^[1-9][0-9]*$ ]]
+          [[ "$GITHUB_RUN_NUMBER" =~ ^[1-9][0-9]*$ ]]
+          # Increase the iOS build number on every workflow run, including
+          # merged PRs, without writing CI-generated commits to main.
+          APP_BUILD=$((BASE_BUILD + GITHUB_RUN_NUMBER))
           echo "APP_VERSION=$APP_VERSION" >> "$GITHUB_ENV"
           echo "APP_BUILD=$APP_BUILD" >> "$GITHUB_ENV"
-          echo "Building WordFlow v$APP_VERSION (Build $APP_BUILD)"
+          echo "Building WordFlow v$APP_VERSION (Build $APP_BUILD); base=$BASE_BUILD, run=$GITHUB_RUN_NUMBER"
 
       - name: Install WidgetKit extension
         run: |
@@ -67,7 +71,7 @@ jobs:
           flutter analyze --no-fatal-infos
           flutter test
       - name: Build iOS app without signing
-        run: flutter build ios --release --no-codesign
+        run: flutter build ios --release --no-codesign --build-name="$APP_VERSION" --build-number="$APP_BUILD"
       - name: Verify widgets are packaged inside the iOS app
         run: |
           APP="build/ios/iphoneos/Runner.app"

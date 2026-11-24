@@ -9,7 +9,10 @@ require 'yaml'
 # Single source of truth for the Runner app and WidgetKit extension.
 app_version_text = YAML.load_file(File.join(root, 'pubspec.yaml')).fetch('version').to_s
 app_version, app_build = app_version_text.split('+', 2)
-abort "Invalid pubspec version: #{app_version_text}" unless
+# GitHub Actions assigns a monotonic build number per run. Codemagic and local
+# builds retain the pubspec build number unless APP_BUILD is explicitly set.
+app_build = ENV.fetch('APP_BUILD', app_build)
+abort "Invalid pubspec version/build: #{app_version_text} / #{app_build}" unless
   app_version&.match?(/\A\d+\.\d+\.\d+\z/) &&
   app_build&.match?(/\A[1-9]\d*\z/)
 

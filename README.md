@@ -1,6 +1,6 @@
 # WordFlow — 每日英文（Flutter iOS / Android）
 
- > **專案狀態：v0.2 原始碼起點**。本專案在沒有 Flutter SDK 與 Xcode 的環境下產生；尚未經過實際 `flutter analyze`、`flutter test`、iOS / Android 編譯。附有雲端 CI 供第一次驗證。**目前不是已簽署、可直接安裝的 iPhone App。**
+ > **專案狀態：持續開發中。** GitHub Actions 可透過 macOS runner 建立包含 WidgetKit Extension 的未簽署 iOS IPA，仍須使用 SideStore 等工具進行簽署與 iPhone 實機驗收。
 
 ## ✅ iPhone 現在先試用（不需要 Windows）
 
@@ -13,9 +13,10 @@ GitHub Pages 完成部署後，在 iPhone Safari 開啟 https://kidkingsky.githu
 ## 版本號與安裝識別
 
 - 「我的」頁面底部會顯示實際安裝的 App 版本與 Build 編號，而非固定寫死的舊版本。
-- 版本號以 `pubspec.yaml` 為準，現在是 `0.3.0+3`，WidgetKit Extension 同步。
-- GitHub Actions 的 IPA 檔名會自動帶入版本，例如 `WordFlow-v0.3.0-b3-unsigned.ipa`。此檔仍是未簽署 IPA，需要 SideStore 簽署。
-- v0.3.0 包含四格鎖定畫面 Live Activity（需手動開啟，不會永久常駐）。
+- **功能版本（`CFBundleShortVersionString`）**：以 `pubspec.yaml` 的 `0.4.4+9` 為基準，現在為 `0.4.4`，未來功能版本升級時需手動更新 `pubspec.yaml`。WidgetKit Extension 同步版本。
+- **Build 編號（`CFBundleVersion`）**：每次 GitHub Actions iOS 編譯自動取 `pubspec.yaml` 的基本 build 值（目前 `9`）加上該工作流程的 `GITHUB_RUN_NUMBER`，不會再因連續合併 PR 而維持相同 Build。Flutter 主程式與 Widget Extension 使用同一 Build 編號。
+- IPA 檔名自動帶入真實版本與 Build，例如 `WordFlow-v0.4.4-b45-unsigned.ipa`（僅為命名範例，實際數字以當次 Actions 為準）。這仍是未簽署 IPA，須透過 SideStore 簽署，包含 Widget Extension 才能在 iPhone 安裝。
+- 四格鎖定畫面 Live Activity 需手動開啟，並非永久常駐 Widget。
 
 ## iOS 主畫面與鎖定畫面 Widget
 
