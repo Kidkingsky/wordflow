@@ -70,6 +70,17 @@ class SettingsPage extends StatelessWidget {
         ),
         const SizedBox(height: 13),
         _LockScreenStudySection(controller: controller),
+        const SizedBox(height: 12),
+        _SettingsSection(
+          title: '每日單字 Widget 換字',
+          subtitle: '鎖定畫面時鐘下方的矩形單字小工具。',
+          child: const Text(
+            '先用 Face ID 或密碼解鎖，保持在鎖定畫面，再按右側「↻ 換字」。'
+            '如果按鈕仍顯示舊樣式，可以只移除小工具並重新加入，'
+            '不需要刪除 WordFlow App。',
+            style: WordFlowDesign.body,
+          ),
+        ),
         const SizedBox(height: 13),
         _SettingsSection(
           title: '英文發音',
