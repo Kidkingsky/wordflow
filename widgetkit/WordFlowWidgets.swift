@@ -114,7 +114,7 @@ private enum Vocabulary {
         ) != nil,
             let shared = UserDefaults(suiteName: groupID),
             let selectedId = shared.string(forKey: "wordflow.sync.selectedWordId"),
-            let selected = all.first(where: { $0.isWord && $0.id == selectedId })
+            let selected = all.filter { $0.kind == "word" && $0.id == selectedId }.first
         else { return nil }
         return (
             item: selected,
