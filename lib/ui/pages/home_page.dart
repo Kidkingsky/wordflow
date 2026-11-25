@@ -16,9 +16,10 @@ class HomePage extends StatelessWidget {
     final today = DateTime.now();
     final word = controller.todayWord(today);
     final phrase = controller.todayPhrase(today);
+    final lesson = controller.currentLesson;
     final todayCount = controller.studiedToday;
     final dueCount = controller.dueItems.length;
-    final progress = (todayCount / 5).clamp(0.0, 1.0).toDouble();
+    final progress = (todayCount / 6).clamp(0.0, 1.0).toDouble();
     const weekdays = ['一', '二', '三', '四', '五', '六', '日'];
     return ListView(
       padding: const EdgeInsets.fromLTRB(22, 17, 22, 34),
@@ -44,16 +45,20 @@ class HomePage extends StatelessWidget {
         Text('${today.month}月${today.day}日 · 星期${weekdays[today.weekday - 1]}',
           style: WordFlowDesign.label),
         const SizedBox(height: 9),
-        Text('今天，學一個好用的英文。', style: WordFlowDesign.title(size: 25)),
+        Text('每天一課，循序累積英文。', style: WordFlowDesign.title(size: 25)),
         const SizedBox(height: 8),
-        const Text('用一個單字，累積每天都用得上的英文。',
+        const Text('先學單字，再用情境詞句練習，最後複習。',
           style: WordFlowDesign.body),
         const SizedBox(height: 20),
+        if (lesson != null) ...[
+          _CoursePanel(controller: controller),
+          const SizedBox(height: 20),
+        ],
         _DailyWordCard(item: word, controller: controller),
         const SizedBox(height: 27),
         WordFlowSectionTitle(
           text: '今日練習',
-          trailing: Text('$todayCount / 5', style: const TextStyle(
+          trailing: Text('$todayCount / 6', style: const TextStyle(
               color: WordFlowDesign.plum, fontSize: 16,
               fontWeight: FontWeight.w700)),
         ),
@@ -69,8 +74,8 @@ class HomePage extends StatelessWidget {
         ),
         const SizedBox(height: 11),
         Row(children: [
-          Expanded(child: Text(todayCount >= 5 ? '今天的學習目標已完成。'
-              : '再學 ${(5 - todayCount).clamp(0, 5)} 個，完成今日目標。',
+          Expanded(child: Text(todayCount >= 6 ? '今天的練習目標已完成。'
+              : '再學 ${(6 - todayCount).clamp(0, 6)} 個，完成今日目標。',
               style: WordFlowDesign.label)),
           TextButton(
             onPressed: onOpenTab == null ? null
@@ -96,7 +101,7 @@ class HomePage extends StatelessWidget {
           ]),
         ),
         const SizedBox(height: 27),
-        const WordFlowSectionTitle(text: '今日實用詞句'),
+        const WordFlowSectionTitle(text: '本課實用詞句'),
         const SizedBox(height: 12),
         if (phrase == null)
           const Text('這個程度或主題目前沒有實用詞句。',
@@ -138,10 +143,128 @@ class HomePage extends StatelessWidget {
               ),
             ),
           ),
+        if (controller.lessonPhrases.length > 1)
+          for (final extra in controller.lessonPhrases.skip(1))
+            ListTile(
+              contentPadding: EdgeInsets.zero,
+              title: Text(extra.english, style: WordFlowDesign.english(size: 20)),
+              subtitle: Text(extra.chinese, style: WordFlowDesign.body),
+              trailing: const Icon(Icons.chevron_right),
+              onTap: () => showLearningDetails(context, extra, controller),
+            ),
         const SizedBox(height: 25),
+        if (lesson != null)
+          FilledButton.icon(
+            onPressed: controller.finishLesson,
+            icon: const Icon(Icons.check_circle_outline),
+            label: Text(controller.coursePath.last.id == lesson.id
+                ? '完成本課' : '完成本課，前往下一課'),
+          ),
+        if (lesson != null && controller.completedLessonCount == controller.coursePath.length)
+          Text(controller.level == 'A2'
+              ? '此路線已完成！可在上方選擇 B1 進階課程或回頭複習。'
+              : '此路線已完成！請回頭複習或探索其他主題。',
+              style: WordFlowDesign.body),
+        const SizedBox(height: 16),
         const Text('收藏與複習紀錄儲存在這支 iPhone，離線也能學習。',
             style: WordFlowDesign.label),
       ],
+    );
+  }
+}
+
+class _CoursePanel extends StatelessWidget {
+  const _CoursePanel({required this.controller});
+  final AppController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    final lesson = controller.currentLesson!;
+    final path = controller.coursePath;
+    final number = path.indexWhere((item) => item.id == lesson.id) + 1;
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: WordFlowDesign.panel(),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('${lesson.level} · ${categoryName(lesson.category)} · 第 $number / ${path.length} 課',
+              style: WordFlowDesign.label),
+          const SizedBox(height: 6),
+          Text(lesson.title, style: WordFlowDesign.title(size: 23)),
+          const SizedBox(height: 6),
+          Text(lesson.objective, style: WordFlowDesign.body),
+          const SizedBox(height: 12),
+          SegmentedButton<String>(
+            segments: const [
+              ButtonSegment(value: 'A2', label: Text('A2 基礎')),
+              ButtonSegment(value: 'B1', label: Text('B1 進階')),
+            ],
+            selected: {controller.level},
+            onSelectionChanged: (value) => controller.changeLevel(value.first),
+          ),
+          const SizedBox(height: 12),
+          LinearProgressIndicator(value: controller.completedLessonCount / path.length),
+          const SizedBox(height: 6),
+          Text('已完成 ${controller.completedLessonCount} / ${path.length} 課（完成不等於已精熟）',
+              style: WordFlowDesign.label),
+          const SizedBox(height: 12),
+          const Text('本課 4 個單字 · 點選查看例句與複習',
+              style: WordFlowDesign.label),
+          for (final item in controller.lessonWords)
+            ListTile(
+              dense: true,
+              contentPadding: EdgeInsets.zero,
+              title: Text(item.english, style: WordFlowDesign.english(size: 20)),
+              subtitle: Text(item.chinese, style: WordFlowDesign.body),
+              trailing: const Icon(Icons.chevron_right),
+              onTap: () => showLearningDetails(context, item, controller),
+            ),
+          Wrap(
+            spacing: 8,
+            children: [
+              OutlinedButton(
+                onPressed: () => showModalBottomSheet<void>(
+                  context: context,
+                  builder: (sheetContext) => SafeArea(
+                    child: ListView(
+                      children: [
+                        const ListTile(title: Text('選擇學習課程')),
+                        for (final entry in path.asMap().entries)
+                          ListTile(
+                            leading: Icon(controller.lessonCompleted(entry.value)
+                                ? Icons.check_circle_outline : Icons.menu_book_outlined),
+                            selected: entry.value.id == lesson.id,
+                            title: Text('${entry.key + 1}. ${entry.value.title}'),
+                            subtitle: Text(categoryName(entry.value.category)),
+                            onTap: () {
+                              Navigator.pop(sheetContext);
+                              controller.openLesson(entry.value.id);
+                            },
+                          ),
+                      ],
+                    ),
+                  ),
+                ),
+                child: const Text('所有課程'),
+              ),
+              if (Theme.of(context).platform == TargetPlatform.iOS)
+                OutlinedButton(
+                  onPressed: () async {
+                    final ok = await controller.syncCurrentLesson();
+                    if (!context.mounted) return;
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text(ok
+                          ? '已送出本課單字與詞句，請確認 Widget 更新。'
+                          : '無法使用 App Groups；Widget 仍可獨立學習。'),
+                    ));
+                  },
+                  child: const Text('同步本課至 Widget'),
+                ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
@@ -172,7 +295,7 @@ class _DailyWordCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(children: [
-            const Text('每日單字', style: TextStyle(
+            const Text('本課主單字', style: TextStyle(
               color: Color(0xFFF0E7F2),
               fontSize: 13, fontWeight: FontWeight.w600)),
             const Spacer(),

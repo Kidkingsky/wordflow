@@ -192,7 +192,7 @@ class _AppGroupSyncExperimentState extends State<_AppGroupSyncExperiment> {
 
     return _SettingsSection(
       title: '鎖定畫面單字同步測試',
-      subtitle: 'SideStore + App Groups 實驗版，不會改動學習紀錄。',
+      subtitle: '與目前課程共用單字；SideStore App Groups 仍需實機驗證。',
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -257,7 +257,7 @@ class _AppGroupSyncExperimentState extends State<_AppGroupSyncExperiment> {
                     WidgetWordSyncService.nextWord(widget.controller))
                 : null,
             icon: const Icon(Icons.refresh),
-            label: const Text('從 App 換下一個單字'),
+            label: const Text('切換本課下一個單字'),
             style: FilledButton.styleFrom(
               minimumSize: const Size.fromHeight(48)),
           ),
@@ -351,7 +351,7 @@ class _LockScreenStudySectionState extends State<_LockScreenStudySection> {
             child: const Text(
               '這是 iOS 即時動態（Live Activity），不是永久 Widget。'
               ' 每次手動開啟後最長運作 8 小時，系統可能額外顯示最多 4 小時。'
-              ' 單字取自上方選擇的程度和主題。',
+              ' 單字取自 App 目前課程的四個單字；切換課程後請重新啟動四格。',
               style: TextStyle(fontSize: 12, height: 1.5, color: Color(0xFF604982)),
             ),
           ),

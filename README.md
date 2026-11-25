@@ -13,7 +13,7 @@ GitHub Pages 完成部署後，在 iPhone Safari 開啟 https://kidkingsky.githu
 ## 版本號與安裝識別
 
 - 「我的」頁面底部會顯示實際安裝的 App 版本與 Build 編號，而非固定寫死的舊版本。
-- **功能版本（`CFBundleShortVersionString`）**：以 `pubspec.yaml` 的 `0.4.4+9` 為基準，現在為 `0.4.4`，未來功能版本升級時需手動更新 `pubspec.yaml`。WidgetKit Extension 同步版本。
+- **功能版本（`CFBundleShortVersionString`）**：以 `pubspec.yaml` 的 `0.5.0+10` 為基準，現在為 `0.5.0`，未來功能版本升級時需手動更新 `pubspec.yaml`。WidgetKit Extension 同步版本。
 - **Build 編號（`CFBundleVersion`）**：每次 GitHub Actions iOS 編譯自動取 `pubspec.yaml` 的基本 build 值（目前 `9`）加上該工作流程的 `GITHUB_RUN_NUMBER`，不會再因連續合併 PR 而維持相同 Build。Flutter 主程式與 Widget Extension 使用同一 Build 編號。
 - IPA 檔名自動帶入真實版本與 Build，例如 `WordFlow-v0.4.4-b45-unsigned.ipa`（僅為命名範例，實際數字以當次 Actions 為準）。這仍是未簽署 IPA，須透過 SideStore 簽署，包含 Widget Extension 才能在 iPhone 安裝。
 - 四格鎖定畫面 Live Activity 需手動開啟，並非永久常駐 Widget。
@@ -25,7 +25,7 @@ GitHub Pages 完成部署後，在 iPhone Safari 開啟 https://kidkingsky.githu
 ## 第一版包含什麼？
 
 - **每日推薦**：單字卡＋實用詞句卡，同一天固定推薦，隔日輪換。
-- **1,524 筆原生 App 內建內容**：1,500 個單字、24 個實用詞句，A2 / B1，旅遊／生活／健身／工作四個主題。
+- **1,613 筆原生 App 內建內容**：1,555 個單字、58 個實用詞句，24 課，A2 / B1，旅遊／生活／健身／工作四個主題。
 - **英文朗讀**：使用 iOS / Android 的系統語音合成（TTS），可調整語速；並非真人錄音。
 - **單字庫／詞句庫**：搜尋中文、英文及例句；依主題篩選及收藏。
 - **間隔複習**：記住後分別隔 1、3、7、14、30、60 天複習；忘記則當日到期。
@@ -129,7 +129,7 @@ Apple / Codemagic 的簽署設定、權限、帳號、Provisioning Profile 都�
 
 ### Preview without any computer
 
-- `docs/index.html` is a **mobile browser preview** with the same 72 lesson items as Flutter. Its native implementation is still `lib/` and the native IPA uses 1,524 items. The web preview has not yet been migrated to the new catalog.
+- `docs/index.html` is a **mobile browser preview** with the original 72 items. The native implementation in `lib/` uses 1,613 items and 24 ordered lessons. The web preview has not yet been migrated to the new catalog.
 - In GitHub Settings → Pages, publish from `main` / `docs` to open `https://kidkingsky.github.io/wordflow/` **after** this repository exists and deployment completes.
 - In iPhone Safari, choose **Share → Add to Home Screen** to launch the preview like an app. This is not an IPA and cannot create native lock-screen widgets.
 - Its reviews and favorites use browser localStorage (not automatically shared with Flutter or other phones). Speech uses browser TTS.
@@ -157,3 +157,11 @@ Apple / Codemagic 的簽署設定、權限、帳號、Provisioning Profile 都�
 - 每天依本機日期切換推薦單字，不會每次解鎖就變更；iOS 可能略微延遲 Widget 顯示更新。
 - 單字參考 CEFR A2/B1 常用詞表，中英釋義參考 ECDICT，以 OpenCC 轉為繁體中文；詳見 [來源及授權](docs/vocabulary-sources.md)。
 - **注意**：網頁預覽 `docs/index.html` 仍是 72 筆舊版教材，這次字庫與 Widget 改版針對 Flutter 原生 App 與 WidgetKit Extension。
+
+## v0.5.0 — 24 課循序情境教材
+
+- A2 基礎與 B1 進階各 12 課；生活、旅遊、健身、工作每個程度各 3 課。每課 4 個單字與 2 個情境詞句及雙語例句。
+- App 首頁從第一課開始，可逐課完成、重選課程；本機儲存進度。完成課程與間隔複習的精熟紀錄分開。
+- 保留 1,500 字與 24 句舊字庫；共用 ID 合併後共有 1,555 個單字及 58 句詞句，探索頁仍可搜尋完整字庫。
+- Live Activity 啟動時顯示目前課程四字，切換課程後重新啟動。App Groups 可用時，Widget 接收目前課程首字及首句；無共用權限時仍依 Widget 自己的程度／主題與日期輪替有關聯的課程，不能保證與 App 個人進度一致。iPhone 實機同步仍需測試。
+- 擴充教材時增加 `assets/content/course_content.json` 的條目及課程即可，CI 驗證引用、唯一 ID、例句和兩個 iOS bundle 是否一致，無固定上限。

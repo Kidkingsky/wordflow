@@ -64,7 +64,7 @@ jobs:
           '
           grep -q 'WordFlowWidgetSyncBridge.register' ios/Runner/AppDelegate.swift
           echo "Source project requests shared App Groups, but signing support still needs an iPhone test."
-      - name: Validate 1,500-word offline catalog
+      - name: Validate offline catalog and ordered lessons
         run: python3 scripts/validate_content.py
       - name: Check Dart and test
         run: |
@@ -78,6 +78,9 @@ jobs:
           EXT="$APP/PlugIns/WordFlowWidgets.appex"
           test -d "$EXT"
           test -s "$EXT/content.json"
+          test -s "$EXT/course_content.json"
+          cmp assets/content/course_content.json "$EXT/course_content.json"
+          cmp assets/content/course_content.json "$APP/Frameworks/App.framework/flutter_assets/assets/content/course_content.json"
           test "$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' "$APP/Info.plist")" = "$APP_VERSION"
           test "$(/usr/libexec/PlistBuddy -c 'Print :CFBundleVersion' "$APP/Info.plist")" = "$APP_BUILD"
           test "$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' "$EXT/Info.plist")" = "$APP_VERSION"
