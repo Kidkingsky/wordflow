@@ -38,7 +38,25 @@ for lesson in lessons:
             assert item["example"].strip() and item["exampleChinese"].strip(), f"No example: {item_id}"
 assert all(any(l["level"] == level and l["category"] == category for l in lessons)
            for level in ("A2", "B1") for category in ("daily", "travel", "fitness", "work"))
+patterns = course["patterns"]
+lesson_phrases = {item_id for lesson in lessons for item_id in lesson["phraseIds"]}
+assert lesson_phrases <= patterns.keys(), "Every course phrase needs sentence structure"
+def normalized(text):
+    return text.casefold().replace("’", "'")
+for phrase_id, pattern in patterns.items():
+    item = merged[phrase_id]
+    assert item["kind"] == "phrase", f"Pattern is not attached to a phrase: {phrase_id}"
+    assert all(pattern[k].strip() for k in ("formula", "usage", "tip")), phrase_id
+    assert len(pattern["focus"]) >= 2, phrase_id
+    for word in pattern["focus"]:
+        assert word["chinese"].strip() and word["english"].strip()
+        assert normalized(word["english"]) in normalized(item["english"] + " " + item["example"]), (phrase_id, word)
+    assert {"daily", "work", "fitness"} <= {example["category"] for example in pattern["examples"]}, phrase_id
+    assert len({example["category"] for example in pattern["examples"]}) == len(pattern["examples"]), phrase_id
+    for example in pattern["examples"]:
+        assert example["english"].strip() and example["chinese"].strip(), phrase_id
 print(f"Validated {len(words)} words and {len(phrases)} phrases ({len(items)} items), {len(lessons)} lessons.")
+print(f"Validated {len(patterns)} sentence patterns, {sum(len(p['examples']) for p in patterns.values())} transfer examples.")
 
 # Word families (同家族單字): every family must link to at least one bundled word,
 # and every entry needs English, Chinese and a formation hint.

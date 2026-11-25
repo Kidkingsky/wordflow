@@ -25,7 +25,7 @@ GitHub Pages 完成部署後，在 iPhone Safari 開啟 https://kidkingsky.githu
 ## 第一版包含什麼？
 
 - **每日推薦**：單字卡＋實用詞句卡，同一天固定推薦，隔日輪換。
-- **1,613 筆原生 App 內建內容**：1,555 個單字、58 個實用詞句，24 課，A2 / B1，旅遊／生活／健身／工作四個主題。
+- **1,667 筆原生 App 內建內容**：1,609 個單字、58 個實用詞句，24 課，A2 / B1，旅遊／生活／健身／工作四個主題。
 - **英文朗讀**：使用 iOS / Android 的系統語音合成（TTS），可調整語速；並非真人錄音。
 - **單字庫／詞句庫**：搜尋中文、英文及例句；依主題篩選及收藏。
 - **間隔複習**：記住後分別隔 1、3、7、14、30、60 天複習；忘記則當日到期。
@@ -129,7 +129,7 @@ Apple / Codemagic 的簽署設定、權限、帳號、Provisioning Profile 都�
 
 ### Preview without any computer
 
-- `docs/index.html` is a **mobile browser preview** with the original 72 items. The native implementation in `lib/` uses 1,613 items and 24 ordered lessons. The web preview has not yet been migrated to the new catalog.
+- `docs/index.html` is a **mobile browser preview** with the original 72 items. The native implementation in `lib/` uses 1,667 items and 24 ordered lessons. The web preview has not yet been migrated to the new catalog.
 - In GitHub Settings → Pages, publish from `main` / `docs` to open `https://kidkingsky.github.io/wordflow/` **after** this repository exists and deployment completes.
 - In iPhone Safari, choose **Share → Add to Home Screen** to launch the preview like an app. This is not an IPA and cannot create native lock-screen widgets.
 - Its reviews and favorites use browser localStorage (not automatically shared with Flutter or other phones). Speech uses browser TTS.
@@ -162,6 +162,13 @@ Apple / Codemagic 的簽署設定、權限、帳號、Provisioning Profile 都�
 
 - A2 基礎與 B1 進階各 12 課；生活、旅遊、健身、工作每個程度各 3 課。每課 4 個單字與 2 個情境詞句及雙語例句。
 - App 首頁從第一課開始，可逐課完成、重選課程；本機儲存進度。完成課程與間隔複習的精熟紀錄分開。
-- 保留 1,500 字與 24 句舊字庫；共用 ID 合併後共有 1,555 個單字及 58 句詞句，探索頁仍可搜尋完整字庫。
+- 保留 1,500 字與 24 句舊字庫；共用 ID 合併後共有 1,609 個單字及 58 句詞句，探索頁仍可搜尋完整字庫。
 - Live Activity 啟動時顯示目前課程四字，切換課程後重新啟動。App Groups 可用時，Widget 接收目前課程首字及首句；無共用權限時仍依 Widget 自己的程度／主題與日期輪替有關聯的課程，不能保證與 App 個人進度一致。iPhone 實機同步仍需測試。
 - 擴充教材時增加 `assets/content/course_content.json` 的條目及課程即可，CI 驗證引用、唯一 ID、例句和兩個 iOS bundle 是否一致，無固定上限。
+
+### 句子優先學習（v0.5.0）
+
+- 首頁先呈現本課 2 個實用句子，再學句中詞彙、句型公式、使用場合與文法提醒；相關四字仍可帶到 Live Activity。
+- 每個核心句型附生活、工作、健身三種中英情境。先看中文試說，再展開參考英文，點字查義與發音；不是自動評分。
+- 24 課的 48 個詞句都有結構教學及 144 個跨情境例句。這次額外補入 54 個可查、可收藏、可複習的情境單字，另有 9 個原詞條補上語境例句。合計 1,609 字、58 句；144 個延伸例句是句型的應用練習，不另算獨立詞句卡。
+- 教材全離線；未經整理的原詞庫仍是補充查詢資料。App Group 權限及 Live Activity 切課限制與前述相同。

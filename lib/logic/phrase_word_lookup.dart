@@ -208,6 +208,49 @@ const Map<String, String> phraseWordGlossary = {
   "work": "工作；奏效",
   "works": "奏效、運作（第三人稱）",
   "would": "會、願意（委婉語氣）",
+  "daily": "每天的、日常的",
+  "feels": "感覺起來（第三人稱）",
+  "gets": "變得、取得（第三人稱）",
+  "getting": "正在取得、開始變得",
+  "it's": "它是、它正在（it is）",
+  "making": "正在製作、造成",
+  "more": "更多的、較多",
+  "new": "新的",
+  "other": "其他的",
+  "saturday": "星期六",
+  "small": "小的",
+  "today's": "今天的",
+  "too": "太、也",
+  "you're": "你是、你正在（you are）",
+};
+
+/// Explicitly mapped inflections of contextual vocabulary; no guessed stems.
+const Map<String, String> _contextAliases = {
+  "beginners": "beginner",
+  "chores": "chore",
+  "details": "detail",
+  "eggs": "egg",
+  "goals": "goal",
+  "keys": "key",
+  "knees": "knee",
+  "maintaining": "maintain",
+  "notes": "note",
+  "preparing": "prepare",
+  "rains": "rain",
+  "replied": "reply",
+  "solving": "solve",
+  "weights": "weight",
+  "changed": "change",
+  "closed": "close",
+  "completed": "complete",
+  "delayed": "delay",
+  "exercises": "exercise",
+  "found": "find",
+  "reviewed": "review",
+  "weekends": "weekend",
+  "using": "use",
+  "booked": "book",
+  "reading": "read",
 };
 
 class PhraseWordMeaning {
@@ -241,6 +284,19 @@ PhraseWordMeaning lookupPhraseWord(
         partOfSpeech: item.partOfSpeech,
         catalogItem: item,
       );
+    }
+  }
+  final lemma = _contextAliases[normalized];
+  if (lemma != null) {
+    for (final item in items) {
+      if (item.isWord && normalizeEnglishWord(item.english) == lemma) {
+        return PhraseWordMeaning(
+          english: token,
+          chinese: item.chinese,
+          partOfSpeech: item.partOfSpeech,
+          catalogItem: item,
+        );
+      }
     }
   }
   final commonMeaning = phraseWordGlossary[normalized];

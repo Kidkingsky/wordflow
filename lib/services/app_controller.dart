@@ -9,12 +9,13 @@ import '../logic/learning_logic.dart';
 import '../models/learning_item.dart';
 import '../models/learning_lesson.dart';
 import '../models/review_record.dart';
+import '../models/sentence_pattern.dart';
 import '../models/word_family.dart';
 import 'speech_service.dart';
 
 class AppController extends ChangeNotifier {
   AppController._(this.items, this._preferences, List<WordFamily> families,
-      this.lessons)
+      this.lessons, this._patterns)
       : _familyIndex = indexFamilies(families),
         _itemIndex = {for (final item in items) item.id: item};
 
@@ -22,6 +23,9 @@ class AppController extends ChangeNotifier {
 
   final List<LearningItem> items;
   final List<LearningLesson> lessons;
+  final Map<String, SentencePattern> _patterns;
+
+  SentencePattern? patternFor(LearningItem item) => _patterns[item.id];
   final Map<String, LearningItem> _itemIndex;
   final Set<String> _completedLessons = {};
   final Map<String, String> _selectedLessons = {};
@@ -56,13 +60,16 @@ class AppController extends ChangeNotifier {
     final lessons = (course['lessons'] as List<dynamic>)
         .map((value) => LearningLesson.fromJson(value as Map<String, dynamic>))
         .toList(growable: false);
+    final patterns = (course['patterns'] as Map<String, dynamic>? ?? {})
+        .map((id, value) => MapEntry(id,
+            SentencePattern.fromJson(value as Map<String, dynamic>)));
     final familyRaw =
         await rootBundle.loadString('assets/content/word_families.json');
     final families = (jsonDecode(familyRaw) as List<dynamic>)
         .map((value) => WordFamily.fromJson(value as Map<String, dynamic>))
         .toList(growable: false);
     final controller =
-        AppController._(items, SharedPreferencesAsync(), families, lessons);
+        AppController._(items, SharedPreferencesAsync(), families, lessons, patterns);
     await controller._load();
     unawaited(controller.syncCurrentLesson());
     return controller;

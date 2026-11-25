@@ -57,5 +57,17 @@ void main() {
         }
       }
     }
+    final patterns = course['patterns'] as Map<String, dynamic>;
+    for (final pattern in patterns.values) {
+      for (final example in (pattern as Map<String, dynamic>)['examples'] as List) {
+        final sentence = (example as Map<String, dynamic>)['english'] as String;
+        for (final token in englishWordTokens(sentence)) {
+          expect(lookupPhraseWord(token, items).isKnown, isTrue,
+            reason: 'Missing $token in transfer example: $sentence');
+        }
+      }
+    }
+    expect(lookupPhraseWord('beginners', items).catalogItem?.english, 'beginner');
+    expect(lookupPhraseWord('knees', items).catalogItem?.english, 'knee');
   });
 }
