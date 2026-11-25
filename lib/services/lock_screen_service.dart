@@ -8,26 +8,12 @@ class WordFlowLockScreenService {
       MethodChannel('com.kidkingsky.wordflow/lockscreen');
 
   static Future<void> start(AppController controller) async {
-    final choices = controller.items
-        .where((item) =>
-            item.isWord &&
-            item.level == controller.level &&
-            (controller.category == 'all' ||
-                item.category == controller.category))
-        .toList()
-      ..sort((a, b) => a.id.compareTo(b.id));
-
+    final choices = controller.lessonWords;
     if (choices.length < 4) {
-      throw StateError('這個主題沒有足夠的單字，請改選其他主題。');
+      throw StateError('這一課沒有足夠的單字，請先選擇課程。');
     }
-
-    final now = DateTime.now();
-    final date = DateTime.utc(now.year, now.month, now.day);
-    final day = date.difference(DateTime.utc(2025, 1, 1)).inDays;
     final words = List.generate(4, (index) {
-      final item = choices[((day * 4 + index) % choices.length +
-              choices.length) %
-          choices.length];
+      final item = choices[index];
       return <String, String>{
         'english': item.english,
         'chinese': item.chinese,

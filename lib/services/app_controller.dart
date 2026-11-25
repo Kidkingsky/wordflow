@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
@@ -6,17 +7,29 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../logic/learning_logic.dart';
 import '../models/learning_item.dart';
+import '../models/learning_lesson.dart';
 import '../models/review_record.dart';
+import '../models/sentence_pattern.dart';
 import '../models/word_family.dart';
 import 'speech_service.dart';
 
 class AppController extends ChangeNotifier {
-  AppController._(this.items, this._preferences, List<WordFamily> families)
-      : _familyIndex = indexFamilies(families);
+  AppController._(this.items, this._preferences, List<WordFamily> families,
+      this.lessons, this._patterns)
+      : _familyIndex = indexFamilies(families),
+        _itemIndex = {for (final item in items) item.id: item};
 
   static const _storageKey = 'wordflow_local_data_v1';
 
   final List<LearningItem> items;
+  final List<LearningLesson> lessons;
+  final Map<String, SentencePattern> _patterns;
+
+  SentencePattern? patternFor(LearningItem item) => _patterns[item.id];
+  final Map<String, LearningItem> _itemIndex;
+  final Set<String> _completedLessons = {};
+  final Map<String, String> _selectedLessons = {};
+  static const _widgetChannel = MethodChannel('com.kidkingsky.wordflow/widgetsync');
   final SharedPreferencesAsync _preferences;
   final SpeechService speech = SpeechService();
   final Map<String, List<WordFamily>> _familyIndex;
@@ -36,17 +49,29 @@ class AppController extends ChangeNotifier {
   static Future<AppController> initialize() async {
     final raw = await rootBundle.loadString('assets/content/content.json');
     final data = jsonDecode(raw) as List<dynamic>;
-    final items = data
-        .map((value) => LearningItem.fromJson(value as Map<String, dynamic>))
+    final courseRaw = await rootBundle.loadString('assets/content/course_content.json');
+    final course = jsonDecode(courseRaw) as Map<String, dynamic>;
+    final merged = <String, LearningItem>{};
+    for (final value in [...data, ...(course['items'] as List<dynamic>)]) {
+      final item = LearningItem.fromJson(value as Map<String, dynamic>);
+      merged[item.id] = item;
+    }
+    final items = merged.values.toList(growable: false);
+    final lessons = (course['lessons'] as List<dynamic>)
+        .map((value) => LearningLesson.fromJson(value as Map<String, dynamic>))
         .toList(growable: false);
+    final patterns = (course['patterns'] as Map<String, dynamic>? ?? {})
+        .map((id, value) => MapEntry(id,
+            SentencePattern.fromJson(value as Map<String, dynamic>)));
     final familyRaw =
         await rootBundle.loadString('assets/content/word_families.json');
     final families = (jsonDecode(familyRaw) as List<dynamic>)
         .map((value) => WordFamily.fromJson(value as Map<String, dynamic>))
         .toList(growable: false);
     final controller =
-        AppController._(items, SharedPreferencesAsync(), families);
+        AppController._(items, SharedPreferencesAsync(), families, lessons, patterns);
     await controller._load();
+    unawaited(controller.syncCurrentLesson());
     return controller;
   }
 
@@ -63,6 +88,8 @@ class AppController extends ChangeNotifier {
           .clamp(0.3, 0.7)
           .toDouble();
       voiceName = data['voiceName'] as String?;
+      _completedLessons.addAll((data['completedLessons'] as List<dynamic>? ?? []).cast<String>());
+      _selectedLessons.addAll((data['selectedLessons'] as Map<String, dynamic>? ?? {}).cast<String, String>());
       _favorites.addAll((data['favorites'] as List<dynamic>? ?? []).cast<String>());
       final saved = data['records'] as Map<String, dynamic>? ?? {};
       for (final entry in saved.entries) {
@@ -81,6 +108,8 @@ class AppController extends ChangeNotifier {
       'level': level,
       'speechRate': speechRate,
       'voiceName': voiceName,
+      'completedLessons': _completedLessons.toList()..sort(),
+      'selectedLessons': _selectedLessons,
       'favorites': _favorites.toList()..sort(),
       'records': _records.map((key, value) => MapEntry(key, value.toJson())),
     };
@@ -96,6 +125,7 @@ class AppController extends ChangeNotifier {
     category = value;
     notifyListeners();
     _save();
+    unawaited(syncCurrentLesson());
   }
 
   void changeLevel(String value) {
@@ -103,6 +133,7 @@ class AppController extends ChangeNotifier {
     level = value;
     notifyListeners();
     _save();
+    unawaited(syncCurrentLesson());
   }
 
   void changeSpeechRate(double value) {
@@ -151,7 +182,7 @@ class AppController extends ChangeNotifier {
     return true;
   }
 
-  LearningItem? todayWord(DateTime today) => dailyPick(
+  LearningItem? todayWord(DateTime today) => lessonWords.isNotEmpty ? lessonWords.first : dailyPick(
         items,
         today: today,
         kind: 'word',
@@ -159,13 +190,65 @@ class AppController extends ChangeNotifier {
         level: level,
       );
 
-  LearningItem? todayPhrase(DateTime today) => dailyPick(
+  LearningItem? todayPhrase(DateTime today) => lessonPhrases.isNotEmpty ? lessonPhrases.first : dailyPick(
         items,
         today: today,
         kind: 'phrase',
         category: category,
         level: level,
       );
+
+  String get _lessonPath => '$level/$category';
+  List<LearningLesson> get coursePath =>
+      eligibleLessons(lessons, level: level, category: category);
+  LearningLesson? get currentLesson => selectLesson(coursePath,
+      selectedId: _selectedLessons[_lessonPath], completedIds: _completedLessons);
+  List<LearningItem> get lessonWords =>
+      currentLesson?.resolve(_itemIndex, words: true) ?? const [];
+  List<LearningItem> get lessonPhrases =>
+      currentLesson?.resolve(_itemIndex, words: false) ?? const [];
+  int get completedLessonCount =>
+      coursePath.where((lesson) => _completedLessons.contains(lesson.id)).length;
+  bool lessonCompleted(LearningLesson lesson) => _completedLessons.contains(lesson.id);
+
+  void openLesson(String id) {
+    if (!coursePath.any((lesson) => lesson.id == id)) return;
+    _selectedLessons[_lessonPath] = id;
+    notifyListeners();
+    _save();
+    unawaited(syncCurrentLesson());
+  }
+
+  void finishLesson() {
+    final lesson = currentLesson;
+    if (lesson == null) return;
+    _completedLessons.add(lesson.id);
+    final path = coursePath;
+    final index = path.indexWhere((item) => item.id == lesson.id);
+    if (index + 1 < path.length) {
+      _selectedLessons[_lessonPath] = path[index + 1].id;
+    } else {
+      _selectedLessons[_lessonPath] = lesson.id;
+    }
+    notifyListeners();
+    _save();
+    unawaited(syncCurrentLesson());
+  }
+
+  /// Best effort only: free sideload signing may not permit App Groups.
+  /// Both IDs refer to the same lesson. Native WidgetKit refresh is asynchronous.
+  Future<bool> syncCurrentLesson() async {
+    if (defaultTargetPlatform != TargetPlatform.iOS ||
+        lessonWords.isEmpty || lessonPhrases.isEmpty) return false;
+    try {
+      final result = await _widgetChannel.invokeMapMethod<String, dynamic>(
+          'setLesson', {'wordId': lessonWords.first.id, 'phraseId': lessonPhrases.first.id});
+      return result?['available'] == true;
+    } catch (error) {
+      debugPrint('WordFlow Widget lesson sync unavailable: $error');
+      return false;
+    }
+  }
 
   List<LearningItem> get dueItems {
     final now = DateTime.now();

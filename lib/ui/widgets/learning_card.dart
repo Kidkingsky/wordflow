@@ -5,6 +5,7 @@ import '../../models/word_family.dart';
 import '../../services/app_controller.dart';
 import '../theme/wordflow_design.dart';
 import 'phrase_lookup_text.dart';
+import 'sentence_pattern_section.dart';
 
 class LearningCard extends StatelessWidget {
   const LearningCard({
@@ -22,6 +23,7 @@ class LearningCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final pattern = controller.patternFor(item);
     final dark = isHighlighted;
     final foreground = dark ? Colors.white : WordFlowDesign.ink;
     final subtle = dark ? const Color(0xFFECE3F2) : WordFlowDesign.muted;
@@ -172,6 +174,16 @@ class LearningCard extends StatelessWidget {
               Text(item.exampleChinese,
                   style: TextStyle(color: subtle, fontSize: 13, height: 1.45)),
             ],
+          ],
+          if (pattern != null) ...[
+            const SizedBox(height: 18),
+            SentencePatternSection(
+              phrase: item,
+              pattern: pattern,
+              controller: controller,
+              onSpeak: (text) => speakEnglish(context, controller, text),
+              onOpenWord: (word) => showLearningDetails(context, word, controller),
+            ),
           ],
           for (final family in controller.familiesFor(item)) ...[
             const SizedBox(height: 18),

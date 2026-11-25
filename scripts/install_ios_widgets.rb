@@ -26,6 +26,7 @@ FileUtils.mkdir_p(widget_folder)
 FileUtils.cp(File.join(widget_source, 'WordFlowWidgets.swift'), widget_folder)
 FileUtils.cp(File.join(widget_source, 'Info.plist'), widget_folder)
 FileUtils.cp(File.join(root, 'assets/content/content.json'), File.join(widget_folder, 'content.json'))
+FileUtils.cp(File.join(root, 'assets/content/course_content.json'), File.join(widget_folder, 'course_content.json'))
 FileUtils.cp(File.join(widget_source, 'WordFlowLiveAttributes.swift'), File.join(widget_folder, 'WordFlowLiveAttributes.swift'))
 FileUtils.cp(File.join(root, 'ios_native', 'WordFlowLiveActivityBridge.swift'), File.join(ios, 'Runner', 'WordFlowLiveActivityBridge.swift'))
 
@@ -82,6 +83,7 @@ unless project.targets.any? { |target| target.name == 'WordFlowWidgets' }
   swift_file = group.new_file('WordFlowWidgets.swift')
   attributes_file = group.new_file('WordFlowLiveAttributes.swift')
   json_file = group.new_file('content.json')
+  course_json_file = group.new_file('course_content.json')
   group.new_file('Info.plist')
   widget.add_file_references([swift_file, attributes_file])
   bridge_file = project.main_group.new_file('Runner/WordFlowLiveActivityBridge.swift')
@@ -91,6 +93,9 @@ unless project.targets.any? { |target| target.name == 'WordFlowWidgets' }
   resource = project.new(Xcodeproj::Project::Object::PBXBuildFile)
   resource.file_ref = json_file
   widget.resources_build_phase.files << resource
+  course_resource = project.new(Xcodeproj::Project::Object::PBXBuildFile)
+  course_resource.file_ref = course_json_file
+  widget.resources_build_phase.files << course_resource
 
   widget.build_configurations.each do |config|
     config.build_settings.merge!(

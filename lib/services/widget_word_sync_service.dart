@@ -55,12 +55,7 @@ class WidgetWordSyncService {
     final current = await status();
     if (!current.available) return current;
 
-    final choices = controller.items.where((item) =>
-        item.isWord &&
-        item.level == controller.level &&
-        (controller.category == 'all' ||
-            item.category == controller.category)).toList()
-      ..sort((a, b) => a.id.compareTo(b.id));
+    final choices = controller.lessonWords;
 
     if (choices.isEmpty) {
       throw StateError('這個程度與主題目前沒有可選單字。');
@@ -74,7 +69,8 @@ class WidgetWordSyncService {
     final next = choices[(index + 1) % choices.length];
     return WidgetWordSyncState.fromMap(
         await _channel.invokeMapMethod<dynamic, dynamic>(
-            'setWord', <String, String>{'wordId': next.id}));
+            'setLesson', <String, String>{'wordId': next.id,
+              'phraseId': controller.lessonPhrases.first.id}));
   }
 
   static Future<WidgetWordSyncState> showDailyWord() async {

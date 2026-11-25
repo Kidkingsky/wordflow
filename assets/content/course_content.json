@@ -1,0 +1,4397 @@
+{
+  "items": [
+    {
+      "id": "w_course_a2_daily_01_1_name",
+      "kind": "word",
+      "category": "daily",
+      "level": "A2",
+      "english": "name",
+      "chinese": "名字",
+      "note": "名詞｜自我介紹與認識他人",
+      "example": "My name is Kevin.",
+      "exampleChinese": "我的名字是 Kevin。"
+    },
+    {
+      "id": "w_course_a2_daily_01_2_hometown",
+      "kind": "word",
+      "category": "daily",
+      "level": "A2",
+      "english": "hometown",
+      "chinese": "家鄉",
+      "note": "名詞｜自我介紹與認識他人",
+      "example": "My hometown is Taipei.",
+      "exampleChinese": "我的家鄉是台北。"
+    },
+    {
+      "id": "w_course_a2_daily_01_3_hobby",
+      "kind": "word",
+      "category": "daily",
+      "level": "A2",
+      "english": "hobby",
+      "chinese": "興趣",
+      "note": "名詞｜自我介紹與認識他人",
+      "example": "Reading is my favorite hobby.",
+      "exampleChinese": "閱讀是我最喜歡的興趣。"
+    },
+    {
+      "id": "w_course_a2_daily_01_4_neighbor",
+      "kind": "word",
+      "category": "daily",
+      "level": "A2",
+      "english": "neighbor",
+      "chinese": "鄰居",
+      "note": "名詞｜自我介紹與認識他人",
+      "example": "My neighbor is very friendly.",
+      "exampleChinese": "我的鄰居很親切。"
+    },
+    {
+      "id": "p_course_a2_daily_01_5_nice_to_meet_you",
+      "kind": "phrase",
+      "category": "daily",
+      "level": "A2",
+      "english": "Nice to meet you.",
+      "chinese": "很高興認識你。",
+      "note": "情境用語｜自我介紹與認識他人",
+      "example": "Hello, I'm Kevin. Nice to meet you.",
+      "exampleChinese": "你好，我是 Kevin。很高興認識你。"
+    },
+    {
+      "id": "p_course_a2_daily_01_6_what_do_you_like_to_do_in_your_free_time",
+      "kind": "phrase",
+      "category": "daily",
+      "level": "A2",
+      "english": "What do you like to do in your free time?",
+      "chinese": "你空閒時喜歡做什麼？",
+      "note": "情境用語｜自我介紹與認識他人",
+      "example": "What do you like to do in your free time? I like running.",
+      "exampleChinese": "你空閒時喜歡做什麼？我喜歡跑步。"
+    },
+    {
+      "id": "w_course_a2_daily_02_1_routine",
+      "kind": "word",
+      "category": "daily",
+      "level": "A2",
+      "english": "routine",
+      "chinese": "日常作息",
+      "note": "名詞｜日常作息與時間",
+      "example": "Exercise is part of my daily routine.",
+      "exampleChinese": "運動是我日常作息的一部分。"
+    },
+    {
+      "id": "w_course_a2_daily_02_2_usually",
+      "kind": "word",
+      "category": "daily",
+      "level": "A2",
+      "english": "usually",
+      "chinese": "通常",
+      "note": "副詞｜日常作息與時間",
+      "example": "I usually get up at seven.",
+      "exampleChinese": "我通常七點起床。"
+    },
+    {
+      "id": "w_course_a2_daily_02_3_breakfast",
+      "kind": "word",
+      "category": "daily",
+      "level": "A2",
+      "english": "breakfast",
+      "chinese": "早餐",
+      "note": "名詞｜日常作息與時間",
+      "example": "We have breakfast together.",
+      "exampleChinese": "我們一起吃早餐。"
+    },
+    {
+      "id": "w_course_a2_daily_02_4_bedtime",
+      "kind": "word",
+      "category": "daily",
+      "level": "A2",
+      "english": "bedtime",
+      "chinese": "就寢時間",
+      "note": "名詞｜日常作息與時間",
+      "example": "My children's bedtime is nine.",
+      "exampleChinese": "我的孩子九點就寢。"
+    },
+    {
+      "id": "p_course_a2_daily_02_5_what_time_do_you_usually_get_up",
+      "kind": "phrase",
+      "category": "daily",
+      "level": "A2",
+      "english": "What time do you usually get up?",
+      "chinese": "你通常幾點起床？",
+      "note": "情境用語｜日常作息與時間",
+      "example": "What time do you usually get up on weekdays?",
+      "exampleChinese": "你平日通常幾點起床？"
+    },
+    {
+      "id": "p_course_a2_daily_02_6_i_usually_take_a_walk_after_dinner",
+      "kind": "phrase",
+      "category": "daily",
+      "level": "A2",
+      "english": "I usually take a walk after dinner.",
+      "chinese": "我通常晚餐後散步。",
+      "note": "情境用語｜日常作息與時間",
+      "example": "I usually take a walk after dinner with my family.",
+      "exampleChinese": "我通常晚餐後和家人一起散步。"
+    },
+    {
+      "id": "w_course_a2_daily_03_1_cashier",
+      "kind": "word",
+      "category": "daily",
+      "level": "A2",
+      "english": "cashier",
+      "chinese": "收銀員",
+      "note": "名詞｜購物與付款",
+      "example": "Please pay the cashier over there.",
+      "exampleChinese": "請到那邊向收銀員付款。"
+    },
+    {
+      "id": "w_daily_02",
+      "kind": "word",
+      "category": "daily",
+      "level": "A2",
+      "english": "receipt",
+      "chinese": "收據",
+      "note": "名詞｜購物或付款的憑證。",
+      "example": "Can I get a receipt, please?",
+      "exampleChinese": "可以給我收據嗎？"
+    },
+    {
+      "id": "w_lex_127e5c5e_discount",
+      "kind": "word",
+      "category": "daily",
+      "level": "B1",
+      "english": "discount",
+      "chinese": "折扣",
+      "note": "名詞｜購物與付款",
+      "example": "Is there a discount on this shirt?",
+      "exampleChinese": "這件襯衫有折扣嗎？"
+    },
+    {
+      "id": "w_lex_23a0d95c_size",
+      "kind": "word",
+      "category": "daily",
+      "level": "A2",
+      "english": "size",
+      "chinese": "尺寸",
+      "note": "名詞｜購物與付款",
+      "example": "Do you have a smaller size?",
+      "exampleChinese": "你們有小一點的尺寸嗎？"
+    },
+    {
+      "id": "p_course_a2_daily_03_5_can_i_pay_by_card",
+      "kind": "phrase",
+      "category": "daily",
+      "level": "A2",
+      "english": "Can I pay by card?",
+      "chinese": "我可以刷卡嗎？",
+      "note": "情境用語｜購物與付款",
+      "example": "Can I pay by card or is it cash only?",
+      "exampleChinese": "我可以刷卡，還是只能付現金？"
+    },
+    {
+      "id": "p_course_a2_daily_03_6_how_much_does_this_cost",
+      "kind": "phrase",
+      "category": "daily",
+      "level": "A2",
+      "english": "How much does this cost?",
+      "chinese": "這個多少錢？",
+      "note": "情境用語｜購物與付款",
+      "example": "How much does this bag cost?",
+      "exampleChinese": "這個包包多少錢？"
+    },
+    {
+      "id": "w_course_a2_travel_01_1_airport",
+      "kind": "word",
+      "category": "travel",
+      "level": "A2",
+      "english": "airport",
+      "chinese": "機場",
+      "note": "名詞｜機場與報到",
+      "example": "We arrived at the airport early.",
+      "exampleChinese": "我們提早抵達機場。"
+    },
+    {
+      "id": "w_course_a2_travel_01_2_boarding",
+      "kind": "word",
+      "category": "travel",
+      "level": "A2",
+      "english": "boarding",
+      "chinese": "登機",
+      "note": "名詞｜機場與報到",
+      "example": "Boarding begins at ten.",
+      "exampleChinese": "十點開始登機。"
+    },
+    {
+      "id": "w_course_a2_travel_01_3_passport",
+      "kind": "word",
+      "category": "travel",
+      "level": "A2",
+      "english": "passport",
+      "chinese": "護照",
+      "note": "名詞｜機場與報到",
+      "example": "Please show me your passport.",
+      "exampleChinese": "請出示你的護照。"
+    },
+    {
+      "id": "w_course_a2_travel_01_4_suitcase",
+      "kind": "word",
+      "category": "travel",
+      "level": "A2",
+      "english": "suitcase",
+      "chinese": "行李箱",
+      "note": "名詞｜機場與報到",
+      "example": "My suitcase is very heavy.",
+      "exampleChinese": "我的行李箱很重。"
+    },
+    {
+      "id": "p_course_a2_travel_01_5_where_can_i_check_in_for_my_flight",
+      "kind": "phrase",
+      "category": "travel",
+      "level": "A2",
+      "english": "Where can I check in for my flight?",
+      "chinese": "我可以在哪裡辦理登機報到？",
+      "note": "情境用語｜機場與報到",
+      "example": "Excuse me, where can I check in for my flight?",
+      "exampleChinese": "不好意思，我可以在哪裡辦理登機報到？"
+    },
+    {
+      "id": "p_course_a2_travel_01_6_which_gate_should_i_go_to",
+      "kind": "phrase",
+      "category": "travel",
+      "level": "A2",
+      "english": "Which gate should I go to?",
+      "chinese": "我應該去哪個登機門？",
+      "note": "情境用語｜機場與報到",
+      "example": "Which gate should I go to for this flight?",
+      "exampleChinese": "這班飛機我應該去哪個登機門？"
+    },
+    {
+      "id": "w_travel_02",
+      "kind": "word",
+      "category": "travel",
+      "level": "A2",
+      "english": "reservation",
+      "chinese": "預訂；訂位",
+      "note": "名詞｜飯店、餐廳或交通的預約。",
+      "example": "I have a reservation for two nights.",
+      "exampleChinese": "我預訂了兩晚住宿。"
+    },
+    {
+      "id": "w_lex_1ea28e9e_reception",
+      "kind": "word",
+      "category": "daily",
+      "level": "A2",
+      "english": "reception",
+      "chinese": "接待處",
+      "note": "名詞｜飯店入住",
+      "example": "Ask at reception for extra towels.",
+      "exampleChinese": "向接待處索取額外毛巾。"
+    },
+    {
+      "id": "w_lex_46c72e58_towel",
+      "kind": "word",
+      "category": "daily",
+      "level": "A2",
+      "english": "towel",
+      "chinese": "毛巾",
+      "note": "名詞｜飯店入住",
+      "example": "Could you bring us another towel?",
+      "exampleChinese": "可以再拿一條毛巾給我們嗎？"
+    },
+    {
+      "id": "w_lex_1608c7b7_elevator",
+      "kind": "word",
+      "category": "daily",
+      "level": "A2",
+      "english": "elevator",
+      "chinese": "電梯",
+      "note": "名詞｜飯店入住",
+      "example": "The elevator is next to the lobby.",
+      "exampleChinese": "電梯在大廳旁邊。"
+    },
+    {
+      "id": "p_travel_01",
+      "kind": "phrase",
+      "category": "travel",
+      "level": "A2",
+      "english": "I’d like to check in.",
+      "chinese": "我想辦理入住。",
+      "note": "飯店櫃台｜開場時禮貌表達入住需求。",
+      "example": "I’d like to check in. I have a reservation.",
+      "exampleChinese": "我想辦理入住，我有訂房。"
+    },
+    {
+      "id": "p_travel_05",
+      "kind": "phrase",
+      "category": "travel",
+      "level": "B1",
+      "english": "Is breakfast included?",
+      "chinese": "有包含早餐嗎？",
+      "note": "飯店｜確認訂房內容。",
+      "example": "Is breakfast included in the room rate?",
+      "exampleChinese": "房價有包含早餐嗎？"
+    },
+    {
+      "id": "w_course_a2_travel_03_1_station",
+      "kind": "word",
+      "category": "travel",
+      "level": "A2",
+      "english": "station",
+      "chinese": "車站",
+      "note": "名詞｜交通與問路",
+      "example": "The station is near our hotel.",
+      "exampleChinese": "車站在我們飯店附近。"
+    },
+    {
+      "id": "w_lex_2a4a32b2_platform",
+      "kind": "word",
+      "category": "travel",
+      "level": "A2",
+      "english": "platform",
+      "chinese": "月台",
+      "note": "名詞｜交通與問路",
+      "example": "The train leaves from platform two.",
+      "exampleChinese": "火車從第二月台出發。"
+    },
+    {
+      "id": "w_lex_28ff8847_straight",
+      "kind": "word",
+      "category": "daily",
+      "level": "A2",
+      "english": "straight",
+      "chinese": "直走",
+      "note": "副詞｜交通與問路",
+      "example": "Go straight for two blocks.",
+      "exampleChinese": "直走兩個街區。"
+    },
+    {
+      "id": "w_course_a2_travel_03_4_fare",
+      "kind": "word",
+      "category": "travel",
+      "level": "A2",
+      "english": "fare",
+      "chinese": "車資",
+      "note": "名詞｜交通與問路",
+      "example": "How much is the bus fare?",
+      "exampleChinese": "公車車資是多少？"
+    },
+    {
+      "id": "p_course_a2_travel_03_5_how_do_i_get_to_the_station",
+      "kind": "phrase",
+      "category": "travel",
+      "level": "A2",
+      "english": "How do I get to the station?",
+      "chinese": "我要怎麼去車站？",
+      "note": "情境用語｜交通與問路",
+      "example": "How do I get to the nearest station from here?",
+      "exampleChinese": "從這裡要怎麼去最近的車站？"
+    },
+    {
+      "id": "p_course_a2_travel_03_6_does_this_bus_go_to_the_city_center",
+      "kind": "phrase",
+      "category": "travel",
+      "level": "A2",
+      "english": "Does this bus go to the city center?",
+      "chinese": "這班公車有到市中心嗎？",
+      "note": "情境用語｜交通與問路",
+      "example": "Does this bus go to the city center or the airport?",
+      "exampleChinese": "這班公車會到市中心還是機場？"
+    },
+    {
+      "id": "w_course_a2_fitness_01_1_dumbbell",
+      "kind": "word",
+      "category": "fitness",
+      "level": "A2",
+      "english": "dumbbell",
+      "chinese": "啞鈴",
+      "note": "名詞｜健身房與器材",
+      "example": "Pick up a light dumbbell first.",
+      "exampleChinese": "先拿一個輕一點的啞鈴。"
+    },
+    {
+      "id": "w_course_a2_fitness_01_2_bench",
+      "kind": "word",
+      "category": "fitness",
+      "level": "A2",
+      "english": "bench",
+      "chinese": "長凳、訓練椅",
+      "note": "名詞｜健身房與器材",
+      "example": "Sit on the bench and relax.",
+      "exampleChinese": "坐在訓練椅上放鬆。"
+    },
+    {
+      "id": "w_course_a2_fitness_01_3_treadmill",
+      "kind": "word",
+      "category": "fitness",
+      "level": "A2",
+      "english": "treadmill",
+      "chinese": "跑步機",
+      "note": "名詞｜健身房與器材",
+      "example": "I walk on the treadmill before training.",
+      "exampleChinese": "我訓練前會在跑步機上走路。"
+    },
+    {
+      "id": "w_course_a2_fitness_01_4_locker",
+      "kind": "word",
+      "category": "fitness",
+      "level": "A2",
+      "english": "locker",
+      "chinese": "置物櫃",
+      "note": "名詞｜健身房與器材",
+      "example": "You can put your bag in a locker.",
+      "exampleChinese": "你可以把包包放在置物櫃裡。"
+    },
+    {
+      "id": "p_course_a2_fitness_01_5_how_do_i_use_this_machine",
+      "kind": "phrase",
+      "category": "fitness",
+      "level": "A2",
+      "english": "How do I use this machine?",
+      "chinese": "這台器材要怎麼使用？",
+      "note": "情境用語｜健身房與器材",
+      "example": "Could you show me how to use this machine?",
+      "exampleChinese": "你可以示範這台器材要怎麼使用嗎？"
+    },
+    {
+      "id": "p_course_a2_fitness_01_6_is_anyone_using_this_bench",
+      "kind": "phrase",
+      "category": "fitness",
+      "level": "A2",
+      "english": "Is anyone using this bench?",
+      "chinese": "有人在使用這張訓練椅嗎？",
+      "note": "情境用語｜健身房與器材",
+      "example": "Excuse me, is anyone using this bench?",
+      "exampleChinese": "不好意思，有人在使用這張訓練椅嗎？"
+    },
+    {
+      "id": "w_course_a2_fitness_02_1_squat",
+      "kind": "word",
+      "category": "fitness",
+      "level": "A2",
+      "english": "squat",
+      "chinese": "深蹲",
+      "note": "名詞／動詞｜基本訓練動作",
+      "example": "Do ten squats with good form.",
+      "exampleChinese": "用良好的姿勢做十下深蹲。"
+    },
+    {
+      "id": "w_course_a2_fitness_02_2_repetition",
+      "kind": "word",
+      "category": "fitness",
+      "level": "A2",
+      "english": "repetition",
+      "chinese": "重複次數、一下",
+      "note": "名詞｜基本訓練動作",
+      "example": "Complete eight repetitions slowly.",
+      "exampleChinese": "慢慢完成八下。"
+    },
+    {
+      "id": "w_fitness_06",
+      "kind": "word",
+      "category": "fitness",
+      "level": "A2",
+      "english": "stretch",
+      "chinese": "伸展",
+      "note": "動詞／名詞｜延展肌肉與關節的動作。",
+      "example": "Stretch your legs after running.",
+      "exampleChinese": "跑步後伸展腿部。"
+    },
+    {
+      "id": "w_lex_f6c75a7c_lift",
+      "kind": "word",
+      "category": "fitness",
+      "level": "A2",
+      "english": "lift",
+      "chinese": "舉起",
+      "note": "動詞｜基本訓練動作",
+      "example": "Lift the weights slowly.",
+      "exampleChinese": "慢慢舉起重量。"
+    },
+    {
+      "id": "p_fitness_01",
+      "kind": "phrase",
+      "category": "fitness",
+      "level": "A2",
+      "english": "Keep your back straight.",
+      "chinese": "背部保持挺直。",
+      "note": "教練指導｜提醒動作時注意背部位置。",
+      "example": "Keep your back straight during the movement.",
+      "exampleChinese": "動作過程中背部保持挺直。"
+    },
+    {
+      "id": "p_fitness_04",
+      "kind": "phrase",
+      "category": "fitness",
+      "level": "A2",
+      "english": "How many reps do you have left?",
+      "chinese": "你還剩幾下？",
+      "note": "訓練中｜詢問剩餘次數。",
+      "example": "How many reps do you have left in this set?",
+      "exampleChinese": "這一組你還剩幾下？"
+    },
+    {
+      "id": "w_lex_eabd3d97_rest",
+      "kind": "word",
+      "category": "fitness",
+      "level": "A2",
+      "english": "rest",
+      "chinese": "休息",
+      "note": "名詞／動詞｜訓練節奏與休息",
+      "example": "Rest for one minute between sets.",
+      "exampleChinese": "組間休息一分鐘。"
+    },
+    {
+      "id": "w_lex_235d9fc7_breath",
+      "kind": "word",
+      "category": "daily",
+      "level": "B1",
+      "english": "breath",
+      "chinese": "呼吸、一口氣",
+      "note": "名詞｜訓練節奏與休息",
+      "example": "Take a deep breath before you start.",
+      "exampleChinese": "開始前深吸一口氣。"
+    },
+    {
+      "id": "w_course_a2_fitness_03_3_pace",
+      "kind": "word",
+      "category": "fitness",
+      "level": "A2",
+      "english": "pace",
+      "chinese": "步調、配速",
+      "note": "名詞｜訓練節奏與休息",
+      "example": "Run at a comfortable pace.",
+      "exampleChinese": "以舒服的配速跑步。"
+    },
+    {
+      "id": "w_fitness_03",
+      "kind": "word",
+      "category": "fitness",
+      "level": "A2",
+      "english": "warm-up",
+      "chinese": "暖身",
+      "note": "名詞｜正式運動前的準備活動。",
+      "example": "Start with a five-minute warm-up.",
+      "exampleChinese": "先做五分鐘暖身。"
+    },
+    {
+      "id": "p_fitness_02",
+      "kind": "phrase",
+      "category": "fitness",
+      "level": "A2",
+      "english": "Take a short break.",
+      "chinese": "短暫休息一下。",
+      "note": "訓練中｜告訴學員先休息。",
+      "example": "Take a short break between sets.",
+      "exampleChinese": "組間短暫休息一下。"
+    },
+    {
+      "id": "p_fitness_03",
+      "kind": "phrase",
+      "category": "fitness",
+      "level": "A2",
+      "english": "Breathe out as you lift.",
+      "chinese": "舉起時吐氣。",
+      "note": "教練指導｜提醒施力與呼吸節奏。",
+      "example": "Breathe out as you lift the weight.",
+      "exampleChinese": "把重量舉起時吐氣。"
+    },
+    {
+      "id": "w_lex_5b155444_colleague",
+      "kind": "word",
+      "category": "work",
+      "level": "A2",
+      "english": "colleague",
+      "chinese": "同事",
+      "note": "名詞｜認識同事與工作",
+      "example": "My colleague will help you today.",
+      "exampleChinese": "我的同事今天會幫你。"
+    },
+    {
+      "id": "w_course_a2_work_01_2_office",
+      "kind": "word",
+      "category": "work",
+      "level": "A2",
+      "english": "office",
+      "chinese": "辦公室",
+      "note": "名詞｜認識同事與工作",
+      "example": "I work in an office near the station.",
+      "exampleChinese": "我在車站附近的辦公室工作。"
+    },
+    {
+      "id": "w_lex_f448886c_task",
+      "kind": "word",
+      "category": "work",
+      "level": "A2",
+      "english": "task",
+      "chinese": "任務",
+      "note": "名詞｜認識同事與工作",
+      "example": "This task should take an hour.",
+      "exampleChinese": "這個任務應該需要一小時。"
+    },
+    {
+      "id": "w_course_a2_work_01_4_team",
+      "kind": "word",
+      "category": "work",
+      "level": "A2",
+      "english": "team",
+      "chinese": "團隊",
+      "note": "名詞｜認識同事與工作",
+      "example": "Our team meets every Monday.",
+      "exampleChinese": "我們的團隊每週一開會。"
+    },
+    {
+      "id": "p_course_a2_work_01_5_what_do_you_do_for_work",
+      "kind": "phrase",
+      "category": "work",
+      "level": "A2",
+      "english": "What do you do for work?",
+      "chinese": "你的工作是什麼？",
+      "note": "情境用語｜認識同事與工作",
+      "example": "What do you do for work? I work in IT.",
+      "exampleChinese": "你的工作是什麼？我在資訊科技業工作。"
+    },
+    {
+      "id": "p_course_a2_work_01_6_who_is_responsible_for_this_task",
+      "kind": "phrase",
+      "category": "work",
+      "level": "A2",
+      "english": "Who is responsible for this task?",
+      "chinese": "誰負責這個任務？",
+      "note": "情境用語｜認識同事與工作",
+      "example": "Who is responsible for this task today?",
+      "exampleChinese": "今天誰負責這個任務？"
+    },
+    {
+      "id": "w_course_a2_work_02_1_meeting",
+      "kind": "word",
+      "category": "work",
+      "level": "A2",
+      "english": "meeting",
+      "chinese": "會議",
+      "note": "名詞｜安排會議與行程",
+      "example": "The meeting starts at two.",
+      "exampleChinese": "會議兩點開始。"
+    },
+    {
+      "id": "w_daily_03",
+      "kind": "word",
+      "category": "daily",
+      "level": "A2",
+      "english": "schedule",
+      "chinese": "時間表；安排",
+      "note": "名詞／動詞｜預計要做事情的時間。",
+      "example": "My schedule is full this afternoon.",
+      "exampleChinese": "我今天下午行程滿了。"
+    },
+    {
+      "id": "w_travel_11",
+      "kind": "word",
+      "category": "travel",
+      "level": "A2",
+      "english": "available",
+      "chinese": "有空的；可提供的",
+      "note": "形容詞｜房間、座位或服務目前能使用。",
+      "example": "Is a larger room available?",
+      "exampleChinese": "還有比較大的房間嗎？"
+    },
+    {
+      "id": "w_daily_06",
+      "kind": "word",
+      "category": "daily",
+      "level": "A2",
+      "english": "appointment",
+      "chinese": "預約時間",
+      "note": "名詞｜醫師、服務或正式會面的預約。",
+      "example": "I have a dentist appointment at three.",
+      "exampleChinese": "我三點有牙醫預約。"
+    },
+    {
+      "id": "p_work_04",
+      "kind": "phrase",
+      "category": "work",
+      "level": "A2",
+      "english": "Could we move the meeting?",
+      "chinese": "可以改會議時間嗎？",
+      "note": "工作安排｜詢問是否能改期。",
+      "example": "Could we move the meeting to Friday?",
+      "exampleChinese": "我們可以把會議改到星期五嗎？"
+    },
+    {
+      "id": "p_course_a2_work_02_6_does_ten_o_clock_work_for_you",
+      "kind": "phrase",
+      "category": "work",
+      "level": "A2",
+      "english": "Does ten o'clock work for you?",
+      "chinese": "十點對你方便嗎？",
+      "note": "情境用語｜安排會議與行程",
+      "example": "Does ten o'clock work for you tomorrow?",
+      "exampleChinese": "明天十點對你方便嗎？"
+    },
+    {
+      "id": "w_work_01",
+      "kind": "word",
+      "category": "work",
+      "level": "A2",
+      "english": "update",
+      "chinese": "更新；進度",
+      "note": "名詞／動詞｜提供最新狀態或修改內容。",
+      "example": "Can you give me a quick update?",
+      "exampleChinese": "你可以簡短更新一下進度嗎？"
+    },
+    {
+      "id": "w_lex_59167492_finish",
+      "kind": "word",
+      "category": "daily",
+      "level": "A2",
+      "english": "finish",
+      "chinese": "完成",
+      "note": "動詞｜回報進度",
+      "example": "I need to finish this report today.",
+      "exampleChinese": "我今天需要完成這份報告。"
+    },
+    {
+      "id": "w_lex_19bb34eb_report",
+      "kind": "word",
+      "category": "work",
+      "level": "A2",
+      "english": "report",
+      "chinese": "報告、回報",
+      "note": "名詞／動詞｜回報進度",
+      "example": "Please send the report by noon.",
+      "exampleChinese": "請在中午前寄出報告。"
+    },
+    {
+      "id": "w_travel_07",
+      "kind": "word",
+      "category": "travel",
+      "level": "A2",
+      "english": "delay",
+      "chinese": "延誤",
+      "note": "名詞／動詞｜比預定時間晚發生。",
+      "example": "Our flight has a two-hour delay.",
+      "exampleChinese": "我們的班機延誤兩小時。"
+    },
+    {
+      "id": "p_work_03",
+      "kind": "phrase",
+      "category": "work",
+      "level": "A2",
+      "english": "We’re working on it.",
+      "chinese": "我們正在處理。",
+      "note": "工作溝通｜回報進行中的工作。",
+      "example": "We’re working on it and will share an update soon.",
+      "exampleChinese": "我們正在處理，稍後會更新進度。"
+    },
+    {
+      "id": "p_work_01",
+      "kind": "phrase",
+      "category": "work",
+      "level": "A2",
+      "english": "Could you give me an update?",
+      "chinese": "可以跟我更新一下進度嗎？",
+      "note": "工作溝通｜禮貌地追蹤進度。",
+      "example": "Could you give me an update on the project?",
+      "exampleChinese": "可以更新一下專案進度嗎？"
+    },
+    {
+      "id": "w_course_b1_daily_01_1_opinion",
+      "kind": "word",
+      "category": "daily",
+      "level": "B1",
+      "english": "opinion",
+      "chinese": "意見",
+      "note": "名詞｜表達意見與理由",
+      "example": "In my opinion, this is a better choice.",
+      "exampleChinese": "依我看，這是比較好的選擇。"
+    },
+    {
+      "id": "w_course_b1_daily_01_2_prefer",
+      "kind": "word",
+      "category": "daily",
+      "level": "B1",
+      "english": "prefer",
+      "chinese": "比較喜歡",
+      "note": "動詞｜表達意見與理由",
+      "example": "I prefer cooking at home to eating out.",
+      "exampleChinese": "比起外食，我更喜歡在家煮飯。"
+    },
+    {
+      "id": "w_course_b1_daily_01_3_although",
+      "kind": "word",
+      "category": "daily",
+      "level": "B1",
+      "english": "although",
+      "chinese": "雖然",
+      "note": "連接詞｜表達意見與理由",
+      "example": "Although it was raining, we went out.",
+      "exampleChinese": "雖然下雨，我們還是出門了。"
+    },
+    {
+      "id": "w_course_b1_daily_01_4_reasonable",
+      "kind": "word",
+      "category": "daily",
+      "level": "B1",
+      "english": "reasonable",
+      "chinese": "合理的",
+      "note": "形容詞｜表達意見與理由",
+      "example": "That sounds like a reasonable plan.",
+      "exampleChinese": "聽起來是個合理的計畫。"
+    },
+    {
+      "id": "p_course_b1_daily_01_5_i_d_rather_stay_home_than_go_out",
+      "kind": "phrase",
+      "category": "daily",
+      "level": "B1",
+      "english": "I'd rather stay home than go out.",
+      "chinese": "比起出門，我寧願待在家。",
+      "note": "情境用語｜表達意見與理由",
+      "example": "I'd rather stay home than go out on a rainy day.",
+      "exampleChinese": "下雨天比起出門，我寧願待在家。"
+    },
+    {
+      "id": "p_course_b1_daily_01_6_i_see_your_point_but_i_have_a_different_opinion",
+      "kind": "phrase",
+      "category": "daily",
+      "level": "B1",
+      "english": "I see your point, but I have a different opinion.",
+      "chinese": "我理解你的看法，但我有不同意見。",
+      "note": "情境用語｜表達意見與理由",
+      "example": "I see your point, but I have a different opinion about the plan.",
+      "exampleChinese": "我理解你的看法，但我對這個計畫有不同意見。"
+    },
+    {
+      "id": "w_course_b1_daily_02_1_household",
+      "kind": "word",
+      "category": "daily",
+      "level": "B1",
+      "english": "household",
+      "chinese": "家庭、家戶",
+      "note": "名詞｜家庭安排與協調",
+      "example": "Everyone helps with the household chores.",
+      "exampleChinese": "每個人都幫忙做家事。"
+    },
+    {
+      "id": "w_lex_2e882b9b_responsibility",
+      "kind": "word",
+      "category": "daily",
+      "level": "B1",
+      "english": "responsibility",
+      "chinese": "責任",
+      "note": "名詞｜家庭安排與協調",
+      "example": "Taking care of the children is a shared responsibility.",
+      "exampleChinese": "照顧孩子是共同的責任。"
+    },
+    {
+      "id": "w_daily_12",
+      "kind": "word",
+      "category": "daily",
+      "level": "B1",
+      "english": "convenient",
+      "chinese": "方便的",
+      "note": "形容詞｜容易取得或省時省力。",
+      "example": "Online payment is very convenient.",
+      "exampleChinese": "線上付款非常方便。"
+    },
+    {
+      "id": "w_course_b1_daily_02_4_unexpected",
+      "kind": "word",
+      "category": "daily",
+      "level": "B1",
+      "english": "unexpected",
+      "chinese": "意外的、未預料到的",
+      "note": "形容詞｜家庭安排與協調",
+      "example": "We had an unexpected visitor yesterday.",
+      "exampleChinese": "昨天有位意外來訪的客人。"
+    },
+    {
+      "id": "p_course_b1_daily_02_5_could_we_split_the_housework",
+      "kind": "phrase",
+      "category": "daily",
+      "level": "B1",
+      "english": "Could we split the housework?",
+      "chinese": "我們可以分擔家事嗎？",
+      "note": "情境用語｜家庭安排與協調",
+      "example": "Could we split the housework this weekend?",
+      "exampleChinese": "這個週末我們可以分擔家事嗎？"
+    },
+    {
+      "id": "p_course_b1_daily_02_6_let_s_figure_out_what_works_for_everyone",
+      "kind": "phrase",
+      "category": "daily",
+      "level": "B1",
+      "english": "Let's figure out what works for everyone.",
+      "chinese": "我們來找出適合每個人的安排。",
+      "note": "情境用語｜家庭安排與協調",
+      "example": "Let's figure out what works for everyone before booking.",
+      "exampleChinese": "預訂前我們先找出適合每個人的安排。"
+    },
+    {
+      "id": "w_course_b1_daily_03_1_refund",
+      "kind": "word",
+      "category": "daily",
+      "level": "B1",
+      "english": "refund",
+      "chinese": "退款",
+      "note": "名詞／動詞｜購物問題與售後",
+      "example": "I'd like a refund for this item.",
+      "exampleChinese": "我想退掉這件商品並退款。"
+    },
+    {
+      "id": "w_course_b1_daily_03_2_defective",
+      "kind": "word",
+      "category": "daily",
+      "level": "B1",
+      "english": "defective",
+      "chinese": "有瑕疵的",
+      "note": "形容詞｜購物問題與售後",
+      "example": "The product seems to be defective.",
+      "exampleChinese": "這個產品似乎有瑕疵。"
+    },
+    {
+      "id": "w_course_b1_daily_03_3_warranty",
+      "kind": "word",
+      "category": "daily",
+      "level": "B1",
+      "english": "warranty",
+      "chinese": "保固",
+      "note": "名詞｜購物問題與售後",
+      "example": "The laptop comes with a one-year warranty.",
+      "exampleChinese": "這台筆電附一年保固。"
+    },
+    {
+      "id": "w_course_b1_daily_03_4_replacement",
+      "kind": "word",
+      "category": "daily",
+      "level": "B1",
+      "english": "replacement",
+      "chinese": "替換品",
+      "note": "名詞｜購物問題與售後",
+      "example": "Can you send me a replacement?",
+      "exampleChinese": "你可以寄一個替換品給我嗎？"
+    },
+    {
+      "id": "p_course_b1_daily_03_5_i_d_like_to_return_this_because_it_doesn_t_work",
+      "kind": "phrase",
+      "category": "daily",
+      "level": "B1",
+      "english": "I'd like to return this because it doesn't work.",
+      "chinese": "我想退貨，因為它無法使用。",
+      "note": "情境用語｜購物問題與售後",
+      "example": "I'd like to return this charger because it doesn't work.",
+      "exampleChinese": "我想退掉這個充電器，因為它無法使用。"
+    },
+    {
+      "id": "p_course_b1_daily_03_6_could_you_explain_the_return_policy",
+      "kind": "phrase",
+      "category": "daily",
+      "level": "B1",
+      "english": "Could you explain the return policy?",
+      "chinese": "你可以說明退貨規定嗎？",
+      "note": "情境用語｜購物問題與售後",
+      "example": "Could you explain the return policy for online orders?",
+      "exampleChinese": "你可以說明網路訂單的退貨規定嗎？"
+    },
+    {
+      "id": "w_travel_01",
+      "kind": "word",
+      "category": "travel",
+      "level": "B1",
+      "english": "itinerary",
+      "chinese": "旅遊行程表",
+      "note": "名詞｜旅行的每日路線與活動安排。",
+      "example": "Could you send me the itinerary?",
+      "exampleChinese": "你可以把行程表寄給我嗎？"
+    },
+    {
+      "id": "w_lex_b2de64bf_destination",
+      "kind": "word",
+      "category": "travel",
+      "level": "B1",
+      "english": "destination",
+      "chinese": "目的地",
+      "note": "名詞｜規劃旅遊與行程",
+      "example": "Our next destination is Kyoto.",
+      "exampleChinese": "我們下一個目的地是京都。"
+    },
+    {
+      "id": "w_travel_06",
+      "kind": "word",
+      "category": "travel",
+      "level": "A2",
+      "english": "transfer",
+      "chinese": "轉乘；轉機",
+      "note": "名詞／動詞｜從一班交通工具換到另一班。",
+      "example": "We need to transfer at the next station.",
+      "exampleChinese": "我們需要在下一站轉車。"
+    },
+    {
+      "id": "w_travel_09",
+      "kind": "word",
+      "category": "travel",
+      "level": "B1",
+      "english": "accommodation",
+      "chinese": "住宿；住處",
+      "note": "名詞｜旅行期間的住宿安排。",
+      "example": "We booked family-friendly accommodation.",
+      "exampleChinese": "我們訂了適合家庭的住宿。"
+    },
+    {
+      "id": "p_course_b1_travel_01_5_how_long_does_it_take_to_get_there_by_train",
+      "kind": "phrase",
+      "category": "travel",
+      "level": "B1",
+      "english": "How long does it take to get there by train?",
+      "chinese": "搭火車到那裡要多久？",
+      "note": "情境用語｜規劃旅遊與行程",
+      "example": "How long does it take to get there by train from Osaka?",
+      "exampleChinese": "從大阪搭火車到那裡要多久？"
+    },
+    {
+      "id": "p_course_b1_travel_01_6_we_d_like_to_keep_the_itinerary_flexible",
+      "kind": "phrase",
+      "category": "travel",
+      "level": "B1",
+      "english": "We'd like to keep the itinerary flexible.",
+      "chinese": "我們想保留行程的彈性。",
+      "note": "情境用語｜規劃旅遊與行程",
+      "example": "We'd like to keep the itinerary flexible for the children.",
+      "exampleChinese": "我們想為孩子保留行程彈性。"
+    },
+    {
+      "id": "w_course_b1_travel_02_1_cancellation",
+      "kind": "word",
+      "category": "travel",
+      "level": "B1",
+      "english": "cancellation",
+      "chinese": "取消",
+      "note": "名詞｜航班變更與突發狀況",
+      "example": "The cancellation was due to bad weather.",
+      "exampleChinese": "取消是因為天候不佳。"
+    },
+    {
+      "id": "w_lex_38b99ed9_connection",
+      "kind": "word",
+      "category": "daily",
+      "level": "B1",
+      "english": "connection",
+      "chinese": "轉接航班、銜接",
+      "note": "名詞｜航班變更與突發狀況",
+      "example": "We might miss our connection.",
+      "exampleChinese": "我們可能會錯過轉接航班。"
+    },
+    {
+      "id": "w_course_b1_travel_02_3_rebook",
+      "kind": "word",
+      "category": "travel",
+      "level": "B1",
+      "english": "rebook",
+      "chinese": "重新預訂",
+      "note": "動詞｜航班變更與突發狀況",
+      "example": "Can you rebook us on the next flight?",
+      "exampleChinese": "可以幫我們重新訂下一班飛機嗎？"
+    },
+    {
+      "id": "w_lex_bd24906f_claim",
+      "kind": "word",
+      "category": "daily",
+      "level": "B1",
+      "english": "claim",
+      "chinese": "領取、申請",
+      "note": "名詞／動詞｜航班變更與突發狀況",
+      "example": "Where is the baggage claim area?",
+      "exampleChinese": "行李領取區在哪裡？"
+    },
+    {
+      "id": "p_course_b1_travel_02_5_what_are_our_options_if_the_flight_is_cancelled",
+      "kind": "phrase",
+      "category": "travel",
+      "level": "B1",
+      "english": "What are our options if the flight is cancelled?",
+      "chinese": "如果航班取消，我們有哪些選擇？",
+      "note": "情境用語｜航班變更與突發狀況",
+      "example": "What are our options if the flight is cancelled tonight?",
+      "exampleChinese": "如果今晚航班取消，我們有哪些選擇？"
+    },
+    {
+      "id": "p_course_b1_travel_02_6_my_luggage_hasn_t_arrived_yet",
+      "kind": "phrase",
+      "category": "travel",
+      "level": "B1",
+      "english": "My luggage hasn't arrived yet.",
+      "chinese": "我的行李還沒到。",
+      "note": "情境用語｜航班變更與突發狀況",
+      "example": "My luggage hasn't arrived yet. Could you help me locate it?",
+      "exampleChinese": "我的行李還沒到，你可以幫我找一下嗎？"
+    },
+    {
+      "id": "w_lex_4a317c4e_ingredient",
+      "kind": "word",
+      "category": "daily",
+      "level": "B1",
+      "english": "ingredient",
+      "chinese": "食材、成分",
+      "note": "名詞｜餐廳需求與旅遊服務",
+      "example": "What ingredients are in this dish?",
+      "exampleChinese": "這道菜有哪些食材？"
+    },
+    {
+      "id": "w_course_b1_travel_03_2_allergy",
+      "kind": "word",
+      "category": "travel",
+      "level": "B1",
+      "english": "allergy",
+      "chinese": "過敏",
+      "note": "名詞｜餐廳需求與旅遊服務",
+      "example": "My son has a food allergy.",
+      "exampleChinese": "我兒子有食物過敏。"
+    },
+    {
+      "id": "w_course_b1_travel_03_3_portion",
+      "kind": "word",
+      "category": "travel",
+      "level": "B1",
+      "english": "portion",
+      "chinese": "份量",
+      "note": "名詞｜餐廳需求與旅遊服務",
+      "example": "Is this portion enough for two people?",
+      "exampleChinese": "這個份量足夠兩個人吃嗎？"
+    },
+    {
+      "id": "w_lex_8de5da2e_recommendation",
+      "kind": "word",
+      "category": "daily",
+      "level": "B1",
+      "english": "recommendation",
+      "chinese": "推薦、建議",
+      "note": "名詞｜餐廳需求與旅遊服務",
+      "example": "Do you have a local restaurant recommendation?",
+      "exampleChinese": "你有推薦的當地餐廳嗎？"
+    },
+    {
+      "id": "p_course_b1_travel_03_5_could_you_make_this_dish_without_peanuts",
+      "kind": "phrase",
+      "category": "travel",
+      "level": "B1",
+      "english": "Could you make this dish without peanuts?",
+      "chinese": "這道菜可以不加花生嗎？",
+      "note": "情境用語｜餐廳需求與旅遊服務",
+      "example": "Could you make this dish without peanuts? My child has an allergy.",
+      "exampleChinese": "這道菜可以不加花生嗎？我的孩子對花生過敏。"
+    },
+    {
+      "id": "p_course_b1_travel_03_6_would_you_recommend_something_suitable_for_children",
+      "kind": "phrase",
+      "category": "travel",
+      "level": "B1",
+      "english": "Would you recommend something suitable for children?",
+      "chinese": "你會推薦什麼適合孩子的餐點嗎？",
+      "note": "情境用語｜餐廳需求與旅遊服務",
+      "example": "Would you recommend something suitable for children on this menu?",
+      "exampleChinese": "這份菜單上有什麼適合孩子的餐點嗎？"
+    },
+    {
+      "id": "w_fitness_04",
+      "kind": "word",
+      "category": "fitness",
+      "level": "B1",
+      "english": "posture",
+      "chinese": "姿勢；體態",
+      "note": "名詞｜身體站立或活動時的姿態。",
+      "example": "Keep good posture when lifting.",
+      "exampleChinese": "重量訓練時保持良好姿勢。"
+    },
+    {
+      "id": "w_course_b1_fitness_01_2_alignment",
+      "kind": "word",
+      "category": "fitness",
+      "level": "B1",
+      "english": "alignment",
+      "chinese": "對齊、排列",
+      "note": "名詞｜教練指導與動作品質",
+      "example": "Check your knee alignment during the squat.",
+      "exampleChinese": "深蹲時確認膝蓋的對齊位置。"
+    },
+    {
+      "id": "w_course_b1_fitness_01_3_stability",
+      "kind": "word",
+      "category": "fitness",
+      "level": "B1",
+      "english": "stability",
+      "chinese": "穩定性",
+      "note": "名詞｜教練指導與動作品質",
+      "example": "This exercise challenges your core stability.",
+      "exampleChinese": "這個動作能挑戰核心穩定性。"
+    },
+    {
+      "id": "w_course_b1_fitness_01_4_mobility",
+      "kind": "word",
+      "category": "fitness",
+      "level": "B1",
+      "english": "mobility",
+      "chinese": "活動度",
+      "note": "名詞｜教練指導與動作品質",
+      "example": "We will work on ankle mobility today.",
+      "exampleChinese": "今天我們會進行踝關節活動度訓練。"
+    },
+    {
+      "id": "p_fitness_05",
+      "kind": "phrase",
+      "category": "fitness",
+      "level": "B1",
+      "english": "Focus on controlled movement.",
+      "chinese": "專注在有控制的動作。",
+      "note": "教練指導｜強調動作控制而非速度。",
+      "example": "Focus on controlled movement, not speed.",
+      "exampleChinese": "專注於動作控制，而不是速度。"
+    },
+    {
+      "id": "p_course_b1_fitness_01_6_try_to_keep_the_movement_within_a_comfortable_range",
+      "kind": "phrase",
+      "category": "fitness",
+      "level": "B1",
+      "english": "Try to keep the movement within a comfortable range.",
+      "chinese": "試著將動作保持在舒服的範圍內。",
+      "note": "情境用語｜教練指導與動作品質",
+      "example": "Try to keep the movement within a comfortable range for your shoulders.",
+      "exampleChinese": "試著讓肩膀的動作保持在舒服的範圍內。"
+    },
+    {
+      "id": "w_course_b1_fitness_02_1_intensity",
+      "kind": "word",
+      "category": "fitness",
+      "level": "B1",
+      "english": "intensity",
+      "chinese": "強度",
+      "note": "名詞｜訓練計畫與漸進負荷",
+      "example": "We can adjust the intensity of the workout.",
+      "exampleChinese": "我們可以調整訓練強度。"
+    },
+    {
+      "id": "w_fitness_08",
+      "kind": "word",
+      "category": "fitness",
+      "level": "B1",
+      "english": "endurance",
+      "chinese": "耐力",
+      "note": "名詞｜長時間維持運動的能力。",
+      "example": "Cycling can improve your endurance.",
+      "exampleChinese": "騎自行車能提升耐力。"
+    },
+    {
+      "id": "w_fitness_10",
+      "kind": "word",
+      "category": "fitness",
+      "level": "A2",
+      "english": "recovery",
+      "chinese": "恢復",
+      "note": "名詞｜運動後讓身體修復的過程。",
+      "example": "Sleep is important for recovery.",
+      "exampleChinese": "睡眠對恢復很重要。"
+    },
+    {
+      "id": "w_course_b1_fitness_02_4_progression",
+      "kind": "word",
+      "category": "fitness",
+      "level": "B1",
+      "english": "progression",
+      "chinese": "循序漸進、進展",
+      "note": "名詞｜訓練計畫與漸進負荷",
+      "example": "A gradual progression is easier to follow.",
+      "exampleChinese": "循序漸進的安排比較容易遵循。"
+    },
+    {
+      "id": "p_fitness_06",
+      "kind": "phrase",
+      "category": "fitness",
+      "level": "B1",
+      "english": "Let’s adjust the intensity.",
+      "chinese": "我們來調整強度。",
+      "note": "教練指導｜依學員狀況調整訓練。",
+      "example": "Let’s adjust the intensity to match your energy today.",
+      "exampleChinese": "我們依照你今天的精神體力調整強度。"
+    },
+    {
+      "id": "p_course_b1_fitness_02_6_we_can_gradually_increase_the_training_volume",
+      "kind": "phrase",
+      "category": "fitness",
+      "level": "B1",
+      "english": "We can gradually increase the training volume.",
+      "chinese": "我們可以逐步增加訓練量。",
+      "note": "情境用語｜訓練計畫與漸進負荷",
+      "example": "We can gradually increase the training volume over the next few weeks.",
+      "exampleChinese": "接下來幾週我們可以逐步增加訓練量。"
+    },
+    {
+      "id": "w_course_b1_fitness_03_1_assessment",
+      "kind": "word",
+      "category": "fitness",
+      "level": "B1",
+      "english": "assessment",
+      "chinese": "評估",
+      "note": "名詞｜評估與教練溝通",
+      "example": "We'll start with a movement assessment.",
+      "exampleChinese": "我們會先進行動作評估。"
+    },
+    {
+      "id": "w_work_08",
+      "kind": "word",
+      "category": "work",
+      "level": "A2",
+      "english": "feedback",
+      "chinese": "回饋；意見",
+      "note": "名詞｜對工作成果提出的建議。",
+      "example": "Thanks for your feedback.",
+      "exampleChinese": "謝謝你的回饋。"
+    },
+    {
+      "id": "w_course_b1_fitness_03_3_limitation",
+      "kind": "word",
+      "category": "fitness",
+      "level": "B1",
+      "english": "limitation",
+      "chinese": "限制",
+      "note": "名詞｜評估與教練溝通",
+      "example": "Let me know if you have any movement limitations.",
+      "exampleChinese": "如果你有任何動作限制，請告訴我。"
+    },
+    {
+      "id": "w_course_b1_fitness_03_4_consistency",
+      "kind": "word",
+      "category": "fitness",
+      "level": "B1",
+      "english": "consistency",
+      "chinese": "持續性、一致性",
+      "note": "名詞｜評估與教練溝通",
+      "example": "Consistency matters more than a perfect workout.",
+      "exampleChinese": "持之以恆比完美的一次訓練更重要。"
+    },
+    {
+      "id": "p_course_b1_fitness_03_5_how_did_that_set_feel_compared_with_the_last_one",
+      "kind": "phrase",
+      "category": "fitness",
+      "level": "B1",
+      "english": "How did that set feel compared with the last one?",
+      "chinese": "這一組跟上一組相比感覺如何？",
+      "note": "情境用語｜評估與教練溝通",
+      "example": "How did that set feel compared with the last one? Was it easier?",
+      "exampleChinese": "這一組跟上一組相比感覺如何？比較輕鬆嗎？"
+    },
+    {
+      "id": "p_course_b1_fitness_03_6_let_s_set_a_realistic_goal_for_the_next_month",
+      "kind": "phrase",
+      "category": "fitness",
+      "level": "B1",
+      "english": "Let's set a realistic goal for the next month.",
+      "chinese": "我們來訂一個下個月可達成的目標。",
+      "note": "情境用語｜評估與教練溝通",
+      "example": "Let's set a realistic goal for the next month and review it together.",
+      "exampleChinese": "我們來訂一個下個月可達成的目標，並一起檢視。"
+    },
+    {
+      "id": "w_course_b1_work_01_1_requirement",
+      "kind": "word",
+      "category": "work",
+      "level": "B1",
+      "english": "requirement",
+      "chinese": "需求、必要條件",
+      "note": "名詞｜需求與任務規劃",
+      "example": "We need to confirm the client requirements.",
+      "exampleChinese": "我們需要確認客戶需求。"
+    },
+    {
+      "id": "w_course_b1_work_01_2_priority",
+      "kind": "word",
+      "category": "work",
+      "level": "B1",
+      "english": "priority",
+      "chinese": "優先事項",
+      "note": "名詞｜需求與任務規劃",
+      "example": "Security is our highest priority.",
+      "exampleChinese": "資安是我們最優先的事項。"
+    },
+    {
+      "id": "w_work_02",
+      "kind": "word",
+      "category": "work",
+      "level": "A2",
+      "english": "deadline",
+      "chinese": "截止期限",
+      "note": "名詞｜任務必須完成的最後時間。",
+      "example": "The deadline is next Friday.",
+      "exampleChinese": "截止日是下週五。"
+    },
+    {
+      "id": "w_course_b1_work_01_4_deliverable",
+      "kind": "word",
+      "category": "work",
+      "level": "B1",
+      "english": "deliverable",
+      "chinese": "交付成果",
+      "note": "名詞｜需求與任務規劃",
+      "example": "The first deliverable is a working prototype.",
+      "exampleChinese": "第一項交付成果是可運作的原型。"
+    },
+    {
+      "id": "p_work_05",
+      "kind": "phrase",
+      "category": "work",
+      "level": "B1",
+      "english": "We need to align on the requirements.",
+      "chinese": "我們需要對齊需求共識。",
+      "note": "專案討論｜確認大家對需求的理解一致。",
+      "example": "We need to align on the requirements before coding.",
+      "exampleChinese": "開始寫程式前，我們要先對齊需求。"
+    },
+    {
+      "id": "p_course_b1_work_01_6_which_tasks_should_we_prioritize_first",
+      "kind": "phrase",
+      "category": "work",
+      "level": "B1",
+      "english": "Which tasks should we prioritize first?",
+      "chinese": "我們應該先處理哪些任務？",
+      "note": "情境用語｜需求與任務規劃",
+      "example": "Which tasks should we prioritize first for this release?",
+      "exampleChinese": "這次發布我們應該先處理哪些任務？"
+    },
+    {
+      "id": "w_lex_cac87bb4_investigate",
+      "kind": "word",
+      "category": "daily",
+      "level": "B1",
+      "english": "investigate",
+      "chinese": "調查、查明",
+      "note": "動詞｜技術問題與排除",
+      "example": "We are investigating the cause of the error.",
+      "exampleChinese": "我們正在調查錯誤原因。"
+    },
+    {
+      "id": "w_course_b1_work_02_2_reproduce",
+      "kind": "word",
+      "category": "work",
+      "level": "B1",
+      "english": "reproduce",
+      "chinese": "重現",
+      "note": "動詞｜技術問題與排除",
+      "example": "I can reproduce the issue on my device.",
+      "exampleChinese": "我可以在自己的裝置上重現這個問題。"
+    },
+    {
+      "id": "w_lex_1e71b297_impact",
+      "kind": "word",
+      "category": "daily",
+      "level": "B1",
+      "english": "impact",
+      "chinese": "影響",
+      "note": "名詞／動詞｜技術問題與排除",
+      "example": "The change has a small impact on users.",
+      "exampleChinese": "這個變更對使用者的影響很小。"
+    },
+    {
+      "id": "w_course_b1_work_02_4_resolve",
+      "kind": "word",
+      "category": "work",
+      "level": "B1",
+      "english": "resolve",
+      "chinese": "解決",
+      "note": "動詞｜技術問題與排除",
+      "example": "We hope to resolve the issue today.",
+      "exampleChinese": "我們希望今天解決問題。"
+    },
+    {
+      "id": "p_work_06",
+      "kind": "phrase",
+      "category": "work",
+      "level": "B1",
+      "english": "Let’s address the root cause.",
+      "chinese": "我們來處理根本原因。",
+      "note": "技術討論｜不只修表面症狀。",
+      "example": "Let’s address the root cause instead of applying another patch.",
+      "exampleChinese": "我們來處理根本原因，而不是再補一個修補程式。"
+    },
+    {
+      "id": "p_course_b1_work_02_6_we_ve_identified_the_issue_and_are_working_on_a_fix",
+      "kind": "phrase",
+      "category": "work",
+      "level": "B1",
+      "english": "We've identified the issue and are working on a fix.",
+      "chinese": "我們已確認問題，正在修正。",
+      "note": "情境用語｜技術問題與排除",
+      "example": "We've identified the issue and are working on a fix for the next release.",
+      "exampleChinese": "我們已確認問題，正在為下一版進行修正。"
+    },
+    {
+      "id": "w_course_b1_work_03_1_milestone",
+      "kind": "word",
+      "category": "work",
+      "level": "B1",
+      "english": "milestone",
+      "chinese": "里程碑",
+      "note": "名詞｜專案回報與協商",
+      "example": "We reached an important milestone this week.",
+      "exampleChinese": "我們這週達成一項重要里程碑。"
+    },
+    {
+      "id": "w_course_b1_work_03_2_dependency",
+      "kind": "word",
+      "category": "work",
+      "level": "B1",
+      "english": "dependency",
+      "chinese": "相依項目、依賴關係",
+      "note": "名詞｜專案回報與協商",
+      "example": "This task has a dependency on the design team.",
+      "exampleChinese": "這項任務依賴設計團隊的成果。"
+    },
+    {
+      "id": "w_work_12",
+      "kind": "word",
+      "category": "work",
+      "level": "A2",
+      "english": "estimate",
+      "chinese": "估計",
+      "note": "名詞／動詞｜推估工時、費用或數量。",
+      "example": "Can you estimate the time needed?",
+      "exampleChinese": "你可以估計需要多久嗎？"
+    },
+    {
+      "id": "w_course_b1_work_03_4_trade_off",
+      "kind": "word",
+      "category": "work",
+      "level": "B1",
+      "english": "trade-off",
+      "chinese": "取捨",
+      "note": "名詞｜專案回報與協商",
+      "example": "There is a trade-off between speed and quality.",
+      "exampleChinese": "速度和品質之間需要取捨。"
+    },
+    {
+      "id": "p_work_02",
+      "kind": "phrase",
+      "category": "work",
+      "level": "A2",
+      "english": "Let me check and get back to you.",
+      "chinese": "我確認後再回覆你。",
+      "note": "工作溝通｜資料尚未確認時使用。",
+      "example": "Let me check and get back to you this afternoon.",
+      "exampleChinese": "我確認後，今天下午再回覆你。"
+    },
+    {
+      "id": "p_course_b1_work_03_6_we_re_on_track_but_there_is_one_remaining_risk",
+      "kind": "phrase",
+      "category": "work",
+      "level": "B1",
+      "english": "We're on track, but there is one remaining risk.",
+      "chinese": "進度符合預期，但還有一項風險。",
+      "note": "情境用語｜專案回報與協商",
+      "example": "We're on track, but there is one remaining risk related to testing.",
+      "exampleChinese": "進度符合預期，但還有一項與測試有關的風險。"
+    },
+    {
+      "id": "w_context_agree",
+      "kind": "word",
+      "category": "daily",
+      "level": "B1",
+      "english": "agree",
+      "chinese": "同意、達成共識",
+      "note": "動詞｜句型延伸單字",
+      "example": "We need to agree on the family budget.",
+      "exampleChinese": "我們需要對家庭預算達成共識。"
+    },
+    {
+      "id": "w_context_beginner",
+      "kind": "word",
+      "category": "fitness",
+      "level": "B1",
+      "english": "beginner",
+      "chinese": "初學者",
+      "note": "名詞｜句型延伸單字",
+      "example": "Would you recommend an exercise suitable for beginners?",
+      "exampleChinese": "你會推薦什麼適合初學者的動作嗎？"
+    },
+    {
+      "id": "w_context_budget",
+      "kind": "word",
+      "category": "daily",
+      "level": "B1",
+      "english": "budget",
+      "chinese": "預算",
+      "note": "名詞｜句型延伸單字",
+      "example": "We need to agree on the family budget.",
+      "exampleChinese": "我們需要對家庭預算達成共識。"
+    },
+    {
+      "id": "w_context_build",
+      "kind": "word",
+      "category": "daily",
+      "level": "B1",
+      "english": "build",
+      "chinese": "建立、培養",
+      "note": "動詞｜句型延伸單字",
+      "example": "We can gradually build a daily reading habit.",
+      "exampleChinese": "我們可以逐步養成每天閱讀的習慣。"
+    },
+    {
+      "id": "w_context_buy",
+      "kind": "word",
+      "category": "daily",
+      "level": "A2",
+      "english": "buy",
+      "chinese": "購買",
+      "note": "動詞｜句型延伸單字",
+      "example": "Where can I buy a suitcase?",
+      "exampleChinese": "我可以在哪裡買行李箱？"
+    },
+    {
+      "id": "w_context_calendar",
+      "kind": "word",
+      "category": "daily",
+      "level": "B1",
+      "english": "calendar",
+      "chinese": "行事曆",
+      "note": "名詞｜句型延伸單字",
+      "example": "Let me check the calendar and get back to you.",
+      "exampleChinese": "讓我確認行事曆後再回覆你。"
+    },
+    {
+      "id": "w_context_chair",
+      "kind": "word",
+      "category": "daily",
+      "level": "A2",
+      "english": "chair",
+      "chinese": "椅子",
+      "note": "名詞｜句型延伸單字",
+      "example": "Is anyone using this chair?",
+      "exampleChinese": "有人正在使用這張椅子嗎？"
+    },
+    {
+      "id": "w_context_change",
+      "kind": "word",
+      "category": "work",
+      "level": "A2",
+      "english": "change",
+      "chinese": "改變、調整",
+      "note": "動詞｜句型延伸單字",
+      "example": "Could we change the deadline?",
+      "exampleChinese": "我們可以調整截止日期嗎？"
+    },
+    {
+      "id": "w_context_chore",
+      "kind": "word",
+      "category": "daily",
+      "level": "B1",
+      "english": "chore",
+      "chinese": "家事、例行瑣事",
+      "note": "名詞｜句型延伸單字",
+      "example": "Which chores should we do first?",
+      "exampleChinese": "我們應該先做哪些家事？"
+    },
+    {
+      "id": "w_context_complete",
+      "kind": "word",
+      "category": "fitness",
+      "level": "B1",
+      "english": "complete",
+      "chinese": "完成",
+      "note": "動詞｜句型延伸單字",
+      "example": "How long does it take to complete the workout?",
+      "exampleChinese": "完成這次訓練需要多久？"
+    },
+    {
+      "id": "w_context_concern",
+      "kind": "word",
+      "category": "work",
+      "level": "B1",
+      "english": "concern",
+      "chinese": "疑慮、關切事項",
+      "note": "名詞｜句型延伸單字",
+      "example": "Let's address the security concern first.",
+      "exampleChinese": "我們先處理資安疑慮。"
+    },
+    {
+      "id": "w_context_cook",
+      "kind": "word",
+      "category": "daily",
+      "level": "B1",
+      "english": "cook",
+      "chinese": "煮飯、烹調",
+      "note": "動詞｜句型延伸單字",
+      "example": "I'd rather cook than eat out.",
+      "exampleChinese": "比起外食，我寧願自己煮。"
+    },
+    {
+      "id": "w_context_correct",
+      "kind": "word",
+      "category": "fitness",
+      "level": "B1",
+      "english": "correct",
+      "chinese": "正確的",
+      "note": "形容詞｜句型延伸單字",
+      "example": "Could you explain the correct posture?",
+      "exampleChinese": "你可以說明正確姿勢嗎？"
+    },
+    {
+      "id": "w_context_delivery",
+      "kind": "word",
+      "category": "daily",
+      "level": "A2",
+      "english": "delivery",
+      "chinese": "配送、交付",
+      "note": "名詞｜句型延伸單字",
+      "example": "Is delivery included?",
+      "exampleChinese": "有包含運送費嗎？"
+    },
+    {
+      "id": "w_context_detail",
+      "kind": "word",
+      "category": "work",
+      "level": "A2",
+      "english": "detail",
+      "chinese": "細節",
+      "note": "名詞｜句型延伸單字",
+      "example": "Does this report include the details?",
+      "exampleChinese": "這份報告有包含細節嗎？"
+    },
+    {
+      "id": "w_context_discuss",
+      "kind": "word",
+      "category": "work",
+      "level": "A2",
+      "english": "discuss",
+      "chinese": "討論",
+      "note": "動詞｜句型延伸單字",
+      "example": "I'd like to discuss the schedule.",
+      "exampleChinese": "我想討論行程。"
+    },
+    {
+      "id": "w_context_door",
+      "kind": "word",
+      "category": "daily",
+      "level": "A2",
+      "english": "door",
+      "chinese": "門",
+      "note": "名詞｜句型延伸單字",
+      "example": "Keep the door closed.",
+      "exampleChinese": "讓門保持關閉。"
+    },
+    {
+      "id": "w_context_drink",
+      "kind": "word",
+      "category": "daily",
+      "level": "B1",
+      "english": "drink",
+      "chinese": "飲料",
+      "note": "名詞｜句型延伸單字",
+      "example": "Could you make this drink without sugar?",
+      "exampleChinese": "這杯飲料可以不加糖嗎？"
+    },
+    {
+      "id": "w_context_eat",
+      "kind": "word",
+      "category": "daily",
+      "level": "B1",
+      "english": "eat",
+      "chinese": "吃",
+      "note": "動詞｜句型延伸單字",
+      "example": "I'd rather cook than eat out.",
+      "exampleChinese": "比起外食，我寧願自己煮。"
+    },
+    {
+      "id": "w_context_egg",
+      "kind": "word",
+      "category": "daily",
+      "level": "A2",
+      "english": "egg",
+      "chinese": "蛋",
+      "note": "名詞｜句型延伸單字",
+      "example": "How many eggs do you have left?",
+      "exampleChinese": "你還剩幾顆蛋？"
+    },
+    {
+      "id": "w_context_exercise",
+      "kind": "word",
+      "category": "fitness",
+      "level": "A2",
+      "english": "exercise",
+      "chinese": "運動、訓練動作",
+      "note": "名詞｜句型延伸單字",
+      "example": "What do you do for exercise?",
+      "exampleChinese": "你平常做什麼運動？"
+    },
+    {
+      "id": "w_context_find",
+      "kind": "word",
+      "category": "work",
+      "level": "A2",
+      "english": "find",
+      "chinese": "找到",
+      "note": "動詞｜句型延伸單字",
+      "example": "Where can I find the report?",
+      "exampleChinese": "我可以在哪裡找到報告？"
+    },
+    {
+      "id": "w_lex_166f6876_goal",
+      "kind": "word",
+      "category": "fitness",
+      "level": "A2",
+      "english": "goal",
+      "chinese": "目標",
+      "note": "名詞｜句型延伸單字",
+      "example": "We need to agree on your training goals.",
+      "exampleChinese": "我們需要對你的訓練目標達成共識。"
+    },
+    {
+      "id": "w_context_gym",
+      "kind": "word",
+      "category": "fitness",
+      "level": "A2",
+      "english": "gym",
+      "chinese": "健身房",
+      "note": "名詞｜句型延伸單字",
+      "example": "How do I get to the gym?",
+      "exampleChinese": "我要怎麼去健身房？"
+    },
+    {
+      "id": "w_context_habit",
+      "kind": "word",
+      "category": "daily",
+      "level": "B1",
+      "english": "habit",
+      "chinese": "習慣",
+      "note": "名詞｜句型延伸單字",
+      "example": "We can gradually build a daily reading habit.",
+      "exampleChinese": "我們可以逐步養成每天閱讀的習慣。"
+    },
+    {
+      "id": "w_context_improve",
+      "kind": "word",
+      "category": "work",
+      "level": "B1",
+      "english": "improve",
+      "chinese": "改善、提升",
+      "note": "動詞｜句型延伸單字",
+      "example": "We can gradually improve the process.",
+      "exampleChinese": "我們可以逐步改善流程。"
+    },
+    {
+      "id": "w_context_include",
+      "kind": "word",
+      "category": "work",
+      "level": "A2",
+      "english": "include",
+      "chinese": "包含",
+      "note": "動詞｜句型延伸單字",
+      "example": "Does this report include the details?",
+      "exampleChinese": "這份報告有包含細節嗎？"
+    },
+    {
+      "id": "w_lex_6815c86c_key",
+      "kind": "word",
+      "category": "daily",
+      "level": "B1",
+      "english": "key",
+      "chinese": "鑰匙",
+      "note": "名詞｜句型延伸單字",
+      "example": "We've found the keys and are getting ready to leave.",
+      "exampleChinese": "我們已找到鑰匙，正在準備出門。"
+    },
+    {
+      "id": "w_lex_385aba2a_knee",
+      "kind": "word",
+      "category": "fitness",
+      "level": "A2",
+      "english": "knee",
+      "chinese": "膝蓋",
+      "note": "名詞｜句型延伸單字",
+      "example": "Keep your knees stable.",
+      "exampleChinese": "讓膝蓋保持穩定。"
+    },
+    {
+      "id": "w_context_listen",
+      "kind": "word",
+      "category": "daily",
+      "level": "A2",
+      "english": "listen",
+      "chinese": "聽",
+      "note": "動詞｜句型延伸單字",
+      "example": "Listen as I explain.",
+      "exampleChinese": "我解釋時請聽。"
+    },
+    {
+      "id": "w_context_look",
+      "kind": "word",
+      "category": "work",
+      "level": "A2",
+      "english": "look",
+      "chinese": "看一下（take a look）",
+      "note": "名詞｜句型延伸單字",
+      "example": "Take a look at the report.",
+      "exampleChinese": "看一下這份報告。"
+    },
+    {
+      "id": "w_context_lower",
+      "kind": "word",
+      "category": "fitness",
+      "level": "A2",
+      "english": "lower",
+      "chinese": "放下、降低",
+      "note": "動詞｜句型延伸單字",
+      "example": "Breathe in as you lower the weight.",
+      "exampleChinese": "放下重量時吸氣。"
+    },
+    {
+      "id": "w_context_main",
+      "kind": "word",
+      "category": "work",
+      "level": "B1",
+      "english": "main",
+      "chinese": "主要的",
+      "note": "形容詞｜句型延伸單字",
+      "example": "Focus on solving the main issue.",
+      "exampleChinese": "專注於解決主要問題。"
+    },
+    {
+      "id": "w_context_maintain",
+      "kind": "word",
+      "category": "fitness",
+      "level": "B1",
+      "english": "maintain",
+      "chinese": "維持",
+      "note": "動詞｜句型延伸單字",
+      "example": "Focus on maintaining good posture.",
+      "exampleChinese": "專注於維持良好姿勢。"
+    },
+    {
+      "id": "w_context_morning",
+      "kind": "word",
+      "category": "work",
+      "level": "A2",
+      "english": "morning",
+      "chinese": "早上",
+      "note": "名詞｜句型延伸單字",
+      "example": "I usually check my schedule in the morning.",
+      "exampleChinese": "我通常早上確認行程。"
+    },
+    {
+      "id": "w_context_movie",
+      "kind": "word",
+      "category": "daily",
+      "level": "B1",
+      "english": "movie",
+      "chinese": "電影",
+      "note": "名詞｜句型延伸單字",
+      "example": "Would you recommend a movie suitable for children?",
+      "exampleChinese": "你會推薦什麼適合孩子的電影嗎？"
+    },
+    {
+      "id": "w_context_noon",
+      "kind": "word",
+      "category": "work",
+      "level": "B1",
+      "english": "noon",
+      "chinese": "中午",
+      "note": "名詞｜句型延伸單字",
+      "example": "Try to finish the report before noon.",
+      "exampleChinese": "試著在中午前完成報告。"
+    },
+    {
+      "id": "w_lex_919a0c3d_note",
+      "kind": "word",
+      "category": "daily",
+      "level": "B1",
+      "english": "note",
+      "chinese": "筆記",
+      "note": "名詞｜句型延伸單字",
+      "example": "Take notes as we discuss the plan.",
+      "exampleChinese": "我們討論計畫時請做筆記。"
+    },
+    {
+      "id": "w_context_partner",
+      "kind": "word",
+      "category": "fitness",
+      "level": "B1",
+      "english": "partner",
+      "chinese": "夥伴",
+      "note": "名詞｜句型延伸單字",
+      "example": "My training partner hasn't arrived yet.",
+      "exampleChinese": "我的訓練夥伴還沒到。"
+    },
+    {
+      "id": "w_context_personal",
+      "kind": "word",
+      "category": "work",
+      "level": "B1",
+      "english": "personal",
+      "chinese": "個人的",
+      "note": "形容詞｜句型延伸單字",
+      "example": "Could you share the report without personal details?",
+      "exampleChinese": "你可以分享不含個人資料的報告嗎？"
+    },
+    {
+      "id": "w_context_practice",
+      "kind": "word",
+      "category": "fitness",
+      "level": "B1",
+      "english": "practice",
+      "chinese": "練習",
+      "note": "動詞｜句型延伸單字",
+      "example": "Which exercises should we practice first?",
+      "exampleChinese": "我們應該先練習哪些動作？"
+    },
+    {
+      "id": "w_context_prepare",
+      "kind": "word",
+      "category": "work",
+      "level": "B1",
+      "english": "prepare",
+      "chinese": "準備",
+      "note": "動詞｜句型延伸單字",
+      "example": "We've reviewed the report and are preparing a response.",
+      "exampleChinese": "我們已檢視報告，正在準備回覆。"
+    },
+    {
+      "id": "w_context_problem",
+      "kind": "word",
+      "category": "daily",
+      "level": "B1",
+      "english": "problem",
+      "chinese": "問題",
+      "note": "名詞｜句型延伸單字",
+      "example": "Let's address the problem before it gets worse.",
+      "exampleChinese": "問題惡化前我們先處理它。"
+    },
+    {
+      "id": "w_context_put",
+      "kind": "word",
+      "category": "fitness",
+      "level": "A2",
+      "english": "put",
+      "chinese": "放置",
+      "note": "動詞｜句型延伸單字",
+      "example": "Where can I put my bag?",
+      "exampleChinese": "我可以在哪裡放包包？"
+    },
+    {
+      "id": "w_context_rain",
+      "kind": "word",
+      "category": "daily",
+      "level": "B1",
+      "english": "rain",
+      "chinese": "下雨",
+      "note": "動詞｜句型延伸單字",
+      "example": "What are our options if it rains?",
+      "exampleChinese": "如果下雨，我們有哪些選擇？"
+    },
+    {
+      "id": "w_context_read",
+      "kind": "word",
+      "category": "daily",
+      "level": "A2",
+      "english": "read",
+      "chinese": "閱讀",
+      "note": "動詞｜句型延伸單字",
+      "example": "What do you like to read?",
+      "exampleChinese": "你喜歡讀什麼？"
+    },
+    {
+      "id": "w_lex_29931627_reply",
+      "kind": "word",
+      "category": "daily",
+      "level": "A2",
+      "english": "reply",
+      "chinese": "回覆",
+      "note": "動詞｜句型延伸單字",
+      "example": "The client hasn't replied yet.",
+      "exampleChinese": "客戶還沒回覆。"
+    },
+    {
+      "id": "w_context_rush",
+      "kind": "word",
+      "category": "work",
+      "level": "B1",
+      "english": "rush",
+      "chinese": "匆忙做",
+      "note": "動詞｜句型延伸單字",
+      "example": "I'd rather review the report than rush it.",
+      "exampleChinese": "比起匆忙完成，我寧願先審閱報告。"
+    },
+    {
+      "id": "w_context_send",
+      "kind": "word",
+      "category": "work",
+      "level": "A2",
+      "english": "send",
+      "chinese": "寄送、傳送",
+      "note": "動詞｜句型延伸單字",
+      "example": "Can I send the report tomorrow?",
+      "exampleChinese": "我可以明天寄報告嗎？"
+    },
+    {
+      "id": "w_context_session",
+      "kind": "word",
+      "category": "fitness",
+      "level": "A2",
+      "english": "session",
+      "chinese": "一堂課、一次活動",
+      "note": "名詞｜句型延伸單字",
+      "example": "How much does a training session cost?",
+      "exampleChinese": "一堂訓練課多少錢？"
+    },
+    {
+      "id": "w_context_shirt",
+      "kind": "word",
+      "category": "daily",
+      "level": "A2",
+      "english": "shirt",
+      "chinese": "襯衫",
+      "note": "名詞｜句型延伸單字",
+      "example": "How much does this shirt cost?",
+      "exampleChinese": "這件襯衫多少錢？"
+    },
+    {
+      "id": "w_lex_a2653430_solve",
+      "kind": "word",
+      "category": "daily",
+      "level": "A2",
+      "english": "solve",
+      "chinese": "解決",
+      "note": "動詞｜句型延伸單字",
+      "example": "Focus on solving the main issue.",
+      "exampleChinese": "專注於解決主要問題。"
+    },
+    {
+      "id": "w_context_stable",
+      "kind": "word",
+      "category": "fitness",
+      "level": "A2",
+      "english": "stable",
+      "chinese": "穩定的",
+      "note": "形容詞｜句型延伸單字",
+      "example": "Keep your knees stable.",
+      "exampleChinese": "讓膝蓋保持穩定。"
+    },
+    {
+      "id": "w_context_sugar",
+      "kind": "word",
+      "category": "daily",
+      "level": "B1",
+      "english": "sugar",
+      "chinese": "糖",
+      "note": "名詞｜句型延伸單字",
+      "example": "Could you make this drink without sugar?",
+      "exampleChinese": "這杯飲料可以不加糖嗎？"
+    },
+    {
+      "id": "w_context_supermarket",
+      "kind": "word",
+      "category": "daily",
+      "level": "A2",
+      "english": "supermarket",
+      "chinese": "超市",
+      "note": "名詞｜句型延伸單字",
+      "example": "How do I get to the supermarket?",
+      "exampleChinese": "我要怎麼去超市？"
+    },
+    {
+      "id": "w_context_thing",
+      "kind": "word",
+      "category": "daily",
+      "level": "B1",
+      "english": "thing",
+      "chinese": "東西、事情",
+      "note": "名詞｜句型延伸單字",
+      "example": "We're ready, but there is one thing missing.",
+      "exampleChinese": "我們準備好了，但還缺一樣東西。"
+    },
+    {
+      "id": "w_context_tight",
+      "kind": "word",
+      "category": "work",
+      "level": "B1",
+      "english": "tight",
+      "chinese": "緊迫的、緊的",
+      "note": "形容詞｜句型延伸單字",
+      "example": "I see your point, but the deadline is too tight.",
+      "exampleChinese": "我理解你的看法，但截止日期太緊。"
+    },
+    {
+      "id": "w_context_trip",
+      "kind": "word",
+      "category": "daily",
+      "level": "B1",
+      "english": "trip",
+      "chinese": "旅行",
+      "note": "名詞｜句型延伸單字",
+      "example": "How did this trip feel compared with the last one?",
+      "exampleChinese": "這趟旅行跟上次相比感覺如何？"
+    },
+    {
+      "id": "w_context_weekend",
+      "kind": "word",
+      "category": "daily",
+      "level": "A2",
+      "english": "weekend",
+      "chinese": "週末",
+      "note": "名詞｜句型延伸單字",
+      "example": "We're planning our weekend.",
+      "exampleChinese": "我們正在規劃週末。"
+    },
+    {
+      "id": "w_lex_50a09eb9_weight",
+      "kind": "word",
+      "category": "fitness",
+      "level": "A2",
+      "english": "weight",
+      "chinese": "重量、訓練重量",
+      "note": "名詞｜句型延伸單字",
+      "example": "Could you show me an exercise without using weights?",
+      "exampleChinese": "你可以示範一個不使用重量的動作嗎？"
+    },
+    {
+      "id": "w_context_workout",
+      "kind": "word",
+      "category": "fitness",
+      "level": "B1",
+      "english": "workout",
+      "chinese": "一次訓練",
+      "note": "名詞｜句型延伸單字",
+      "example": "How long does it take to complete the workout?",
+      "exampleChinese": "完成這次訓練需要多久？"
+    },
+    {
+      "id": "w_lex_0ab55e51_coach",
+      "kind": "word",
+      "category": "fitness",
+      "level": "A2",
+      "english": "coach",
+      "chinese": "教練",
+      "note": "名詞｜句型延伸單字",
+      "example": "Nice to meet your new coach.",
+      "exampleChinese": "很高興認識你的新教練。"
+    },
+    {
+      "id": "w_lex_c92cc9bb_security",
+      "kind": "word",
+      "category": "daily",
+      "level": "B1",
+      "english": "security",
+      "chinese": "安全、資安",
+      "note": "名詞｜句型延伸單字",
+      "example": "Let's address the security concern first.",
+      "exampleChinese": "我們先處理資安疑慮。"
+    }
+  ],
+  "lessons": [
+    {
+      "id": "a2_daily_01",
+      "level": "A2",
+      "category": "daily",
+      "title": "自我介紹與認識他人",
+      "objective": "練習簡單介紹自己的身分及興趣。",
+      "wordIds": [
+        "w_course_a2_daily_01_1_name",
+        "w_course_a2_daily_01_2_hometown",
+        "w_course_a2_daily_01_3_hobby",
+        "w_course_a2_daily_01_4_neighbor"
+      ],
+      "phraseIds": [
+        "p_course_a2_daily_01_5_nice_to_meet_you",
+        "p_course_a2_daily_01_6_what_do_you_like_to_do_in_your_free_time"
+      ]
+    },
+    {
+      "id": "a2_daily_02",
+      "level": "A2",
+      "category": "daily",
+      "title": "日常作息與時間",
+      "objective": "描述每天的習慣，練習現在簡單式。",
+      "wordIds": [
+        "w_course_a2_daily_02_1_routine",
+        "w_course_a2_daily_02_2_usually",
+        "w_course_a2_daily_02_3_breakfast",
+        "w_course_a2_daily_02_4_bedtime"
+      ],
+      "phraseIds": [
+        "p_course_a2_daily_02_5_what_time_do_you_usually_get_up",
+        "p_course_a2_daily_02_6_i_usually_take_a_walk_after_dinner"
+      ]
+    },
+    {
+      "id": "a2_daily_03",
+      "level": "A2",
+      "category": "daily",
+      "title": "購物與付款",
+      "objective": "詢問價格、尺寸與付款方式。",
+      "wordIds": [
+        "w_course_a2_daily_03_1_cashier",
+        "w_daily_02",
+        "w_lex_127e5c5e_discount",
+        "w_lex_23a0d95c_size"
+      ],
+      "phraseIds": [
+        "p_course_a2_daily_03_5_can_i_pay_by_card",
+        "p_course_a2_daily_03_6_how_much_does_this_cost"
+      ]
+    },
+    {
+      "id": "a2_travel_01",
+      "level": "A2",
+      "category": "travel",
+      "title": "機場與報到",
+      "objective": "辨識機場常見資訊並詢問報到位置。",
+      "wordIds": [
+        "w_course_a2_travel_01_1_airport",
+        "w_course_a2_travel_01_2_boarding",
+        "w_course_a2_travel_01_3_passport",
+        "w_course_a2_travel_01_4_suitcase"
+      ],
+      "phraseIds": [
+        "p_course_a2_travel_01_5_where_can_i_check_in_for_my_flight",
+        "p_course_a2_travel_01_6_which_gate_should_i_go_to"
+      ]
+    },
+    {
+      "id": "a2_travel_02",
+      "level": "A2",
+      "category": "travel",
+      "title": "飯店入住",
+      "objective": "確認訂房、房間與基本服務。",
+      "wordIds": [
+        "w_travel_02",
+        "w_lex_1ea28e9e_reception",
+        "w_lex_46c72e58_towel",
+        "w_lex_1608c7b7_elevator"
+      ],
+      "phraseIds": [
+        "p_travel_01",
+        "p_travel_05"
+      ]
+    },
+    {
+      "id": "a2_travel_03",
+      "level": "A2",
+      "category": "travel",
+      "title": "交通與問路",
+      "objective": "練習方向、車站與搭車用語。",
+      "wordIds": [
+        "w_course_a2_travel_03_1_station",
+        "w_lex_2a4a32b2_platform",
+        "w_lex_28ff8847_straight",
+        "w_course_a2_travel_03_4_fare"
+      ],
+      "phraseIds": [
+        "p_course_a2_travel_03_5_how_do_i_get_to_the_station",
+        "p_course_a2_travel_03_6_does_this_bus_go_to_the_city_center"
+      ]
+    },
+    {
+      "id": "a2_fitness_01",
+      "level": "A2",
+      "category": "fitness",
+      "title": "健身房與器材",
+      "objective": "辨識常見器材並詢問如何使用。",
+      "wordIds": [
+        "w_course_a2_fitness_01_1_dumbbell",
+        "w_course_a2_fitness_01_2_bench",
+        "w_course_a2_fitness_01_3_treadmill",
+        "w_course_a2_fitness_01_4_locker"
+      ],
+      "phraseIds": [
+        "p_course_a2_fitness_01_5_how_do_i_use_this_machine",
+        "p_course_a2_fitness_01_6_is_anyone_using_this_bench"
+      ]
+    },
+    {
+      "id": "a2_fitness_02",
+      "level": "A2",
+      "category": "fitness",
+      "title": "基本訓練動作",
+      "objective": "練習描述身體動作及次數。",
+      "wordIds": [
+        "w_course_a2_fitness_02_1_squat",
+        "w_course_a2_fitness_02_2_repetition",
+        "w_fitness_06",
+        "w_lex_f6c75a7c_lift"
+      ],
+      "phraseIds": [
+        "p_fitness_01",
+        "p_fitness_04"
+      ]
+    },
+    {
+      "id": "a2_fitness_03",
+      "level": "A2",
+      "category": "fitness",
+      "title": "訓練節奏與休息",
+      "objective": "理解休息、呼吸和基本訓練指令。",
+      "wordIds": [
+        "w_lex_eabd3d97_rest",
+        "w_lex_235d9fc7_breath",
+        "w_course_a2_fitness_03_3_pace",
+        "w_fitness_03"
+      ],
+      "phraseIds": [
+        "p_fitness_02",
+        "p_fitness_03"
+      ]
+    },
+    {
+      "id": "a2_work_01",
+      "level": "A2",
+      "category": "work",
+      "title": "認識同事與工作",
+      "objective": "介紹工作內容，確認團隊分工。",
+      "wordIds": [
+        "w_lex_5b155444_colleague",
+        "w_course_a2_work_01_2_office",
+        "w_lex_f448886c_task",
+        "w_course_a2_work_01_4_team"
+      ],
+      "phraseIds": [
+        "p_course_a2_work_01_5_what_do_you_do_for_work",
+        "p_course_a2_work_01_6_who_is_responsible_for_this_task"
+      ]
+    },
+    {
+      "id": "a2_work_02",
+      "level": "A2",
+      "category": "work",
+      "title": "安排會議與行程",
+      "objective": "練習確認時間、邀約和改期。",
+      "wordIds": [
+        "w_course_a2_work_02_1_meeting",
+        "w_daily_03",
+        "w_travel_11",
+        "w_daily_06"
+      ],
+      "phraseIds": [
+        "p_work_04",
+        "p_course_a2_work_02_6_does_ten_o_clock_work_for_you"
+      ]
+    },
+    {
+      "id": "a2_work_03",
+      "level": "A2",
+      "category": "work",
+      "title": "回報進度",
+      "objective": "練習描述目前工作狀態並追蹤進度。",
+      "wordIds": [
+        "w_work_01",
+        "w_lex_59167492_finish",
+        "w_lex_19bb34eb_report",
+        "w_travel_07"
+      ],
+      "phraseIds": [
+        "p_work_03",
+        "p_work_01"
+      ]
+    },
+    {
+      "id": "b1_daily_01",
+      "level": "B1",
+      "category": "daily",
+      "title": "表達意見與理由",
+      "objective": "從簡單回答進階到解釋原因。",
+      "wordIds": [
+        "w_course_b1_daily_01_1_opinion",
+        "w_course_b1_daily_01_2_prefer",
+        "w_course_b1_daily_01_3_although",
+        "w_course_b1_daily_01_4_reasonable"
+      ],
+      "phraseIds": [
+        "p_course_b1_daily_01_5_i_d_rather_stay_home_than_go_out",
+        "p_course_b1_daily_01_6_i_see_your_point_but_i_have_a_different_opinion"
+      ]
+    },
+    {
+      "id": "b1_daily_02",
+      "level": "B1",
+      "category": "daily",
+      "title": "家庭安排與協調",
+      "objective": "練習協調日常責任及臨時變動。",
+      "wordIds": [
+        "w_course_b1_daily_02_1_household",
+        "w_lex_2e882b9b_responsibility",
+        "w_daily_12",
+        "w_course_b1_daily_02_4_unexpected"
+      ],
+      "phraseIds": [
+        "p_course_b1_daily_02_5_could_we_split_the_housework",
+        "p_course_b1_daily_02_6_let_s_figure_out_what_works_for_everyone"
+      ]
+    },
+    {
+      "id": "b1_daily_03",
+      "level": "B1",
+      "category": "daily",
+      "title": "購物問題與售後",
+      "objective": "描述問題並有禮貌地提出解決方式。",
+      "wordIds": [
+        "w_course_b1_daily_03_1_refund",
+        "w_course_b1_daily_03_2_defective",
+        "w_course_b1_daily_03_3_warranty",
+        "w_course_b1_daily_03_4_replacement"
+      ],
+      "phraseIds": [
+        "p_course_b1_daily_03_5_i_d_like_to_return_this_because_it_doesn_t_work",
+        "p_course_b1_daily_03_6_could_you_explain_the_return_policy"
+      ]
+    },
+    {
+      "id": "b1_travel_01",
+      "level": "B1",
+      "category": "travel",
+      "title": "規劃旅遊與行程",
+      "objective": "比較選項、安排路線及時間。",
+      "wordIds": [
+        "w_travel_01",
+        "w_lex_b2de64bf_destination",
+        "w_travel_06",
+        "w_travel_09"
+      ],
+      "phraseIds": [
+        "p_course_b1_travel_01_5_how_long_does_it_take_to_get_there_by_train",
+        "p_course_b1_travel_01_6_we_d_like_to_keep_the_itinerary_flexible"
+      ]
+    },
+    {
+      "id": "b1_travel_02",
+      "level": "B1",
+      "category": "travel",
+      "title": "航班變更與突發狀況",
+      "objective": "練習處理取消、轉機和行李問題。",
+      "wordIds": [
+        "w_course_b1_travel_02_1_cancellation",
+        "w_lex_38b99ed9_connection",
+        "w_course_b1_travel_02_3_rebook",
+        "w_lex_bd24906f_claim"
+      ],
+      "phraseIds": [
+        "p_course_b1_travel_02_5_what_are_our_options_if_the_flight_is_cancelled",
+        "p_course_b1_travel_02_6_my_luggage_hasn_t_arrived_yet"
+      ]
+    },
+    {
+      "id": "b1_travel_03",
+      "level": "B1",
+      "category": "travel",
+      "title": "餐廳需求與旅遊服務",
+      "objective": "清楚說明飲食偏好及特殊需求。",
+      "wordIds": [
+        "w_lex_4a317c4e_ingredient",
+        "w_course_b1_travel_03_2_allergy",
+        "w_course_b1_travel_03_3_portion",
+        "w_lex_8de5da2e_recommendation"
+      ],
+      "phraseIds": [
+        "p_course_b1_travel_03_5_could_you_make_this_dish_without_peanuts",
+        "p_course_b1_travel_03_6_would_you_recommend_something_suitable_for_children"
+      ]
+    },
+    {
+      "id": "b1_fitness_01",
+      "level": "B1",
+      "category": "fitness",
+      "title": "教練指導與動作品質",
+      "objective": "描述姿勢、控制與動作幅度。",
+      "wordIds": [
+        "w_fitness_04",
+        "w_course_b1_fitness_01_2_alignment",
+        "w_course_b1_fitness_01_3_stability",
+        "w_course_b1_fitness_01_4_mobility"
+      ],
+      "phraseIds": [
+        "p_fitness_05",
+        "p_course_b1_fitness_01_6_try_to_keep_the_movement_within_a_comfortable_range"
+      ]
+    },
+    {
+      "id": "b1_fitness_02",
+      "level": "B1",
+      "category": "fitness",
+      "title": "訓練計畫與漸進負荷",
+      "objective": "練習討論強度、訓練量及恢復。",
+      "wordIds": [
+        "w_course_b1_fitness_02_1_intensity",
+        "w_fitness_08",
+        "w_fitness_10",
+        "w_course_b1_fitness_02_4_progression"
+      ],
+      "phraseIds": [
+        "p_fitness_06",
+        "p_course_b1_fitness_02_6_we_can_gradually_increase_the_training_volume"
+      ]
+    },
+    {
+      "id": "b1_fitness_03",
+      "level": "B1",
+      "category": "fitness",
+      "title": "評估與教練溝通",
+      "objective": "詢問訓練感受，表達目標和調整需求。",
+      "wordIds": [
+        "w_course_b1_fitness_03_1_assessment",
+        "w_work_08",
+        "w_course_b1_fitness_03_3_limitation",
+        "w_course_b1_fitness_03_4_consistency"
+      ],
+      "phraseIds": [
+        "p_course_b1_fitness_03_5_how_did_that_set_feel_compared_with_the_last_one",
+        "p_course_b1_fitness_03_6_let_s_set_a_realistic_goal_for_the_next_month"
+      ]
+    },
+    {
+      "id": "b1_work_01",
+      "level": "B1",
+      "category": "work",
+      "title": "需求與任務規劃",
+      "objective": "練習確認需求、優先順序與交付。",
+      "wordIds": [
+        "w_course_b1_work_01_1_requirement",
+        "w_course_b1_work_01_2_priority",
+        "w_work_02",
+        "w_course_b1_work_01_4_deliverable"
+      ],
+      "phraseIds": [
+        "p_work_05",
+        "p_course_b1_work_01_6_which_tasks_should_we_prioritize_first"
+      ]
+    },
+    {
+      "id": "b1_work_02",
+      "level": "B1",
+      "category": "work",
+      "title": "技術問題與排除",
+      "objective": "描述問題、原因與後續處理。",
+      "wordIds": [
+        "w_lex_cac87bb4_investigate",
+        "w_course_b1_work_02_2_reproduce",
+        "w_lex_1e71b297_impact",
+        "w_course_b1_work_02_4_resolve"
+      ],
+      "phraseIds": [
+        "p_work_06",
+        "p_course_b1_work_02_6_we_ve_identified_the_issue_and_are_working_on_a_fix"
+      ]
+    },
+    {
+      "id": "b1_work_03",
+      "level": "B1",
+      "category": "work",
+      "title": "專案回報與協商",
+      "objective": "練習清楚向主管回報風險與下一步。",
+      "wordIds": [
+        "w_course_b1_work_03_1_milestone",
+        "w_course_b1_work_03_2_dependency",
+        "w_work_12",
+        "w_course_b1_work_03_4_trade_off"
+      ],
+      "phraseIds": [
+        "p_work_02",
+        "p_course_b1_work_03_6_we_re_on_track_but_there_is_one_remaining_risk"
+      ]
+    }
+  ],
+  "patterns": {
+    "p_course_a2_daily_01_5_nice_to_meet_you": {
+      "formula": "Nice to + 原形動詞",
+      "usage": "初次見面或再見面時表達友善。",
+      "tip": "Nice to meet you 是 It's nice to meet you 的慣用省略。",
+      "focus": [
+        {
+          "english": "nice to",
+          "chinese": "很高興做…"
+        },
+        {
+          "english": "meet",
+          "chinese": "見面、認識"
+        }
+      ],
+      "examples": [
+        {
+          "category": "daily",
+          "english": "Nice to meet your neighbor.",
+          "chinese": "很高興認識你的鄰居。"
+        },
+        {
+          "category": "work",
+          "english": "Nice to meet your colleague.",
+          "chinese": "很高興認識你的同事。"
+        },
+        {
+          "category": "fitness",
+          "english": "Nice to meet your new coach.",
+          "chinese": "很高興認識你的新教練。"
+        }
+      ]
+    },
+    "p_course_a2_daily_01_6_what_do_you_like_to_do_in_your_free_time": {
+      "formula": "What do you like to + 原形動詞？",
+      "usage": "詢問興趣或偏好的活動。",
+      "tip": "like to 後接原形動詞；do 是問句助動詞。",
+      "focus": [
+        {
+          "english": "like to",
+          "chinese": "喜歡做…"
+        },
+        {
+          "english": "free time",
+          "chinese": "空閒時間"
+        }
+      ],
+      "examples": [
+        {
+          "category": "daily",
+          "english": "What do you like to read?",
+          "chinese": "你喜歡讀什麼？"
+        },
+        {
+          "category": "work",
+          "english": "What do you like to do at work?",
+          "chinese": "你在工作時喜歡做什麼？"
+        },
+        {
+          "category": "fitness",
+          "english": "What do you like to train on weekends?",
+          "chinese": "你週末喜歡訓練什麼？"
+        }
+      ]
+    },
+    "p_course_a2_daily_02_5_what_time_do_you_usually_get_up": {
+      "formula": "What time do you usually + 原形動詞？",
+      "usage": "詢問平常在幾點做某事。",
+      "tip": "usually 通常放在一般動詞之前。",
+      "focus": [
+        {
+          "english": "what time",
+          "chinese": "幾點"
+        },
+        {
+          "english": "usually",
+          "chinese": "通常"
+        },
+        {
+          "english": "get up",
+          "chinese": "起床"
+        }
+      ],
+      "examples": [
+        {
+          "category": "daily",
+          "english": "What time do you usually have breakfast?",
+          "chinese": "你通常幾點吃早餐？"
+        },
+        {
+          "category": "work",
+          "english": "What time do you usually start work?",
+          "chinese": "你通常幾點開始工作？"
+        },
+        {
+          "category": "fitness",
+          "english": "What time do you usually warm up?",
+          "chinese": "你通常幾點暖身？"
+        }
+      ]
+    },
+    "p_course_a2_daily_02_6_i_usually_take_a_walk_after_dinner": {
+      "formula": "I usually + 原形動詞 + 時間",
+      "usage": "描述規律習慣。",
+      "tip": "after 可接名詞或動名詞，表示在…之後。",
+      "focus": [
+        {
+          "english": "usually",
+          "chinese": "通常"
+        },
+        {
+          "english": "take a walk",
+          "chinese": "散步"
+        },
+        {
+          "english": "after dinner",
+          "chinese": "晚餐後"
+        }
+      ],
+      "examples": [
+        {
+          "category": "daily",
+          "english": "I usually read before bedtime.",
+          "chinese": "我通常睡前閱讀。"
+        },
+        {
+          "category": "work",
+          "english": "I usually check my schedule in the morning.",
+          "chinese": "我通常早上確認行程。"
+        },
+        {
+          "category": "fitness",
+          "english": "I usually stretch after training.",
+          "chinese": "我通常訓練後伸展。"
+        }
+      ]
+    },
+    "p_course_a2_daily_03_5_can_i_pay_by_card": {
+      "formula": "Can I + 原形動詞？",
+      "usage": "禮貌詢問自己是否可以做某事。",
+      "tip": "can 後動詞用原形；by card 是付款方式。",
+      "focus": [
+        {
+          "english": "pay",
+          "chinese": "付款"
+        },
+        {
+          "english": "by card",
+          "chinese": "刷卡"
+        }
+      ],
+      "examples": [
+        {
+          "category": "daily",
+          "english": "Can I have a receipt?",
+          "chinese": "可以給我收據嗎？"
+        },
+        {
+          "category": "work",
+          "english": "Can I send the report tomorrow?",
+          "chinese": "我可以明天寄報告嗎？"
+        },
+        {
+          "category": "fitness",
+          "english": "Can I use this treadmill?",
+          "chinese": "我可以用這台跑步機嗎？"
+        }
+      ]
+    },
+    "p_course_a2_daily_03_6_how_much_does_this_cost": {
+      "formula": "How much does + 單數事物 + cost？",
+      "usage": "詢問價格或費用。",
+      "tip": "does 已表第三人稱，cost 不再加 s。",
+      "focus": [
+        {
+          "english": "how much",
+          "chinese": "多少錢"
+        },
+        {
+          "english": "cost",
+          "chinese": "花費"
+        }
+      ],
+      "examples": [
+        {
+          "category": "daily",
+          "english": "How much does this shirt cost?",
+          "chinese": "這件襯衫多少錢？"
+        },
+        {
+          "category": "work",
+          "english": "How much does the service cost?",
+          "chinese": "這項服務多少錢？"
+        },
+        {
+          "category": "fitness",
+          "english": "How much does a training session cost?",
+          "chinese": "一堂訓練課多少錢？"
+        }
+      ]
+    },
+    "p_course_a2_travel_01_5_where_can_i_check_in_for_my_flight": {
+      "formula": "Where can I + 原形動詞？",
+      "usage": "詢問可以在哪裡做某件事。",
+      "tip": "check in 為片語動詞，旅遊中指報到。",
+      "focus": [
+        {
+          "english": "where",
+          "chinese": "哪裡"
+        },
+        {
+          "english": "check in",
+          "chinese": "報到"
+        },
+        {
+          "english": "flight",
+          "chinese": "航班"
+        }
+      ],
+      "examples": [
+        {
+          "category": "daily",
+          "english": "Where can I buy a suitcase?",
+          "chinese": "我可以在哪裡買行李箱？"
+        },
+        {
+          "category": "work",
+          "english": "Where can I find the report?",
+          "chinese": "我可以在哪裡找到報告？"
+        },
+        {
+          "category": "fitness",
+          "english": "Where can I put my bag?",
+          "chinese": "我可以在哪裡放包包？"
+        }
+      ]
+    },
+    "p_course_a2_travel_01_6_which_gate_should_i_go_to": {
+      "formula": "Which + 名詞 + should I + 原形動詞？",
+      "usage": "詢問應該選擇哪個選項。",
+      "tip": "which 指一組可選擇的事物；should 表建議。",
+      "focus": [
+        {
+          "english": "which",
+          "chinese": "哪一個"
+        },
+        {
+          "english": "gate",
+          "chinese": "登機門"
+        },
+        {
+          "english": "should",
+          "chinese": "應該"
+        }
+      ],
+      "examples": [
+        {
+          "category": "daily",
+          "english": "Which bus should I take?",
+          "chinese": "我應該搭哪班公車？"
+        },
+        {
+          "category": "work",
+          "english": "Which task should I finish first?",
+          "chinese": "我應該先完成哪個任務？"
+        },
+        {
+          "category": "fitness",
+          "english": "Which dumbbell should I use?",
+          "chinese": "我應該用哪個啞鈴？"
+        }
+      ]
+    },
+    "p_travel_01": {
+      "formula": "I'd like to + 原形動詞",
+      "usage": "禮貌表達自己的需求或意願。",
+      "tip": "I'd 是 I would；to 後用原形動詞。",
+      "focus": [
+        {
+          "english": "I'd like to",
+          "chinese": "我想要…"
+        },
+        {
+          "english": "check in",
+          "chinese": "辦理入住"
+        },
+        {
+          "english": "reservation",
+          "chinese": "預訂"
+        }
+      ],
+      "examples": [
+        {
+          "category": "daily",
+          "english": "I'd like to make a reservation.",
+          "chinese": "我想要訂位。"
+        },
+        {
+          "category": "work",
+          "english": "I'd like to discuss the schedule.",
+          "chinese": "我想討論行程。"
+        },
+        {
+          "category": "fitness",
+          "english": "I'd like to book a training session.",
+          "chinese": "我想預約一堂訓練課。"
+        }
+      ]
+    },
+    "p_travel_05": {
+      "formula": "Is + 單數名詞 + included？",
+      "usage": "確認某項服務或項目是否包含在內。",
+      "tip": "included 是過去分詞；複數主詞改用 Are。",
+      "focus": [
+        {
+          "english": "breakfast",
+          "chinese": "早餐"
+        },
+        {
+          "english": "included",
+          "chinese": "包含在內"
+        },
+        {
+          "english": "room rate",
+          "chinese": "房價"
+        }
+      ],
+      "examples": [
+        {
+          "category": "daily",
+          "english": "Is delivery included?",
+          "chinese": "有包含運送費嗎？"
+        },
+        {
+          "category": "work",
+          "english": "Is testing included in the plan?",
+          "chinese": "計畫有包含測試嗎？"
+        },
+        {
+          "category": "fitness",
+          "english": "Is a fitness assessment included?",
+          "chinese": "有包含體適能評估嗎？"
+        }
+      ]
+    },
+    "p_course_a2_travel_03_5_how_do_i_get_to_the_station": {
+      "formula": "How do I get to + 地點？",
+      "usage": "詢問前往某地的方法與方向。",
+      "tip": "get to 後接地點；here、there、home 不加 to。",
+      "focus": [
+        {
+          "english": "get to",
+          "chinese": "抵達"
+        },
+        {
+          "english": "station",
+          "chinese": "車站"
+        }
+      ],
+      "examples": [
+        {
+          "category": "daily",
+          "english": "How do I get to the supermarket?",
+          "chinese": "我要怎麼去超市？"
+        },
+        {
+          "category": "work",
+          "english": "How do I get to the office?",
+          "chinese": "我要怎麼去辦公室？"
+        },
+        {
+          "category": "fitness",
+          "english": "How do I get to the gym?",
+          "chinese": "我要怎麼去健身房？"
+        }
+      ]
+    },
+    "p_course_a2_travel_03_6_does_this_bus_go_to_the_city_center": {
+      "formula": "Does + 單數主詞 + 原形動詞？",
+      "usage": "確認路線或事實。",
+      "tip": "一般現在式第三人稱問句使用 does，後面用原形。",
+      "focus": [
+        {
+          "english": "bus",
+          "chinese": "公車"
+        },
+        {
+          "english": "go to",
+          "chinese": "前往"
+        },
+        {
+          "english": "city center",
+          "chinese": "市中心"
+        }
+      ],
+      "examples": [
+        {
+          "category": "daily",
+          "english": "Does this bus go to the station?",
+          "chinese": "這班公車有到車站嗎？"
+        },
+        {
+          "category": "work",
+          "english": "Does this report include the details?",
+          "chinese": "這份報告有包含細節嗎？"
+        },
+        {
+          "category": "fitness",
+          "english": "Does this machine work?",
+          "chinese": "這台器材正常運作嗎？"
+        }
+      ]
+    },
+    "p_course_a2_fitness_01_5_how_do_i_use_this_machine": {
+      "formula": "How do I + 原形動詞？",
+      "usage": "詢問操作步驟或方法。",
+      "tip": "do 在這裡是助動詞，use 是主要動詞。",
+      "focus": [
+        {
+          "english": "how",
+          "chinese": "如何"
+        },
+        {
+          "english": "use",
+          "chinese": "使用"
+        },
+        {
+          "english": "machine",
+          "chinese": "器材、機器"
+        }
+      ],
+      "examples": [
+        {
+          "category": "daily",
+          "english": "How do I use this charger?",
+          "chinese": "這個充電器怎麼使用？"
+        },
+        {
+          "category": "work",
+          "english": "How do I update the report?",
+          "chinese": "我要怎麼更新報告？"
+        },
+        {
+          "category": "fitness",
+          "english": "How do I adjust this bench?",
+          "chinese": "我要怎麼調整這張訓練椅？"
+        }
+      ]
+    },
+    "p_course_a2_fitness_01_6_is_anyone_using_this_bench": {
+      "formula": "Is anyone + 動詞-ing + 事物？",
+      "usage": "詢問現在是否有人正在做某事。",
+      "tip": "anyone 視為單數，使用 is；後接動詞-ing。",
+      "focus": [
+        {
+          "english": "anyone",
+          "chinese": "有人"
+        },
+        {
+          "english": "using",
+          "chinese": "正在使用"
+        },
+        {
+          "english": "bench",
+          "chinese": "訓練椅"
+        }
+      ],
+      "examples": [
+        {
+          "category": "daily",
+          "english": "Is anyone using this chair?",
+          "chinese": "有人正在使用這張椅子嗎？"
+        },
+        {
+          "category": "work",
+          "english": "Is anyone working on this task?",
+          "chinese": "有人正在處理這個任務嗎？"
+        },
+        {
+          "category": "fitness",
+          "english": "Is anyone using this treadmill?",
+          "chinese": "有人正在使用這台跑步機嗎？"
+        }
+      ]
+    },
+    "p_fitness_01": {
+      "formula": "Keep + 受詞 + 形容詞",
+      "usage": "指示他人保持某個狀態。",
+      "tip": "keep 為原形祈使句，形容詞描述受詞的狀態。",
+      "focus": [
+        {
+          "english": "keep",
+          "chinese": "保持"
+        },
+        {
+          "english": "back",
+          "chinese": "背部"
+        },
+        {
+          "english": "straight",
+          "chinese": "挺直的"
+        }
+      ],
+      "examples": [
+        {
+          "category": "daily",
+          "english": "Keep the door closed.",
+          "chinese": "讓門保持關閉。"
+        },
+        {
+          "category": "work",
+          "english": "Keep the report short.",
+          "chinese": "讓報告保持簡短。"
+        },
+        {
+          "category": "fitness",
+          "english": "Keep your knees stable.",
+          "chinese": "讓膝蓋保持穩定。"
+        }
+      ]
+    },
+    "p_fitness_04": {
+      "formula": "How many + 複數名詞 + do you have left？",
+      "usage": "詢問還剩多少數量。",
+      "tip": "可數名詞用 how many；left 表剩下的。",
+      "focus": [
+        {
+          "english": "how many",
+          "chinese": "多少個"
+        },
+        {
+          "english": "reps",
+          "chinese": "訓練次數"
+        },
+        {
+          "english": "left",
+          "chinese": "剩下的"
+        }
+      ],
+      "examples": [
+        {
+          "category": "daily",
+          "english": "How many eggs do you have left?",
+          "chinese": "你還剩幾顆蛋？"
+        },
+        {
+          "category": "work",
+          "english": "How many tasks do you have left?",
+          "chinese": "你還剩幾個任務？"
+        },
+        {
+          "category": "fitness",
+          "english": "How many sets do you have left?",
+          "chinese": "你還剩幾組？"
+        }
+      ]
+    },
+    "p_fitness_02": {
+      "formula": "Take + 名詞片語",
+      "usage": "提供簡短指令或建議。",
+      "tip": "祈使句省略主詞 you，動詞用原形。",
+      "focus": [
+        {
+          "english": "take",
+          "chinese": "進行、拿"
+        },
+        {
+          "english": "short break",
+          "chinese": "短暫休息"
+        }
+      ],
+      "examples": [
+        {
+          "category": "daily",
+          "english": "Take a deep breath.",
+          "chinese": "深吸一口氣。"
+        },
+        {
+          "category": "work",
+          "english": "Take a look at the report.",
+          "chinese": "看一下這份報告。"
+        },
+        {
+          "category": "fitness",
+          "english": "Take a rest between sets.",
+          "chinese": "組間休息一下。"
+        }
+      ]
+    },
+    "p_fitness_03": {
+      "formula": "原形動詞 + as + 主詞 + 動詞",
+      "usage": "說明兩個動作同時發生。",
+      "tip": "as 此處表示當…時、一邊…一邊…。",
+      "focus": [
+        {
+          "english": "breathe out",
+          "chinese": "吐氣"
+        },
+        {
+          "english": "as",
+          "chinese": "當…時"
+        },
+        {
+          "english": "lift",
+          "chinese": "舉起"
+        }
+      ],
+      "examples": [
+        {
+          "category": "daily",
+          "english": "Listen as I explain.",
+          "chinese": "我解釋時請聽。"
+        },
+        {
+          "category": "work",
+          "english": "Take notes as we discuss the plan.",
+          "chinese": "我們討論計畫時請做筆記。"
+        },
+        {
+          "category": "fitness",
+          "english": "Breathe in as you lower the weight.",
+          "chinese": "放下重量時吸氣。"
+        }
+      ]
+    },
+    "p_course_a2_work_01_5_what_do_you_do_for_work": {
+      "formula": "What do you do for + 名詞？",
+      "usage": "詢問某人的工作或習慣活動。",
+      "tip": "第一個 do 是助動詞，第二個 do 是主要動詞。",
+      "focus": [
+        {
+          "english": "what",
+          "chinese": "什麼"
+        },
+        {
+          "english": "do",
+          "chinese": "做"
+        },
+        {
+          "english": "for work",
+          "chinese": "為了工作、從事工作"
+        }
+      ],
+      "examples": [
+        {
+          "category": "daily",
+          "english": "What do you do for fun?",
+          "chinese": "你平常做什麼娛樂活動？"
+        },
+        {
+          "category": "work",
+          "english": "What do you do for your team?",
+          "chinese": "你在團隊裡負責做什麼？"
+        },
+        {
+          "category": "fitness",
+          "english": "What do you do for exercise?",
+          "chinese": "你平常做什麼運動？"
+        }
+      ]
+    },
+    "p_course_a2_work_01_6_who_is_responsible_for_this_task": {
+      "formula": "Who is responsible for + 名詞／動名詞？",
+      "usage": "確認誰負責某項事情。",
+      "tip": "responsible for 後可接名詞或動名詞。",
+      "focus": [
+        {
+          "english": "who",
+          "chinese": "誰"
+        },
+        {
+          "english": "responsible for",
+          "chinese": "負責"
+        },
+        {
+          "english": "task",
+          "chinese": "任務"
+        }
+      ],
+      "examples": [
+        {
+          "category": "daily",
+          "english": "Who is responsible for dinner?",
+          "chinese": "誰負責晚餐？"
+        },
+        {
+          "category": "work",
+          "english": "Who is responsible for testing?",
+          "chinese": "誰負責測試？"
+        },
+        {
+          "category": "fitness",
+          "english": "Who is responsible for the warm-up?",
+          "chinese": "誰負責暖身？"
+        }
+      ]
+    },
+    "p_work_04": {
+      "formula": "Could we + 原形動詞？",
+      "usage": "委婉建議雙方一起調整或處理事情。",
+      "tip": "could 後接原形動詞，此處不表示過去。",
+      "focus": [
+        {
+          "english": "could we",
+          "chinese": "我們能不能…"
+        },
+        {
+          "english": "move",
+          "chinese": "改期、移動"
+        },
+        {
+          "english": "meeting",
+          "chinese": "會議"
+        }
+      ],
+      "examples": [
+        {
+          "category": "daily",
+          "english": "Could we move dinner to six?",
+          "chinese": "我們可以把晚餐改到六點嗎？"
+        },
+        {
+          "category": "work",
+          "english": "Could we change the deadline?",
+          "chinese": "我們可以調整截止日期嗎？"
+        },
+        {
+          "category": "fitness",
+          "english": "Could we move the training session to Friday?",
+          "chinese": "我們可以把訓練課改到週五嗎？"
+        }
+      ]
+    },
+    "p_course_a2_work_02_6_does_ten_o_clock_work_for_you": {
+      "formula": "Does + 時間／安排 + work for you？",
+      "usage": "確認對方是否方便或某安排是否適合。",
+      "tip": "work for you 在此表示適合你，不是為你工作。",
+      "focus": [
+        {
+          "english": "ten o'clock",
+          "chinese": "十點"
+        },
+        {
+          "english": "work for you",
+          "chinese": "對你方便"
+        }
+      ],
+      "examples": [
+        {
+          "category": "daily",
+          "english": "Does Saturday work for you?",
+          "chinese": "週六你方便嗎？"
+        },
+        {
+          "category": "work",
+          "english": "Does this schedule work for you?",
+          "chinese": "這個時程你方便嗎？"
+        },
+        {
+          "category": "fitness",
+          "english": "Does a morning session work for you?",
+          "chinese": "早上的訓練課你方便嗎？"
+        }
+      ]
+    },
+    "p_work_03": {
+      "formula": "We are + 動詞-ing + 其他內容",
+      "usage": "描述正在進行、尚未完成的事情。",
+      "tip": "We're = We are；work on 表處理、從事。",
+      "focus": [
+        {
+          "english": "we're",
+          "chinese": "我們正在"
+        },
+        {
+          "english": "working on",
+          "chinese": "正在處理"
+        },
+        {
+          "english": "it",
+          "chinese": "這件事"
+        }
+      ],
+      "examples": [
+        {
+          "category": "daily",
+          "english": "We're planning our weekend.",
+          "chinese": "我們正在規劃週末。"
+        },
+        {
+          "category": "work",
+          "english": "We're working on the report.",
+          "chinese": "我們正在處理報告。"
+        },
+        {
+          "category": "fitness",
+          "english": "We're working on your mobility.",
+          "chinese": "我們正在改善你的活動度。"
+        }
+      ]
+    },
+    "p_work_01": {
+      "formula": "Could you + 原形動詞 + 其他內容？",
+      "usage": "禮貌請對方幫忙或提供資訊。",
+      "tip": "give 可接人和事物：give me an update。",
+      "focus": [
+        {
+          "english": "could you",
+          "chinese": "你可以…嗎"
+        },
+        {
+          "english": "give",
+          "chinese": "給"
+        },
+        {
+          "english": "update",
+          "chinese": "最新進度"
+        }
+      ],
+      "examples": [
+        {
+          "category": "daily",
+          "english": "Could you send me the address?",
+          "chinese": "你可以把地址傳給我嗎？"
+        },
+        {
+          "category": "work",
+          "english": "Could you send me the report?",
+          "chinese": "你可以把報告寄給我嗎？"
+        },
+        {
+          "category": "fitness",
+          "english": "Could you check my posture?",
+          "chinese": "你可以確認我的姿勢嗎？"
+        }
+      ]
+    },
+    "p_course_b1_daily_01_5_i_d_rather_stay_home_than_go_out": {
+      "formula": "I'd rather + 原形動詞 A + than + 原形動詞 B",
+      "usage": "表達比較偏好的行動。",
+      "tip": "rather 和 than 後面都用原形動詞；I'd = I would。",
+      "focus": [
+        {
+          "english": "I'd rather",
+          "chinese": "我寧願"
+        },
+        {
+          "english": "than",
+          "chinese": "而不願、比起"
+        },
+        {
+          "english": "stay home",
+          "chinese": "待在家"
+        }
+      ],
+      "examples": [
+        {
+          "category": "daily",
+          "english": "I'd rather cook than eat out.",
+          "chinese": "比起外食，我寧願自己煮。"
+        },
+        {
+          "category": "work",
+          "english": "I'd rather review the report than rush it.",
+          "chinese": "比起匆忙完成，我寧願先審閱報告。"
+        },
+        {
+          "category": "fitness",
+          "english": "I'd rather walk than run today.",
+          "chinese": "今天比起跑步，我寧願走路。"
+        }
+      ]
+    },
+    "p_course_b1_daily_01_6_i_see_your_point_but_i_have_a_different_opinion": {
+      "formula": "I see your point, but + 完整子句",
+      "usage": "先表示理解，再委婉提出不同看法。",
+      "tip": "but 連接兩個對比的想法，避免直接否定對方。",
+      "focus": [
+        {
+          "english": "see your point",
+          "chinese": "理解你的看法"
+        },
+        {
+          "english": "but",
+          "chinese": "但是"
+        },
+        {
+          "english": "opinion",
+          "chinese": "意見"
+        }
+      ],
+      "examples": [
+        {
+          "category": "daily",
+          "english": "I see your point, but we have other options.",
+          "chinese": "我理解你的看法，但我們還有其他選擇。"
+        },
+        {
+          "category": "work",
+          "english": "I see your point, but the deadline is too tight.",
+          "chinese": "我理解你的看法，但截止日期太緊。"
+        },
+        {
+          "category": "fitness",
+          "english": "I see your point, but we need more recovery time.",
+          "chinese": "我理解你的想法，但我們需要更多恢復時間。"
+        }
+      ]
+    },
+    "p_course_b1_daily_02_5_could_we_split_the_housework": {
+      "formula": "Could we + 原形動詞 + 事物？",
+      "usage": "邀請對方協調、分擔責任。",
+      "tip": "could we 比命令式更委婉，有共同商量感。",
+      "focus": [
+        {
+          "english": "could we",
+          "chinese": "我們能不能…"
+        },
+        {
+          "english": "split",
+          "chinese": "分擔"
+        },
+        {
+          "english": "housework",
+          "chinese": "家事"
+        }
+      ],
+      "examples": [
+        {
+          "category": "daily",
+          "english": "Could we split the cost?",
+          "chinese": "我們可以分攤費用嗎？"
+        },
+        {
+          "category": "work",
+          "english": "Could we split the tasks?",
+          "chinese": "我們可以分配任務嗎？"
+        },
+        {
+          "category": "fitness",
+          "english": "Could we share the equipment?",
+          "chinese": "我們可以共用器材嗎？"
+        }
+      ]
+    },
+    "p_course_b1_daily_02_6_let_s_figure_out_what_works_for_everyone": {
+      "formula": "Let's figure out + 疑問詞 + 子句",
+      "usage": "共同想辦法解決問題。",
+      "tip": "figure out 是找出答案；間接問句使用正常主詞＋動詞語序。",
+      "focus": [
+        {
+          "english": "let's",
+          "chinese": "讓我們…"
+        },
+        {
+          "english": "figure out",
+          "chinese": "找出、弄清楚"
+        },
+        {
+          "english": "works for everyone",
+          "chinese": "適合每個人"
+        }
+      ],
+      "examples": [
+        {
+          "category": "daily",
+          "english": "Let's figure out what we need for dinner.",
+          "chinese": "我們來弄清楚晚餐需要什麼。"
+        },
+        {
+          "category": "work",
+          "english": "Let's figure out how we can fix this issue.",
+          "chinese": "我們來想辦法解決這個問題。"
+        },
+        {
+          "category": "fitness",
+          "english": "Let's figure out which exercises work for you.",
+          "chinese": "我們來找出哪些運動適合你。"
+        }
+      ]
+    },
+    "p_course_b1_daily_03_5_i_d_like_to_return_this_because_it_doesn_t_work": {
+      "formula": "I'd like to + 動詞 + because + 子句",
+      "usage": "禮貌說明需求並補充原因。",
+      "tip": "because 後接完整子句；doesn't 後的 work 用原形。",
+      "focus": [
+        {
+          "english": "return",
+          "chinese": "退回"
+        },
+        {
+          "english": "because",
+          "chinese": "因為"
+        },
+        {
+          "english": "doesn't work",
+          "chinese": "無法使用"
+        }
+      ],
+      "examples": [
+        {
+          "category": "daily",
+          "english": "I'd like to exchange this shirt because it's too small.",
+          "chinese": "我想換這件襯衫，因為它太小。"
+        },
+        {
+          "category": "work",
+          "english": "I'd like to review the plan because the deadline has changed.",
+          "chinese": "我想重新檢視計畫，因為截止日期改了。"
+        },
+        {
+          "category": "fitness",
+          "english": "I'd like to change the exercise because it feels uncomfortable.",
+          "chinese": "我想換個動作，因為感覺不舒服。"
+        }
+      ]
+    },
+    "p_course_b1_daily_03_6_could_you_explain_the_return_policy": {
+      "formula": "Could you explain + 名詞片語？",
+      "usage": "請對方說明規則、方法或資訊。",
+      "tip": "explain 後可接事物；若要加說明對象，可用 explain it to me。",
+      "focus": [
+        {
+          "english": "explain",
+          "chinese": "解釋"
+        },
+        {
+          "english": "return policy",
+          "chinese": "退貨規定"
+        }
+      ],
+      "examples": [
+        {
+          "category": "daily",
+          "english": "Could you explain the warranty?",
+          "chinese": "你可以說明保固嗎？"
+        },
+        {
+          "category": "work",
+          "english": "Could you explain the new requirements?",
+          "chinese": "你可以說明新需求嗎？"
+        },
+        {
+          "category": "fitness",
+          "english": "Could you explain the correct posture?",
+          "chinese": "你可以說明正確姿勢嗎？"
+        }
+      ]
+    },
+    "p_course_b1_travel_01_5_how_long_does_it_take_to_get_there_by_train": {
+      "formula": "How long does it take to + 原形動詞？",
+      "usage": "詢問完成一件事情所需時間。",
+      "tip": "it 為形式主詞；take 後可加時間，如 It takes ten minutes。",
+      "focus": [
+        {
+          "english": "how long",
+          "chinese": "多久"
+        },
+        {
+          "english": "take",
+          "chinese": "花費時間"
+        },
+        {
+          "english": "by train",
+          "chinese": "搭火車"
+        }
+      ],
+      "examples": [
+        {
+          "category": "daily",
+          "english": "How long does it take to cook dinner?",
+          "chinese": "煮晚餐需要多久？"
+        },
+        {
+          "category": "work",
+          "english": "How long does it take to finish testing?",
+          "chinese": "完成測試需要多久？"
+        },
+        {
+          "category": "fitness",
+          "english": "How long does it take to complete the workout?",
+          "chinese": "完成這次訓練需要多久？"
+        }
+      ]
+    },
+    "p_course_b1_travel_01_6_we_d_like_to_keep_the_itinerary_flexible": {
+      "formula": "We'd like to keep + 受詞 + 形容詞",
+      "usage": "表達希望維持某種狀態。",
+      "tip": "We'd = We would；形容詞描述 keep 的受詞。",
+      "focus": [
+        {
+          "english": "we'd like to",
+          "chinese": "我們想要"
+        },
+        {
+          "english": "itinerary",
+          "chinese": "行程表"
+        },
+        {
+          "english": "flexible",
+          "chinese": "有彈性的"
+        }
+      ],
+      "examples": [
+        {
+          "category": "daily",
+          "english": "We'd like to keep our weekend flexible.",
+          "chinese": "我們想保留週末行程的彈性。"
+        },
+        {
+          "category": "work",
+          "english": "We'd like to keep the schedule flexible.",
+          "chinese": "我們想維持時程彈性。"
+        },
+        {
+          "category": "fitness",
+          "english": "We'd like to keep the routine simple.",
+          "chinese": "我們想讓訓練流程保持簡單。"
+        }
+      ]
+    },
+    "p_course_b1_travel_02_5_what_are_our_options_if_the_flight_is_cancelled": {
+      "formula": "What are our options if + 完整子句？",
+      "usage": "詢問某條件發生時可採取的選擇。",
+      "tip": "if 表條件；is cancelled 是被動語態，表示被取消。",
+      "focus": [
+        {
+          "english": "options",
+          "chinese": "選項"
+        },
+        {
+          "english": "if",
+          "chinese": "如果"
+        },
+        {
+          "english": "cancelled",
+          "chinese": "被取消"
+        }
+      ],
+      "examples": [
+        {
+          "category": "daily",
+          "english": "What are our options if it rains?",
+          "chinese": "如果下雨，我們有哪些選擇？"
+        },
+        {
+          "category": "work",
+          "english": "What are our options if the release is delayed?",
+          "chinese": "如果發布延遲，我們有哪些選擇？"
+        },
+        {
+          "category": "fitness",
+          "english": "What are our options if the gym is closed?",
+          "chinese": "如果健身房關門，我們有哪些選擇？"
+        }
+      ]
+    },
+    "p_course_b1_travel_02_6_my_luggage_hasn_t_arrived_yet": {
+      "formula": "單數主詞 + hasn't + 過去分詞 + yet",
+      "usage": "描述某事到現在仍未發生。",
+      "tip": "yet 常放在現在完成式否定句末；複數主詞用 haven't。",
+      "focus": [
+        {
+          "english": "luggage",
+          "chinese": "行李"
+        },
+        {
+          "english": "hasn't arrived",
+          "chinese": "尚未抵達"
+        },
+        {
+          "english": "yet",
+          "chinese": "還、尚未"
+        }
+      ],
+      "examples": [
+        {
+          "category": "daily",
+          "english": "My package hasn't arrived yet.",
+          "chinese": "我的包裹還沒到。"
+        },
+        {
+          "category": "work",
+          "english": "The client hasn't replied yet.",
+          "chinese": "客戶還沒回覆。"
+        },
+        {
+          "category": "fitness",
+          "english": "My training partner hasn't arrived yet.",
+          "chinese": "我的訓練夥伴還沒到。"
+        }
+      ]
+    },
+    "p_course_b1_travel_03_5_could_you_make_this_dish_without_peanuts": {
+      "formula": "Could you + 動詞 + 受詞 + without + 名詞／動名詞？",
+      "usage": "禮貌提出不含某物或不做某事的要求。",
+      "tip": "without 後接名詞或動名詞，不能直接接原形動詞。",
+      "focus": [
+        {
+          "english": "make",
+          "chinese": "製作"
+        },
+        {
+          "english": "dish",
+          "chinese": "菜餚"
+        },
+        {
+          "english": "without",
+          "chinese": "不含、沒有"
+        },
+        {
+          "english": "peanuts",
+          "chinese": "花生"
+        }
+      ],
+      "examples": [
+        {
+          "category": "daily",
+          "english": "Could you make this drink without sugar?",
+          "chinese": "這杯飲料可以不加糖嗎？"
+        },
+        {
+          "category": "work",
+          "english": "Could you share the report without personal details?",
+          "chinese": "你可以分享不含個人資料的報告嗎？"
+        },
+        {
+          "category": "fitness",
+          "english": "Could you show me an exercise without using weights?",
+          "chinese": "你可以示範一個不使用重量的動作嗎？"
+        }
+      ]
+    },
+    "p_course_b1_travel_03_6_would_you_recommend_something_suitable_for_children": {
+      "formula": "Would you recommend + 名詞片語？",
+      "usage": "禮貌請對方提供推薦。",
+      "tip": "suitable for 是形容詞片語，修飾 something；for 後接適用對象。",
+      "focus": [
+        {
+          "english": "recommend",
+          "chinese": "推薦"
+        },
+        {
+          "english": "something",
+          "chinese": "某項事物"
+        },
+        {
+          "english": "suitable for",
+          "chinese": "適合…"
+        }
+      ],
+      "examples": [
+        {
+          "category": "daily",
+          "english": "Would you recommend a movie suitable for children?",
+          "chinese": "你會推薦什麼適合孩子的電影嗎？"
+        },
+        {
+          "category": "work",
+          "english": "Would you recommend a tool suitable for our team?",
+          "chinese": "你會推薦什麼適合我們團隊的工具嗎？"
+        },
+        {
+          "category": "fitness",
+          "english": "Would you recommend an exercise suitable for beginners?",
+          "chinese": "你會推薦什麼適合初學者的動作嗎？"
+        }
+      ]
+    },
+    "p_fitness_05": {
+      "formula": "Focus on + 名詞／動名詞",
+      "usage": "提醒自己或他人專注在某項重點。",
+      "tip": "on 是介系詞，之後可接名詞或動詞-ing。",
+      "focus": [
+        {
+          "english": "focus on",
+          "chinese": "專注於"
+        },
+        {
+          "english": "controlled",
+          "chinese": "有控制的"
+        },
+        {
+          "english": "movement",
+          "chinese": "動作"
+        }
+      ],
+      "examples": [
+        {
+          "category": "daily",
+          "english": "Focus on what you can control.",
+          "chinese": "專注在你能控制的事情上。"
+        },
+        {
+          "category": "work",
+          "english": "Focus on solving the main issue.",
+          "chinese": "專注於解決主要問題。"
+        },
+        {
+          "category": "fitness",
+          "english": "Focus on maintaining good posture.",
+          "chinese": "專注於維持良好姿勢。"
+        }
+      ]
+    },
+    "p_course_b1_fitness_01_6_try_to_keep_the_movement_within_a_comfortable_range": {
+      "formula": "Try to + 原形動詞",
+      "usage": "溫和建議對方努力做到某件事。",
+      "tip": "try to 表努力去做；try doing 則偏向試試某種方法。",
+      "focus": [
+        {
+          "english": "try to",
+          "chinese": "試著"
+        },
+        {
+          "english": "keep",
+          "chinese": "維持"
+        },
+        {
+          "english": "within",
+          "chinese": "在…範圍內"
+        },
+        {
+          "english": "range",
+          "chinese": "範圍"
+        }
+      ],
+      "examples": [
+        {
+          "category": "daily",
+          "english": "Try to keep the room tidy.",
+          "chinese": "試著讓房間保持整潔。"
+        },
+        {
+          "category": "work",
+          "english": "Try to finish the report before noon.",
+          "chinese": "試著在中午前完成報告。"
+        },
+        {
+          "category": "fitness",
+          "english": "Try to keep your shoulders relaxed.",
+          "chinese": "試著讓肩膀保持放鬆。"
+        }
+      ]
+    },
+    "p_fitness_06": {
+      "formula": "Let's + 原形動詞",
+      "usage": "提出共同採取的行動。",
+      "tip": "Let's = Let us；後面用原形動詞。",
+      "focus": [
+        {
+          "english": "let's",
+          "chinese": "我們來…"
+        },
+        {
+          "english": "adjust",
+          "chinese": "調整"
+        },
+        {
+          "english": "intensity",
+          "chinese": "強度"
+        }
+      ],
+      "examples": [
+        {
+          "category": "daily",
+          "english": "Let's adjust the plan for the weekend.",
+          "chinese": "我們來調整週末計畫。"
+        },
+        {
+          "category": "work",
+          "english": "Let's adjust the schedule.",
+          "chinese": "我們來調整時程。"
+        },
+        {
+          "category": "fitness",
+          "english": "Let's adjust the pace of the workout.",
+          "chinese": "我們來調整訓練的節奏。"
+        }
+      ]
+    },
+    "p_course_b1_fitness_02_6_we_can_gradually_increase_the_training_volume": {
+      "formula": "主詞 + can + gradually + 原形動詞",
+      "usage": "提出逐步改善或調整的做法。",
+      "tip": "can 後接原形動詞；gradually 描述變化的速度。",
+      "focus": [
+        {
+          "english": "gradually",
+          "chinese": "逐漸地"
+        },
+        {
+          "english": "increase",
+          "chinese": "增加"
+        },
+        {
+          "english": "training volume",
+          "chinese": "訓練量"
+        }
+      ],
+      "examples": [
+        {
+          "category": "daily",
+          "english": "We can gradually build a daily reading habit.",
+          "chinese": "我們可以逐步養成每天閱讀的習慣。"
+        },
+        {
+          "category": "work",
+          "english": "We can gradually improve the process.",
+          "chinese": "我們可以逐步改善流程。"
+        },
+        {
+          "category": "fitness",
+          "english": "We can gradually improve our endurance.",
+          "chinese": "我們可以逐步提升耐力。"
+        }
+      ]
+    },
+    "p_course_b1_fitness_03_5_how_did_that_set_feel_compared_with_the_last_one": {
+      "formula": "How did + 事物 + feel compared with + 事物？",
+      "usage": "比較兩次經驗或感受。",
+      "tip": "did 已表過去，feel 保持原形；compared with 表與…相比。",
+      "focus": [
+        {
+          "english": "feel",
+          "chinese": "感覺"
+        },
+        {
+          "english": "compared with",
+          "chinese": "和…相比"
+        },
+        {
+          "english": "the last one",
+          "chinese": "上一個"
+        }
+      ],
+      "examples": [
+        {
+          "category": "daily",
+          "english": "How did this trip feel compared with the last one?",
+          "chinese": "這趟旅行跟上次相比感覺如何？"
+        },
+        {
+          "category": "work",
+          "english": "How did today's meeting feel compared with the last one?",
+          "chinese": "今天的會議跟上次相比感覺如何？"
+        },
+        {
+          "category": "fitness",
+          "english": "How did this workout feel compared with the last one?",
+          "chinese": "這次訓練跟上次相比感覺如何？"
+        }
+      ]
+    },
+    "p_course_b1_fitness_03_6_let_s_set_a_realistic_goal_for_the_next_month": {
+      "formula": "Let's set + 目標 + for + 時間／對象",
+      "usage": "共同設定實際的目標。",
+      "tip": "set a goal 是常見搭配；for 後接時間或目標對象。",
+      "focus": [
+        {
+          "english": "set",
+          "chinese": "設定（目標）"
+        },
+        {
+          "english": "realistic goal",
+          "chinese": "實際可行的目標"
+        },
+        {
+          "english": "next month",
+          "chinese": "下個月"
+        }
+      ],
+      "examples": [
+        {
+          "category": "daily",
+          "english": "Let's set a realistic goal for reading this month.",
+          "chinese": "我們來訂一個本月可達成的閱讀目標。"
+        },
+        {
+          "category": "work",
+          "english": "Let's set a realistic deadline for this task.",
+          "chinese": "我們來訂一個實際可行的任務期限。"
+        },
+        {
+          "category": "fitness",
+          "english": "Let's set a realistic goal for your training.",
+          "chinese": "我們來訂一個實際可行的訓練目標。"
+        }
+      ]
+    },
+    "p_work_05": {
+      "formula": "主詞 + need to + 原形動詞",
+      "usage": "說明必要的下一步。",
+      "tip": "need to 後接原形動詞；align on 表對某件事達成共識。",
+      "focus": [
+        {
+          "english": "need to",
+          "chinese": "需要"
+        },
+        {
+          "english": "align on",
+          "chinese": "針對…達成共識"
+        },
+        {
+          "english": "requirements",
+          "chinese": "需求"
+        }
+      ],
+      "examples": [
+        {
+          "category": "daily",
+          "english": "We need to agree on the family budget.",
+          "chinese": "我們需要對家庭預算達成共識。"
+        },
+        {
+          "category": "work",
+          "english": "We need to confirm the deadline.",
+          "chinese": "我們需要確認截止日期。"
+        },
+        {
+          "category": "fitness",
+          "english": "We need to agree on your training goals.",
+          "chinese": "我們需要對你的訓練目標達成共識。"
+        }
+      ]
+    },
+    "p_course_b1_work_01_6_which_tasks_should_we_prioritize_first": {
+      "formula": "Which + 複數名詞 + should we + 原形動詞 + first？",
+      "usage": "詢問要先選擇或處理哪些事。",
+      "tip": "should 後接原形動詞；first 表優先順序。",
+      "focus": [
+        {
+          "english": "which",
+          "chinese": "哪些"
+        },
+        {
+          "english": "tasks",
+          "chinese": "任務"
+        },
+        {
+          "english": "prioritize",
+          "chinese": "優先處理"
+        }
+      ],
+      "examples": [
+        {
+          "category": "daily",
+          "english": "Which chores should we do first?",
+          "chinese": "我們應該先做哪些家事？"
+        },
+        {
+          "category": "work",
+          "english": "Which requirements should we review first?",
+          "chinese": "我們應該先檢視哪些需求？"
+        },
+        {
+          "category": "fitness",
+          "english": "Which exercises should we practice first?",
+          "chinese": "我們應該先練習哪些動作？"
+        }
+      ]
+    },
+    "p_work_06": {
+      "formula": "Let's address + 問題／原因",
+      "usage": "建議處理問題而非只修補表面現象。",
+      "tip": "address 在此是動詞，表示處理；root cause 是根本原因。",
+      "focus": [
+        {
+          "english": "address",
+          "chinese": "處理"
+        },
+        {
+          "english": "root cause",
+          "chinese": "根本原因"
+        }
+      ],
+      "examples": [
+        {
+          "category": "daily",
+          "english": "Let's address the problem before it gets worse.",
+          "chinese": "問題惡化前我們先處理它。"
+        },
+        {
+          "category": "work",
+          "english": "Let's address the security concern first.",
+          "chinese": "我們先處理資安疑慮。"
+        },
+        {
+          "category": "fitness",
+          "english": "Let's address the lack of consistency.",
+          "chinese": "我們先處理訓練不夠持續的問題。"
+        }
+      ]
+    },
+    "p_course_b1_work_02_6_we_ve_identified_the_issue_and_are_working_on_a_fix": {
+      "formula": "We have + 過去分詞 + and are + 動詞-ing",
+      "usage": "同時回報已完成的事項與正在進行的工作。",
+      "tip": "have identified 為現在完成式；are working 為現在進行式，兩者可用 and 連接。",
+      "focus": [
+        {
+          "english": "we've",
+          "chinese": "我們已經"
+        },
+        {
+          "english": "identified",
+          "chinese": "確認"
+        },
+        {
+          "english": "issue",
+          "chinese": "問題"
+        },
+        {
+          "english": "fix",
+          "chinese": "修正"
+        }
+      ],
+      "examples": [
+        {
+          "category": "daily",
+          "english": "We've found the keys and are getting ready to leave.",
+          "chinese": "我們已找到鑰匙，正在準備出門。"
+        },
+        {
+          "category": "work",
+          "english": "We've reviewed the report and are preparing a response.",
+          "chinese": "我們已檢視報告，正在準備回覆。"
+        },
+        {
+          "category": "fitness",
+          "english": "We've completed the assessment and are planning the next session.",
+          "chinese": "我們已完成評估，正在規劃下一堂課。"
+        }
+      ]
+    },
+    "p_work_02": {
+      "formula": "Let me + 原形動詞 + and + 原形動詞",
+      "usage": "表示自己先做一件事，再採取後續行動。",
+      "tip": "let me 後用原形；get back to you 表稍後回覆你。",
+      "focus": [
+        {
+          "english": "let me",
+          "chinese": "讓我…"
+        },
+        {
+          "english": "check",
+          "chinese": "確認"
+        },
+        {
+          "english": "get back to you",
+          "chinese": "再回覆你"
+        }
+      ],
+      "examples": [
+        {
+          "category": "daily",
+          "english": "Let me check the calendar and get back to you.",
+          "chinese": "讓我確認行事曆後再回覆你。"
+        },
+        {
+          "category": "work",
+          "english": "Let me review the report and get back to you.",
+          "chinese": "讓我檢視報告後再回覆你。"
+        },
+        {
+          "category": "fitness",
+          "english": "Let me check your schedule and get back to you.",
+          "chinese": "讓我確認你的行程後再回覆你。"
+        }
+      ]
+    },
+    "p_course_b1_work_03_6_we_re_on_track_but_there_is_one_remaining_risk": {
+      "formula": "主詞 + be + 狀態, but + 完整子句",
+      "usage": "先說明正向狀況，再補充限制或風險。",
+      "tip": "on track 表進度符合預期；there is 接單數名詞。",
+      "focus": [
+        {
+          "english": "on track",
+          "chinese": "進度符合預期"
+        },
+        {
+          "english": "remaining",
+          "chinese": "剩下的"
+        },
+        {
+          "english": "risk",
+          "chinese": "風險"
+        }
+      ],
+      "examples": [
+        {
+          "category": "daily",
+          "english": "We're ready, but there is one thing missing.",
+          "chinese": "我們準備好了，但還缺一樣東西。"
+        },
+        {
+          "category": "work",
+          "english": "We're on track, but we need more testing time.",
+          "chinese": "進度符合預期，但我們需要更多測試時間。"
+        },
+        {
+          "category": "fitness",
+          "english": "You're making progress, but we need to focus on consistency.",
+          "chinese": "你有進步，但我們需要專注在持之以恆。"
+        }
+      ]
+    }
+  }
+}

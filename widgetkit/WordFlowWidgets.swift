@@ -131,23 +131,45 @@ struct WordFlowWidgetSettings: WidgetConfigurationIntent {
     }
 }
 
+private struct LearningLesson: Codable {
+    let id: String
+    let level: String
+    let category: String
+    let wordIds: [String]
+    let phraseIds: [String]
+}
+
+private struct CourseContent: Codable {
+    let items: [LearningItem]
+    let lessons: [LearningLesson]
+}
+
 private enum Vocabulary {
+    static let course: CourseContent? = {
+        guard let url = Bundle.main.url(forResource: "course_content", withExtension: "json"),
+              let data = try? Data(contentsOf: url) else { return nil }
+        return try? JSONDecoder().decode(CourseContent.self, from: data)
+    }()
+
     static let all: [LearningItem] = {
         guard let url = Bundle.main.url(forResource: "content", withExtension: "json"),
               let data = try? Data(contentsOf: url),
               let items = try? JSONDecoder().decode([LearningItem].self, from: data)
         else { return [LearningItem.placeholder] }
-        return items
+        var merged = Dictionary(uniqueKeysWithValues: items.map { ($0.id, $0) })
+        for item in course?.items ?? [] { merged[item.id] = item }
+        return Array(merged.values)
     }()
 
     /// The signed extension independently reads the App Groups container.
     /// This can fail with free SideStore provisioning even when the host app
     /// can write successfully. Never fake the synchronized word.
-    static func appSelectedWord() -> (item: LearningItem, revision: Int)? {
+    static func appSelectedItem(kind: LessonKind) -> (item: LearningItem, revision: Int)? {
         guard let groupID = WordFlowAppGroup.resolve(),
             let shared = UserDefaults(suiteName: groupID),
-            let selectedId = shared.string(forKey: "wordflow.sync.selectedWordId"),
-            let selected = all.filter { $0.kind == "word" && $0.id == selectedId }.first
+            let selectedId = shared.string(forKey: kind == .word
+                ? "wordflow.sync.selectedWordId" : "wordflow.sync.selectedPhraseId"),
+            let selected = all.first(where: { $0.kind == kind.rawValue && $0.id == selectedId })
         else { return nil }
         return (
             item: selected,
@@ -155,7 +177,7 @@ private enum Vocabulary {
         )
     }
 
-    // Same local-date / UTC-day index and sorted-ID rotation as Flutter.
+    // Independent fallback follows the local date, with legacy rotation only if the course is absent.
     static func pick(date: Date, kind: LessonKind, level: WordFlowLevel, topic: WordFlowTopic) -> LearningItem {
         let choices = all.filter {
             $0.kind == kind.rawValue && $0.level == level.rawValue &&
@@ -169,6 +191,18 @@ private enum Vocabulary {
         let epoch = utc.date(from: DateComponents(year: 2025, month: 1, day: 1))!
         let chosen = utc.date(from: DateComponents(year: local.year, month: local.month, day: local.day)) ?? epoch
         let day = utc.dateComponents([.day], from: epoch, to: chosen).day ?? 0
+        // Independent Widget fallback uses a single ordered lesson for both
+        // kinds. It cannot follow a user's completion state without App Groups.
+        let lessons = course?.lessons.filter {
+            $0.level == level.rawValue && (topic == .all || $0.category == topic.rawValue)
+        } ?? []
+        if !lessons.isEmpty {
+            let lesson = lessons[((day % lessons.count) + lessons.count) % lessons.count]
+            let ids = kind == .word ? lesson.wordIds : lesson.phraseIds
+            if let id = ids.first, let item = all.first(where: { $0.id == id }) {
+                return item
+            }
+        }
         let offset = kind == .phrase ? 7 : 0
         // A tap on the Lock Screen widget stores rotation in its own container.
         // The extension and its AppIntent share these UserDefaults; the Flutter
@@ -212,7 +246,7 @@ struct WordFlowProvider: AppIntentTimelineProvider {
     }
 
     private func makeEntry(date: Date, configuration: WordFlowWidgetSettings) -> WordFlowEntry {
-        let fromApp = kind == .word ? Vocabulary.appSelectedWord() : nil
+        let fromApp = Vocabulary.appSelectedItem(kind: kind)
         return WordFlowEntry(
             date: date,
             item: fromApp?.item ?? Vocabulary.pick(
@@ -290,7 +324,7 @@ private struct WordFlowWidgetView: View {
                     Text(entry.item.labeledMeaning)
                         .font(.system(size: 12, weight: .medium))
                         .lineLimit(1)
-                    if entry.kind == .word {
+                    if entry.kind == .word || entry.syncRevision != nil {
                         Text(entry.syncRevision.map { "App 同步 #\($0)" }
                                 ?? "尚未收到 App 同步")
                             .font(.system(size: 9, weight: .medium))

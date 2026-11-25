@@ -45,6 +45,7 @@ enum WordFlowWidgetSyncBridge {
     private static let channelName = "com.kidkingsky.wordflow/widgetsync"
     private static let selectedKey = "wordflow.sync.selectedWordId"
     private static let revisionKey = "wordflow.sync.revision"
+    private static let phraseKey = "wordflow.sync.selectedPhraseId"
 
     static func register(messenger: FlutterBinaryMessenger) {
         let channel = FlutterMethodChannel(name: channelName, binaryMessenger: messenger)
@@ -59,6 +60,19 @@ enum WordFlowWidgetSyncBridge {
             }
             switch call.method {
             case "status":
+                result(response(defaults: defaults, groupID: groupID))
+            case "setLesson":
+                guard let arguments = call.arguments as? [String: Any],
+                      let word = arguments["wordId"] as? String, !word.isEmpty,
+                      let phrase = arguments["phraseId"] as? String, !phrase.isEmpty else {
+                    result(FlutterError(code: "INVALID_LESSON",
+                        message: "沒有有效的課程單字與詞句 ID。", details: nil))
+                    return
+                }
+                defaults.set(word, forKey: selectedKey)
+                defaults.set(phrase, forKey: phraseKey)
+                defaults.set(defaults.integer(forKey: revisionKey) + 1, forKey: revisionKey)
+                WidgetCenter.shared.reloadAllTimelines()
                 result(response(defaults: defaults, groupID: groupID))
             case "setWord":
                 guard let arguments = call.arguments as? [String: Any],
@@ -80,6 +94,7 @@ enum WordFlowWidgetSyncBridge {
                 result(response(defaults: defaults, groupID: groupID))
             case "clear":
                 defaults.removeObject(forKey: selectedKey)
+                defaults.removeObject(forKey: phraseKey)
                 defaults.set(defaults.integer(forKey: revisionKey) + 1,
                              forKey: revisionKey)
                 WidgetCenter.shared.reloadAllTimelines()

@@ -41,7 +41,14 @@ void main() {
   test('all bundled phrases and phrase examples have offline hints', () {
     final raw = File('assets/content/content.json').readAsStringSync();
     final data = (jsonDecode(raw) as List).cast<Map<String, dynamic>>();
-    final items = data.map(LearningItem.fromJson).toList();
+    final course = jsonDecode(File('assets/content/course_content.json')
+        .readAsStringSync()) as Map<String, dynamic>;
+    final merged = <String, LearningItem>{
+      for (final item in data.map(LearningItem.fromJson)) item.id: item,
+      for (final item in (course['items'] as List)
+          .cast<Map<String, dynamic>>().map(LearningItem.fromJson)) item.id: item,
+    };
+    final items = merged.values.toList();
     for (final phrase in items.where((item) => !item.isWord)) {
       for (final sentence in [phrase.english, phrase.example]) {
         for (final token in englishWordTokens(sentence)) {
@@ -50,5 +57,17 @@ void main() {
         }
       }
     }
+    final patterns = course['patterns'] as Map<String, dynamic>;
+    for (final pattern in patterns.values) {
+      for (final example in (pattern as Map<String, dynamic>)['examples'] as List) {
+        final sentence = (example as Map<String, dynamic>)['english'] as String;
+        for (final token in englishWordTokens(sentence)) {
+          expect(lookupPhraseWord(token, items).isKnown, isTrue,
+            reason: 'Missing $token in transfer example: $sentence');
+        }
+      }
+    }
+    expect(lookupPhraseWord('beginners', items).catalogItem?.english, 'beginner');
+    expect(lookupPhraseWord('knees', items).catalogItem?.english, 'knee');
   });
 }
